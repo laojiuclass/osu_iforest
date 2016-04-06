@@ -54,6 +54,7 @@ virtual ~Forest()
 	std::vector<double> AnomalyScore(doubleframe* df);
 	virtual std::vector<double> pathLength(double *inst);
 	std::vector<std::vector<double> > pathLength(doubleframe* data);
+	std::vector<double> meandepth();
 	std::vector<double> ADtest(const std::vector<std::vector<double> > &pathlength, bool weighttotail);
 	std::vector<double> importance(double *inst);
 	virtual double getdepth(double *inst,Tree* tree);

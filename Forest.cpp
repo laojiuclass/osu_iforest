@@ -55,7 +55,6 @@ std::vector<double> Forest::pathLength(double *inst)
 	return depth;
 }
 
-
 /* PathLength for all points
 */
 std::vector<std::vector<double> > Forest::pathLength(doubleframe*  data)

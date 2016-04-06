@@ -82,6 +82,7 @@ void saveScoreToFile(std::vector<double> &scores,std::vector<std::vector<double>
 
 }
 
+
 void buildForest(Forest &iff, doubleframe* test_dt, const double alpha,int stopLimit,float rho,
 		string output_name,ntstringframe* metadata,bool savePathLength)
 {
@@ -102,11 +103,47 @@ void buildForest(Forest &iff, doubleframe* test_dt, const double alpha,int stopL
     }
     vector<double> scores = iff.AnomalyScore(test_dt); //generate anomaly score
    	vector<vector<double> > pathLength = iff.pathLength(test_dt); //generate Depth all points in all trees
-    saveScoreToFile(scores,pathLength,metadata,output_name,savePathLength);
+saveScoreToFile(scores,pathLength,metadata,output_name,savePathLength);
 
 
 
 }
+
+//overloaded function
+void buildForestPy(Forest &iff, doubleframe* test_dt, const double alpha,int stopLimit,float rho)
+
+{
+    if(iff.ntree>0)
+      iff.fixedTreeForest() ;
+    else
+    {
+     //int treeRequired = iff.adaptiveForest(ALPHA,stopLimit);
+    	if(rho<0){
+    	int treeRequired = iff.adaptiveForest(alpha,stopLimit);
+    	std::cout<<"\n# of Tree required from k-agreement \n "<<treeRequired;
+    	}else{
+    		const int initial_tree=50; //need to remove the constant term
+    		int treeRequired = iff.confTree(alpha,rho,initial_tree);
+    		std::cout<<"\n# of Tree required from rho based stopping\n "<<treeRequired;
+    	}
+
+    }
+
+    //return iff;
+
+    //vector<double> scores = iff.AnomalyScore(test_dt); //generate anomaly score
+   	//vector<vector<double> > pathLength = iff.pathLength(test_dt); //generate Depth all points in all trees
+
+//saveScoreToFile(scores,pathLength,metadata,output_name,savePathLength);
+
+
+
+}
+
+
+
+
+
 
 /* Static variable 
  */
@@ -168,6 +205,9 @@ int main(int argc, char* argv[])
     buildForest(rff,test_dt,alpha,stopLimit,rho,"rotate_"+rot_output,metadata,pathlength);
 
   }
+  //Anomaly score and path length
+
+
   util::logfile.close();
 	return 0;
 }

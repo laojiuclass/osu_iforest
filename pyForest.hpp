@@ -2,27 +2,37 @@
 // Created by zemichet on 3/30/16.
 //
 
-#ifndef IFOREST_ADDIN_PYFOREST_HPP
-#define IFOREST_ADDIN_PYFOREST_HPP
-#include<string>
-#include <boost/python.hpp>
-#include <cstdint>
-#include <string>
-#include <vector>
-#include <boost/utility.hpp>
-#include <boost/shared_ptr.hpp>
-
-
+#ifndef PYFOREST_HPP
+#define PYFOREST_HPP
+#include "main.hpp"
+//#include "utility.hpp"
 
 class pyForest {
 private:
     int ntree;
     int nsample;
-    int maxdepth;
+    int maxheight;
     bool rotate;
     bool adaptive;
     bool rangecheck;
+    double rho;
+    int stoplimit;
+    doubleframe *traindf;
+    doubleframe *testdf;
+    Forest *iff;
+    float const ALPHA=0.01;
 public:
+    //constructor and Destructor
+    virtual ~pyForest(){
+    delete traindf;
+    delete testdf;
+    delete iff;
+    };
+    pyForest();
+    pyForest(int _ntree, int _nsample,int _maxheight, bool _rotate, bool _adaptive,
+    		bool _rangecheck,double _rho,int stopLimit);
+
+
     int getNtree() const {
         return ntree;
     }
@@ -40,11 +50,11 @@ public:
     }
 
     int getMaxdepth() const {
-        return maxdepth;
+        return maxheight;
     }
 
     void setMaxdepth(int maxdepth) {
-        pyForest::maxdepth = maxdepth;
+        pyForest::maxheight = maxdepth;
     }
 
     bool isRotate() const {
@@ -71,12 +81,18 @@ public:
         pyForest::rangecheck = rangecheck;
     }
 
-    void trainForest();
+    //Methods
+
+    void trainForest(std::vector<std::vector<double> > &traindf);
+    void testForest(std::vector<std::vector<double> > &testdf);
     void saveModel(std::string modelName);
     Forest loadModel(std::string modelName);
-    double getScore(std::string testdata);
-    virtual ~pyForest(){};
-    pyForest();
+    std::vector<double> getScore();
+    std::vector<std::vector<double> > PathLength();
+    std::vector<double> averageDepth();
+    void convertVtoDf(std::vector<std::vector<double> > sourceVec,doubleframe* df);
+
+
 };
 
 

@@ -40,23 +40,26 @@ ofstream util::logfile("treepath.csv");
 void saveScoreToFile(std::vector<double> &scores,std::vector<std::vector<double> > &pathLength,const ntstringframe* metadata, string fName,bool savePathLength=false)
 {
 
-
+  metadata=metadata;
   //Compute the AUC of the score 
   vector<double> groundtruth(scores.size(),0);
   // make 0/1 from label 
 
   ofstream outscore(fName);
   if(!savePathLength)
-	 outscore << "groundtruth,score\n";
-	for (int j = 0; j < (int) scores.size(); j++)
+	// outscore << "groundtruth,score\n";
+    outscore <<"score\n";	
+  for (int j = 0; j < (int) scores.size(); j++)
     {
+     /* Disable writing metadata   
       if (metadata)
         {
-          outscore<<metadata->data[j][0]<<",";
+   
+            outscore<<metadata->data[j][0]<<",";
           //if(metadata->data[j][0]=="anomaly" || metadata->data[j][0] ==1)
             //groundtruth[j] = 1;
          }
-		
+	*/	
 	outscore  << scores[j]; //<<util::mean(pathLength[j])<<","<<rscores[j];
   if(savePathLength)
    {

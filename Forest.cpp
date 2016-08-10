@@ -7,6 +7,7 @@
 
 #include "Forest.hpp"
 
+
 double Forest::getdepth(double* inst,Tree* tree)
 {
 	return tree->pathLength(inst);

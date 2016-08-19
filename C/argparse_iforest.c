@@ -1,6 +1,6 @@
 #include "argparse_iforest.h"
 
-#define NOPTS 16
+#define NOPTS 17
 #define IOPT 0
 #define OOPT 1
 #define MOPT 2
@@ -17,7 +17,7 @@
 #define GOPT 13
 #define JOPT 14
 #define QOPT 15
-
+#define EOPT 16
 d(option)* option_spec() {
     d(option)* opts = vecalloc(option,NOPTS);
     opts[IOPT] = (option){
@@ -61,6 +61,7 @@ d(option)* option_spec() {
         .isflag = false,
         .flagged = false
     };
+
     opts[TOPT] = (option){
         .sarg = 't',
         .larg = "ntrees",
@@ -186,7 +187,17 @@ d(option)* option_spec() {
             .isflag = false,
             .flagged = false
         };
-  
+  opts[EOPT] = (option){
+        .sarg = 'e',
+        .larg = "epoch",
+        .name = "E",
+        .desc = "Specify number of epoch when batch mode training is selected. Default 30",
+        .default_value = "0",
+        .value = NULL,
+        .isflag = false,
+        .flagged = false
+    };
+     
     return opts;
 }
 
@@ -230,6 +241,16 @@ parsed_args* validate_args(d(option*) opts) {
         err_and_exit(1,"Expected integer as stopping Limit.\n");
     }
     
+    
+     if (str_conv_strict(&(pargs->epoch),sint,opts[EOPT].value)) {
+       err_and_exit(1,"Expected integer as number of epoch.\n");
+       }
+   
+   if (pargs->epoch<0) {
+        err_and_exit(1,"Number of epoch must be at least 1.\n");
+        }
+  
+    
     pargs->sampsize = strtol(opts[SOPT].value,NULL,10);
     pargs->maxdepth = strtol(opts[DOPT].value,NULL,10);
     pargs->header = opts[HOPT].flagged;
@@ -241,6 +262,7 @@ parsed_args* validate_args(d(option*) opts) {
     pargs->rangecheck = opts[GOPT].flagged;  
     pargs->precision = strtof(opts[JOPT].value,NULL);
     pargs->alpha= strtof(opts[QOPT].value,NULL);
+    
     //strtof();
     return pargs;
 }

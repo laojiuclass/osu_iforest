@@ -13,7 +13,7 @@ namespace metric {
 //Area under ROC curve
 double AUC(std::vector<double> &labels, std::vector<double> &scores,int n,int posclass);
 //Average precision
-//double ap(std::vector<double> &labels, std::vector<double> &scores,int n,int posclass);
+double ap(std::vector<double> &labels, std::vector<double> &scores,int n,int posclass);
 
 }
 

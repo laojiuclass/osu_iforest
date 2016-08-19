@@ -116,8 +116,9 @@ saveScoreToFile(scores,pathLength,metadata,output_name,savePathLength);
 void buildForestPy(Forest &iff, doubleframe* test_dt, const double alpha,int stopLimit,float rho)
 
 {
-    if(iff.ntree>0)
+    if(iff.ntree>0){
       iff.fixedTreeForest() ;
+    }
     else
     {
      //int treeRequired = iff.adaptiveForest(ALPHA,stopLimit);
@@ -175,7 +176,9 @@ int main(int argc, char* argv[])
     bool pathlength = pargs->pathlength;
     float rho  = pargs->precision;
     float alpha = pargs->alpha;
-       //Input file to dataframe
+    //int epoch  = pargs->epoch;
+    //Input file to dataframe
+    
     ntstringframe* csv = read_csv(input_name, header, false, false);
     ntstringframe* metadata = split_frame(ntstring, csv, metacol,true);
 	doubleframe* dt = conv_frame(double, ntstring, csv); //read data to the global variable
@@ -199,7 +202,7 @@ int main(int argc, char* argv[])
 
  
  IsolationForest iff(ntree,dt,nsample,maxheight,stopheight,rsample); //build iForest
- buildForest(iff,test_dt,alpha,stopLimit,rho,output_name,metadata,pathlength);
+ buildForest(iff,test_dt,alpha,stopLimit,rho,output_name,metadata,pathlength,epoch);
     
   if(rotate)  //check for rotation forest
   {

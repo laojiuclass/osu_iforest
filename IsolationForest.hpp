@@ -24,6 +24,7 @@ class IsolationForest:public Forest{
   int adaptiveForest(double alpha,int stopLimit); 
   void fixedTreeForest();
    int confTree(double alpha,double rho,int init_tree);
+   int batchForest();
 };
 
 

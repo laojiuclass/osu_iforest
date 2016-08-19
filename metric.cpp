@@ -57,6 +57,10 @@ double AUC(vector<double> &labels, vector<double> &scores,int n,int posclass) {
 	return A;
 }
 
+double metric::ap(std::vector<double> &labels, std::vector<double> &scores,int n,int posclass){
+
+return 1.0;
+}
 
 
 

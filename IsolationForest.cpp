@@ -14,26 +14,25 @@ IsolationForest::IsolationForest(int _ntree,doubleframe* _df,
 
 
 }
-void IsolationForest::fixedTreeForest()
+void IsolationForest::fixedTreeForest(int epoch)
 {
-    if(this->ntree>50)
+    if(epoch==0)
         this->buildForest();
-    else
+else
     {
-    int ntree_ep = batchForest();
+    int ntree_ep = batchForest(epoch);
     
     std::cout<<"\n Number of trees required "<<ntree_ep;
     }
     //buildForest();
 }
 
-int IsolationForest::batchForest()
+int IsolationForest::batchForest(int epoch)
 {
 	    std::vector<int> sampleIndex;
               //
         //Based on the number of trees given and batch size (nsample) divide the data. Assume 1-epoch for now. 
         // Let's assume the number of trees as epoch number in this case for now 
-		int epoch = this->ntree;
         int ntrees = dataset->nrow/nsample;
         for(int ep=0;ep<epoch;ep++){
 

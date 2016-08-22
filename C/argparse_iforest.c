@@ -242,7 +242,7 @@ parsed_args* validate_args(d(option*) opts) {
     }
     
     
-     if (str_conv_strict(&(pargs->epoch),sint,opts[EOPT].value)) {
+     if (str_conv_strict(&(pargs->epoch),int,opts[EOPT].value)) {
        err_and_exit(1,"Expected integer as number of epoch.\n");
        }
    

@@ -111,8 +111,9 @@ MatrixXd  RForest::rotateData(doubleframe* dt, MatrixXd& M)
     MatrixXd  mData = convertDfToMatrix(dt,sampleIndex);
     return mData*M;
 }
-void RForest::fixedTreeForest()
+void RForest::fixedTreeForest(int epoch)
 {
+    if(epoch==0)
     rForest();
 }
 

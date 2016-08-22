@@ -15,7 +15,8 @@
 
 void buildForest(Forest &iff, doubleframe* test_dt, const double alpha,int stopLimit,float rho,
 		std::string output_name,ntstringframe* metadata,bool savePathLength);
-void buildForestPy(Forest &iff, doubleframe* test_dt, const double alpha,int stopLimit,float rho);
+
+//void buildForestPy(Forest &iff, doubleframe* test_dt, const double alpha,int stopLimit,float rho);
 
 void saveScoreToFile(std::vector<double> &scores,
 		std::vector<std::vector<double> > &pathLength,

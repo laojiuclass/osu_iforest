@@ -40,23 +40,26 @@ ofstream util::logfile("treepath.csv");
 void saveScoreToFile(std::vector<double> &scores,std::vector<std::vector<double> > &pathLength,const ntstringframe* metadata, string fName,bool savePathLength=false)
 {
 
-
+  metadata=metadata;
   //Compute the AUC of the score 
   vector<double> groundtruth(scores.size(),0);
   // make 0/1 from label 
 
   ofstream outscore(fName);
   if(!savePathLength)
-	 outscore << "groundtruth,score\n";
-	for (int j = 0; j < (int) scores.size(); j++)
+	// outscore << "groundtruth,score\n";
+    outscore <<"score\n";	
+  for (int j = 0; j < (int) scores.size(); j++)
     {
+     /* Disable writing metadata   
       if (metadata)
         {
-          outscore<<metadata->data[j][0]<<",";
+   
+            outscore<<metadata->data[j][0]<<",";
           //if(metadata->data[j][0]=="anomaly" || metadata->data[j][0] ==1)
             //groundtruth[j] = 1;
          }
-		
+	*/	
 	outscore  << scores[j]; //<<util::mean(pathLength[j])<<","<<rscores[j];
   if(savePathLength)
    {
@@ -84,10 +87,11 @@ void saveScoreToFile(std::vector<double> &scores,std::vector<std::vector<double>
 
 
 void buildForest(Forest &iff, doubleframe* test_dt, const double alpha,int stopLimit,float rho,
-		string output_name,ntstringframe* metadata,bool savePathLength)
+		string output_name,ntstringframe* metadata,bool savePathLength,
+        int epoch)
 {
     if(iff.ntree>0)
-      iff.fixedTreeForest() ;
+      iff.fixedTreeForest(epoch) ;
     else
     {
      //int treeRequired = iff.adaptiveForest(ALPHA,stopLimit);
@@ -109,12 +113,14 @@ saveScoreToFile(scores,pathLength,metadata,output_name,savePathLength);
 
 }
 
-//overloaded function
+
+/*overloaded function
 void buildForestPy(Forest &iff, doubleframe* test_dt, const double alpha,int stopLimit,float rho)
 
 {
-    if(iff.ntree>0)
+    if(iff.ntree>0){
       iff.fixedTreeForest() ;
+    }
     else
     {
      //int treeRequired = iff.adaptiveForest(ALPHA,stopLimit);
@@ -140,7 +146,7 @@ void buildForestPy(Forest &iff, doubleframe* test_dt, const double alpha,int sto
 
 }
 
-
+*/
 
 
 
@@ -172,7 +178,9 @@ int main(int argc, char* argv[])
     bool pathlength = pargs->pathlength;
     float rho  = pargs->precision;
     float alpha = pargs->alpha;
-       //Input file to dataframe
+    int epoch  = pargs->epoch;
+    //Input file to dataframe
+    
     ntstringframe* csv = read_csv(input_name, header, false, false);
     ntstringframe* metadata = split_frame(ntstring, csv, metacol,true);
 	doubleframe* dt = conv_frame(double, ntstring, csv); //read data to the global variable
@@ -196,13 +204,13 @@ int main(int argc, char* argv[])
 
  
  IsolationForest iff(ntree,dt,nsample,maxheight,stopheight,rsample); //build iForest
- buildForest(iff,test_dt,alpha,stopLimit,rho,output_name,metadata,pathlength);
+buildForest(iff,test_dt,alpha,stopLimit,rho,output_name,metadata,pathlength,epoch);
     
   if(rotate)  //check for rotation forest
   {
     RForest rff(ntree,dt,nsample,maxheight,stopheight,rsample);
     string rot_output(output_name); 
-    buildForest(rff,test_dt,alpha,stopLimit,rho,"rotate_"+rot_output,metadata,pathlength);
+    buildForest(rff,test_dt,alpha,stopLimit,rho,"rotate_"+rot_output,metadata,pathlength,epoch);
 
   }
   //Anomaly score and path length

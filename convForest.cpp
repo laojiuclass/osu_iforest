@@ -76,7 +76,6 @@ void convForest::convergeIF(double tau,double alpha)
 	while (!converged) {
      pq= priority_queue<pair<int,double>,vector<pair<int,double> >,larger >();
 
-
 		//Sample data for training
 		getSample(sampleIndex,nsample,rsample,dataset->nrow);
 		//build a tree based on the sample and add to forest

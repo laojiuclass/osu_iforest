@@ -21,6 +21,7 @@ private:
 	double splittingPoint;
 	int depth;
 	double minAttVal,maxAttVal;
+	std::vector<int> trainIndex;
 public:
 	static bool rangeCheck;
 	Tree()
@@ -45,6 +46,8 @@ public:
 
 	void iTree(std::vector<int> const &dIndex,const doubleframe* dt, int height, int maxHeight, bool stopheight);
 	double pathLength(double *inst);
+	bool indexAvailable(int index);
+
 
 };
 

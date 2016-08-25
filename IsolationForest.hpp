@@ -22,8 +22,9 @@ class IsolationForest:public Forest{
 	}
 	//convergent iForest
   int adaptiveForest(double alpha,int stopLimit); 
-  void fixedTreeForest();
+  void fixedTreeForest(int epoch);
    int confTree(double alpha,double rho,int init_tree);
+   int batchForest(int epoch);
 };
 
 

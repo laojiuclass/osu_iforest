@@ -20,6 +20,7 @@ struct parsed_args {
     bool rangecheck;
 	float precision;
 	float alpha;
+    int epoch;
 };
 
 

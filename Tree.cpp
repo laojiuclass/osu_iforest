@@ -5,6 +5,16 @@
  *      Author: Tadeze
  */
 #include "Tree.hpp"
+
+// Check if the index is avaialbe in training the tree
+// Used for out of bag scoring 
+
+bool Tree::indexAvailable(int index)
+{
+      return std::find(trainIndex.begin(),trainIndex.end(),index)!=trainIndex.end();
+
+}
+
 //bool Tree::rangeCheck=true;
 void Tree::iTree(std::vector<int> const &dIndex,const doubleframe *dt, int height, int maxheight, bool stopheight)
 {

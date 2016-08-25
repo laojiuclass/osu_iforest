@@ -71,7 +71,7 @@ virtual ~Forest()
      virtual int adaptiveForest(double alpha,int stopLimit); 
     
      /*Fixed tree forest */
-     virtual void fixedTreeForest() {};
+     virtual void fixedTreeForest(int epoch) {};
 
      virtual int confTree(double alpha,double rho,int init_tree);
 	 /*

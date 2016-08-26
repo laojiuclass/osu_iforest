@@ -46,15 +46,23 @@ std::vector<double> Forest::AnomalyScore(doubleframe* df)
 std::vector<double> Forest::outOfBagScore(doubleframe* df)
 {
 	std::vector<double> scores;
+	double score;
 	//iterate through all points
 	for (int inst = 0; inst <df->nrow; inst++)
 	{
 	 double depth =0.0
 	  for(int it=0;it<this->ntree;it++)
-	    {	
-		if(this->trees[it]->indexAvailable(inst))
-			depth + = getdepth(df->data[inst],this->tree[it]);		
-       	   }
+	    {	int numTreeUsed =0;
+		if(!this->trees[it]->indexAvailable(inst))
+		{
+			depth + = getdepth(df->data[inst],this->tree[it]);
+			numTreeUsed++;
+		}
+
+	      	   }
+	score = pow(2,-(depth/numTreeUsed)/util::avgPL(this->nsample);
+	scores.push_back(score);			
+ 
 	}
 	return scores;
 }

@@ -50,7 +50,8 @@ int IsolationForest::batchForest(int epoch)
 		//	tree->rangeCheck = this->rangecheck;
 		    std::vector<int> batchIndex(sampleIndex.begin()+n*nsample,sampleIndex.begin()+(n+1)*nsample);
             tree->iTree(batchIndex,dataset, 0, maxheight, stopheight);
-			this->trees.push_back(tree); //add tree to forest
+		tree->trainIndex = batchIndex;
+		this->trees.push_back(tree); //add tree to forest
 		//	Tree::treeIndx++;
           batchIndex.clear();
 		 }
@@ -65,8 +66,9 @@ return(epoch*ntrees);
 
 void IsolationForest::buildForest()
 {
-	std::vector<int> sampleIndex;
-    std::ofstream findex("sampleIndex.csv");
+	
+std::vector<int> sampleIndex;
+// std::ofstream findex("sampleIndex.csv");
     
 		//build forest through all trees
 		for (int n = 0; n < this->ntree; n++)
@@ -75,16 +77,18 @@ void IsolationForest::buildForest()
 			//Sample and shuffle the data.
 			sampleIndex.clear();
 			getSample(sampleIndex,nsample,rsample,dataset->nrow);
-            for(int ind : sampleIndex) findex<<ind<<",";
-            findex<<"\n";
+    //        for(int ind : sampleIndex) findex<<ind<<",";
+      //      findex<<"\n";
 			//build tree
 			Tree *tree = new Tree();
 		//	tree->rangeCheck = this->rangecheck;
 			tree->iTree(sampleIndex,dataset, 0, maxheight, stopheight);
-			this->trees.push_back(tree); //add tree to forest
+		if(nsample <dataset->nrow)
+			tree->trainIndex = sampleIndex;		
+		this->trees.push_back(tree); //add tree to forest
 		//	Tree::treeIndx++;
 		 }
-    findex.close();
+  //  findex.close();
 
 }
 

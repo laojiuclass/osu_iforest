@@ -52,6 +52,8 @@ virtual ~Forest()
 
 	double instanceScore(double *inst);
 	std::vector<double> AnomalyScore(doubleframe* df);
+	std::vector<double> outOfBagScore(doubleframe* df);
+	
 	virtual std::vector<double> pathLength(double *inst);
 	std::vector<std::vector<double> > pathLength(doubleframe* data);
 	std::vector<double> meandepth();
@@ -71,7 +73,7 @@ virtual ~Forest()
      virtual int adaptiveForest(double alpha,int stopLimit); 
     
      /*Fixed tree forest */
-     virtual void fixedTreeForest() {};
+     virtual void fixedTreeForest(int epoch) {};
 
      virtual int confTree(double alpha,double rho,int init_tree);
 	 /*

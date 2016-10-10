@@ -6,7 +6,8 @@
  */
 
 #include "Forest.hpp"
-
+//TODO: Complete the out of bag scoring 
+//Update tree for saving index used for training. 
 double Forest::getdepth(double* inst,Tree* tree)
 {
 	return tree->pathLength(inst);
@@ -37,6 +38,37 @@ std::vector<double> Forest::AnomalyScore(doubleframe* df)
 	}
 	return scores;
 }
+
+
+/*
+ * Score for out of bag scoring 
+ */
+std::vector<double> Forest::outOfBagScore(doubleframe* df)
+{
+	std::vector<double> scores;
+	double score;
+	//iterate through all points
+	for (int inst = 0; inst <df->nrow; inst++)
+	{
+	 double depth =0.0
+	  for(int it=0;it<this->ntree;it++)
+	    {	int numTreeUsed =0;
+		if(!this->trees[it]->indexAvailable(inst))
+		{
+			depth + = getdepth(df->data[inst],this->tree[it]);
+			numTreeUsed++;
+		}
+
+	      	   }
+	score = pow(2,-(depth/numTreeUsed)/util::avgPL(this->nsample);
+	scores.push_back(score);			
+ 
+	}
+	return scores;
+}
+
+
+
 /*
  * Return instance depth in all trees
 */
@@ -47,9 +79,8 @@ std::vector<double> Forest::pathLength(double *inst)
 	for (std::vector<Tree*>::iterator it = this->trees.begin(); it != trees.end();
 			++it)
 	{
-
- 		 depth.push_back((*it)->pathLength(inst));
-
+ 	
+		 depth.push_back((*it)->pathLength(inst));
 
 	}
 	return depth;

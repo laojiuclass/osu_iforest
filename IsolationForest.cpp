@@ -14,16 +14,62 @@ IsolationForest::IsolationForest(int _ntree,doubleframe* _df,
 
 
 }
-void IsolationForest::fixedTreeForest()
+void IsolationForest::fixedTreeForest(int epoch)
 {
-    buildForest();
+    if(epoch==0)
+        this->buildForest();
+else
+    {
+    int ntree_ep = batchForest(epoch);
+    
+    std::cout<<"\n Number of trees required "<<ntree_ep;
+    }
+    //buildForest();
 }
+
+int IsolationForest::batchForest(int epoch)
+{
+	    std::vector<int> sampleIndex;
+              //
+        //Based on the number of trees given and batch size (nsample) divide the data. Assume 1-epoch for now. 
+        // Let's assume the number of trees as epoch number in this case for now 
+        int ntrees = dataset->nrow/nsample;
+        for(int ep=0;ep<epoch;ep++){
+
+       	sampleIndex.clear();
+		getSample(sampleIndex,dataset->nrow,rsample,dataset->nrow);
+
+
+		for (int n = 0; n < ntrees; n++)
+		{
+
+			//Sample and shuffle the data.
+					//build tree
+            
+			Tree *tree = new Tree();
+		//	tree->rangeCheck = this->rangecheck;
+		    std::vector<int> batchIndex(sampleIndex.begin()+n*nsample,sampleIndex.begin()+(n+1)*nsample);
+            tree->iTree(batchIndex,dataset, 0, maxheight, stopheight);
+		tree->trainIndex = batchIndex;
+		this->trees.push_back(tree); //add tree to forest
+		//	Tree::treeIndx++;
+          batchIndex.clear();
+		 }
+
+        }
+return(epoch*ntrees);
+}
+
+
+
 //Build forest using defined number of trees
 
 void IsolationForest::buildForest()
 {
-	std::vector<int> sampleIndex;
-
+	
+std::vector<int> sampleIndex;
+// std::ofstream findex("sampleIndex.csv");
+    
 		//build forest through all trees
 		for (int n = 0; n < this->ntree; n++)
 		{
@@ -31,15 +77,18 @@ void IsolationForest::buildForest()
 			//Sample and shuffle the data.
 			sampleIndex.clear();
 			getSample(sampleIndex,nsample,rsample,dataset->nrow);
-
+    //        for(int ind : sampleIndex) findex<<ind<<",";
+      //      findex<<"\n";
 			//build tree
 			Tree *tree = new Tree();
 		//	tree->rangeCheck = this->rangecheck;
 			tree->iTree(sampleIndex,dataset, 0, maxheight, stopheight);
-			this->trees.push_back(tree); //add tree to forest
+		if(nsample <dataset->nrow)
+			tree->trainIndex = sampleIndex;		
+		this->trees.push_back(tree); //add tree to forest
 		//	Tree::treeIndx++;
 		 }
-
+  //  findex.close();
 
 }
 

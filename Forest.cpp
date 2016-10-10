@@ -47,20 +47,23 @@ std::vector<double> Forest::outOfBagScore(doubleframe* df)
 {
 	std::vector<double> scores;
 	double score;
+    int numTreeUsed;
+    double depth;
 	//iterate through all points
 	for (int inst = 0; inst <df->nrow; inst++)
 	{
-	 double depth =0.0
+	  depth =0.0;
 	  for(int it=0;it<this->ntree;it++)
-	    {	int numTreeUsed =0;
+	    {
+         numTreeUsed =0;
 		if(!this->trees[it]->indexAvailable(inst))
 		{
-			depth + = getdepth(df->data[inst],this->tree[it]);
+			depth +=getdepth(df->data[inst],this->trees[it]);
 			numTreeUsed++;
 		}
 
-	      	   }
-	score = pow(2,-(depth/numTreeUsed)/util::avgPL(this->nsample);
+	   }
+	score = pow(2,-(depth/numTreeUsed)/util::avgPL(this->nsample));
 	scores.push_back(score);			
  
 	}

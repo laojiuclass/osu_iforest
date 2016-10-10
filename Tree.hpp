@@ -21,10 +21,11 @@ private:
 	double splittingPoint;
 	int depth;
 	double minAttVal,maxAttVal;
-	std::vector<int> trainIndex;
 public:
 	static bool rangeCheck;
-	Tree()
+	std::vector<int> trainIndex;
+
+    Tree()
 	{
 		leftChild = NULL;
 		rightChild = NULL;

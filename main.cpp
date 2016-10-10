@@ -32,7 +32,6 @@ Default value is 100.
  */
 
 #include "main.hpp"
-#include "PyForest.hpp"
 using namespace std;
 
 //log file
@@ -108,41 +107,7 @@ saveScoreToFile(scores,pathLength,metadata,output_name,savePathLength);
 }
 
 
-/*overloaded function
-void buildForestPy(Forest &iff, doubleframe* test_dt, const double alpha,int stopLimit,float rho)
-
-{
-    if(iff.ntree>0){
-      iff.fixedTreeForest() ;
-    }
-    else
-    {
-     //int treeRequired = iff.adaptiveForest(ALPHA,stopLimit);
-    	if(rho<0){
-    	int treeRequired = iff.adaptiveForest(alpha,stopLimit);
-    	std::cout<<"\n# of Tree required from k-agreement \n "<<treeRequired;
-    	}else{
-    		const int initial_tree=50; //need to remove the constant term
-    		int treeRequired = iff.confTree(alpha,rho,initial_tree);
-    		std::cout<<"\n# of Tree required from rho based stopping\n "<<treeRequired;
-    	}
-
-    }
-
-    //return iff;
-
-    //vector<double> scores = iff.AnomalyScore(test_dt); //generate anomaly score
-   	//vector<vector<double> > pathLength = iff.pathLength(test_dt); //generate Depth all points in all trees
-
-//saveScoreToFile(scores,pathLength,metadata,output_name,savePathLength);
-
-
-
-}
-
-<<<<<<< HEAD
-/*
- * Display vector data
+ /* Display vector data
  */
 void dispalyVec(vector<double> &data)
 {
@@ -156,9 +121,6 @@ void dispalyVec(vector<double> &data)
 /* Generate 2-D data
  *
  */
-=======
-*/
->>>>>>> 72f231cc58733ab880f8f7cbac217a691108e820
 
 vector<vector<double> > syntheticData(int D, int N)
 	{
@@ -229,6 +191,7 @@ int main(int argc, char* argv[])
    * Test for pyForest
    * TODO: Synthetic data genrating class
    */
+/*
   int N=30;
   int D=5;
  vector<vector<double> > data = syntheticData(N,D);
@@ -245,7 +208,7 @@ pforest.trainForest(data,ntree, nsample,maxheight,rotate,stopLimit==0,
 	 std::cout<<sc<<"\n";
  }
 
-
+*/
 
  IsolationForest iff(ntree,dt,nsample,maxheight,stopheight,rsample); //build iForest
 buildForest(iff,test_dt,alpha,stopLimit,rho,output_name,metadata,pathlength,epoch);
@@ -254,13 +217,8 @@ buildForest(iff,test_dt,alpha,stopLimit,rho,output_name,metadata,pathlength,epoc
  {
     RForest rff(ntree,dt,nsample,maxheight,stopheight,rsample);
     string rot_output(output_name); 
-<<<<<<< HEAD
-    buildForest(rff,test_dt,alpha,stopLimit,rho,"rotate_"+rot_output,metadata,pathlength);
- }
-=======
     buildForest(rff,test_dt,alpha,stopLimit,rho,"rotate_"+rot_output,metadata,pathlength,epoch);
->>>>>>> 72f231cc58733ab880f8f7cbac217a691108e820
-
+ }
   //Anomaly score and path length
   util::logfile.close();
   return 0;

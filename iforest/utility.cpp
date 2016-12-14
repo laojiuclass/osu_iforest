@@ -8,7 +8,8 @@
 #include "utility.hpp"
 using namespace std;
 namespace util {
-default_random_engine gen(400);  //Debugging
+
+	default_random_engine gen(400);  //Debugging
 
 //default_random_engine gen(time(NULL));  //Production
 
@@ -19,8 +20,6 @@ T randomT(T min, T max)
 	return dist(gen);
 
 }
-
-
 
 double randomD (double min,double max)
  {
@@ -34,7 +33,6 @@ int randomI(int min, int max)
 
 	uniform_int_distribution<unsigned> dist(min,max);
 	return dist(gen);
-
 
 }
 
@@ -56,7 +54,6 @@ void sampleI(int min,int max, int nsample,vector<int> &samples)
 		samples.push_back(rndI);
 		duplicate.insert(rndI);
 		cnt++;
-
 	}
 
 }
@@ -231,30 +228,22 @@ vector<double> ADdistance(vector<vector<double> > depths, bool weightToTail =
 	}
 }
 
-/*
- * Convert vector-2d to doubleframe
+/* Generate 2-D data
+ *
  */
-/*
-void convertVtoDf(std::vector<std::vector<double> > &sourceVec,doubleframe* df)
+
+std::vector<std::vector<double> > syntheticData(int D, int N)
 {
-	int _ncol =(int) sourceVec[0].size();
-	int _nrow =(int) sourceVec.size();
-
-	for(int i=0;i<_nrow;i++)
+	std::vector<std::vector<double> > data;
+	for (int k=0;k<N;k++)
 	{
-		for(int j=0;j<_ncol;j++)
-		{
-			df->data[i][j] = sourceVec[i][j];
-
-		}
+		std::vector<double> row(D);
+		for(int j=0;j<D;j++)
+			row.push_back(util::randomD(0,2));
+		data.push_back(row);
 	}
-	df->ncol = _ncol;
-	df->nrow = _nrow;
-
+	return data;
 }
-*/
-
-
 
 /* UTITLITY_H_ */
 

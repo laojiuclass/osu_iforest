@@ -17,12 +17,9 @@ public:
             bool _rsample,double _tau,double _alpha):Forest(_ntree,_df,_nsample,_maxheight,_stopheight, _rsample)
 	{tau=_tau;alpha=_alpha;}
 	virtual ~convForest()=default;
-
 	void convergeIF(double tau,double alpha);
-
-//Sequential confidence interval stopping 
+//Sequential confidence interval stopping
 	void confstop(double alpha);
-
 
 };
 #endif /* CONVFOREST_H_ */

@@ -38,13 +38,10 @@ Default value is 100.
 //Save score to flat file
 void saveScoreToFile(std::vector<double> &scores,std::vector<std::vector<double> > &pathLength,const ntstringframe* metadata, std::string fName,bool savePathLength=false)
 {
-
-  metadata=metadata;
-  //Compute the AUC of the score 
+    metadata=metadata;
+  //Compute the AUC of the score
   std::vector<double> groundtruth(scores.size(),0);
-  // make 0/1 from label 
-
-    std::ofstream outscore(fName);
+  std::ofstream outscore(fName);
   if(!savePathLength)
 	// outscore << "groundtruth,score\n";
     outscore <<"score\n";	
@@ -76,7 +73,6 @@ void saveScoreToFile(std::vector<double> &scores,std::vector<std::vector<double>
 
 }
 
-
 void buildForest(Forest &iff, doubleframe* test_dt, const double alpha,int stopLimit,float rho,
                  std::string output_name,ntstringframe* metadata,bool savePathLength,
         int epoch)
@@ -98,48 +94,14 @@ void buildForest(Forest &iff, doubleframe* test_dt, const double alpha,int stopL
     }
     std::vector<double> scores = iff.AnomalyScore(test_dt); //generate anomaly score
     std::vector<std::vector<double> > pathLength = iff.pathLength(test_dt); //generate Depth all points in all trees
-saveScoreToFile(scores,pathLength,metadata,output_name,savePathLength);
-
-
-
+    saveScoreToFile(scores,pathLength,metadata,output_name,savePathLength);
 }
-
-
- /* Display vector data
- */
-void dispalyVec(std::vector<double> &data)
-{
-    for(double row : data)
-    {
-        std::cout<<row<<"\n";
-    }
-}
-
-
-/* Generate 2-D data
- *
- */
-
-std::vector<std::vector<double> > syntheticData(int D, int N)
-	{
-        std::vector<std::vector<double> > data;
-	     for (int k=0;k<N;k++)
-	     {
-             std::vector<double> row(D);
-	       for(int j=0;j<D;j++)
-	        row.push_back(util::randomD(0,2));
-			data.push_back(row);
-	     }
-	     return data;
-	}
-
 
 
 /* Static variable 
  */
 bool Tree::rangeCheck ;  //range check for Tree score calculation.
-
-int main(int argc, char* argv[]) 
+int main(int argc, char* argv[])
 {
 
     /*parse argument from command line*/

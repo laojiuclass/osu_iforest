@@ -24,14 +24,6 @@
 #include<random>
 #include<utility>
 
-/*
-struct Data
-{
-	int ncol;
-	int nrow;
-	std::vector<std::vector<double> > data;
-};
-*/
 ////default_random_engine gen(time(NULL));
 namespace util{
 int randomI(int min, int max);

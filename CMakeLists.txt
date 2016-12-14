@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.6)
+project(osu_iforest)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+include_directories(iforest)
+add_subdirectory(iforest)
+set(SOURCE_FILES main.cpp)
+add_executable(osu_iforest ${SOURCE_FILES})
+target_link_libraries(osu_iforest iforest Clib)

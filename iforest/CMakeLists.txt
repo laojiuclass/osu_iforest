@@ -1,0 +1,8 @@
+project(osu_iforest)
+add_definitions(-std=c++11)
+include_directories(C)
+add_subdirectory(C)
+set(HEADER_FILES Tree.hpp Forest.hpp IsolationForest.hpp utility.hpp cincl.hpp RForest.hpp main.hpp)
+set(SOURCE_FILES Tree.cpp Forest.cpp IsolationForest.cpp utility.cpp RForest.cpp)
+#add_subdirectory(Eigen)
+add_library(iforest STATIC ${SOURCE_FILES} ${HEADER_FILES})

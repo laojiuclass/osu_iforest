@@ -141,7 +141,7 @@ int IsolationForest::adaptiveForest(double alpha,int stopLimit){
         if(ntree<2)
         {
         	prevTopKIndex = topKIndex;
-            util::logfile<<prob<<"\n";
+//            util::logfile<<prob<<"\n";
         	continue;
         }
 

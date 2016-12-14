@@ -195,7 +195,7 @@ int main(int argc, char* argv[])
     buildForest(rff,test_dt,alpha,stopLimit,rho,"rotate_"+rot_output,metadata,pathlength,epoch);
  }
   //Anomaly score and path length
-  util::logfile.close();
+ // util::logfile.close();
   return 0;
 }
 

@@ -31,22 +31,20 @@ Default value is 100.
  Print this help message and exit.
  */
 
-#include "main.hpp"
-using namespace std;
-
+#include "iforest/main.hpp"
 //log file
-ofstream util::logfile("treepath.csv");
+//ofstream util::logfile("treepath.csv");
 
 //Save score to flat file
-void saveScoreToFile(std::vector<double> &scores,std::vector<std::vector<double> > &pathLength,const ntstringframe* metadata, string fName,bool savePathLength=false)
+void saveScoreToFile(std::vector<double> &scores,std::vector<std::vector<double> > &pathLength,const ntstringframe* metadata, std::string fName,bool savePathLength=false)
 {
 
   metadata=metadata;
   //Compute the AUC of the score 
-  vector<double> groundtruth(scores.size(),0);
+  std::vector<double> groundtruth(scores.size(),0);
   // make 0/1 from label 
 
-  ofstream outscore(fName);
+    std::ofstream outscore(fName);
   if(!savePathLength)
 	// outscore << "groundtruth,score\n";
     outscore <<"score\n";	
@@ -80,7 +78,7 @@ void saveScoreToFile(std::vector<double> &scores,std::vector<std::vector<double>
 
 
 void buildForest(Forest &iff, doubleframe* test_dt, const double alpha,int stopLimit,float rho,
-		string output_name,ntstringframe* metadata,bool savePathLength,
+                 std::string output_name,ntstringframe* metadata,bool savePathLength,
         int epoch)
 {
     if(iff.ntree>0)
@@ -98,8 +96,8 @@ void buildForest(Forest &iff, doubleframe* test_dt, const double alpha,int stopL
     	}
 
     }
-    vector<double> scores = iff.AnomalyScore(test_dt); //generate anomaly score
-   	vector<vector<double> > pathLength = iff.pathLength(test_dt); //generate Depth all points in all trees
+    std::vector<double> scores = iff.AnomalyScore(test_dt); //generate anomaly score
+    std::vector<std::vector<double> > pathLength = iff.pathLength(test_dt); //generate Depth all points in all trees
 saveScoreToFile(scores,pathLength,metadata,output_name,savePathLength);
 
 
@@ -109,7 +107,7 @@ saveScoreToFile(scores,pathLength,metadata,output_name,savePathLength);
 
  /* Display vector data
  */
-void dispalyVec(vector<double> &data)
+void dispalyVec(std::vector<double> &data)
 {
     for(double row : data)
     {
@@ -122,12 +120,12 @@ void dispalyVec(vector<double> &data)
  *
  */
 
-vector<vector<double> > syntheticData(int D, int N)
+std::vector<std::vector<double> > syntheticData(int D, int N)
 	{
-		vector<vector<double> > data;
+        std::vector<std::vector<double> > data;
 	     for (int k=0;k<N;k++)
 	     {
-	    	 vector<double> row(D);
+             std::vector<double> row(D);
 	       for(int j=0;j<D;j++)
 	        row.push_back(util::randomD(0,2));
 			data.push_back(row);
@@ -186,37 +184,14 @@ int main(int argc, char* argv[])
   nsample = nsample==0?dt->nrow:nsample;
    //const double ALPHA=0.01;
   Tree::rangeCheck = rangecheck;
-   
-  /*
-   * Test for pyForest
-   * TODO: Synthetic data genrating class
-   */
-/*
-  int N=30;
-  int D=5;
- vector<vector<double> > data = syntheticData(N,D);
-std::string ss("hello world\n");
- PyForest pforest;
-//pforest.saveModel(ss);
-pforest.trainForest(data,ntree, nsample,maxheight,rotate,stopLimit==0,
-		     	rangecheck,rho,stopLimit);
- pforest.testForest(data);
- //pforest.testForest(data);
- vector<double> scores = pforest.getScore();
- for(double sc : scores)
- {
-	 std::cout<<sc<<"\n";
- }
-
-*/
 
  IsolationForest iff(ntree,dt,nsample,maxheight,stopheight,rsample); //build iForest
-buildForest(iff,test_dt,alpha,stopLimit,rho,output_name,metadata,pathlength,epoch);
+ buildForest(iff,test_dt,alpha,stopLimit,rho,output_name,metadata,pathlength,epoch);
     
  if(rotate)  //check for rotation forest
  {
     RForest rff(ntree,dt,nsample,maxheight,stopheight,rsample);
-    string rot_output(output_name); 
+    std::string rot_output(output_name);
     buildForest(rff,test_dt,alpha,stopLimit,rho,"rotate_"+rot_output,metadata,pathlength,epoch);
  }
   //Anomaly score and path length

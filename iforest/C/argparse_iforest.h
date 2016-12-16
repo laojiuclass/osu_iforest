@@ -21,6 +21,7 @@ struct parsed_args {
 	float precision;
 	float alpha;
     int epoch;
+	bool debug;
 };
 
 

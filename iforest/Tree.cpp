@@ -138,6 +138,30 @@ double Tree::pathLength(double *inst)
 	}
 }
 
+int Tree::getNodeSize() const {
+    return nodeSize;
+}
+
+int Tree::getSplittingAtt() const {
+    return splittingAtt;
+}
+
+double Tree::getSplittingPoint() const {
+    return splittingPoint;
+}
+
+int Tree::getDepth() const {
+    return depth;
+}
+
+double Tree::getMinAttVal() const {
+    return minAttVal;
+}
+
+double Tree::getMaxAttVal() const {
+    return maxAttVal;
+}
+
 /*
  * Change direction whenever feature f encountered
  *

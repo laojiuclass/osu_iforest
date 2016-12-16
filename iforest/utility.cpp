@@ -9,10 +9,15 @@
 using namespace std;
 namespace util {
 
-	default_random_engine gen(400);  //Debugging
-
-//default_random_engine gen(time(NULL));  //Production
-
+	default_random_engine gen;
+void initialize()
+{
+	//std::cout<<util::debug<<" True if debug";
+    if(util::debug)
+		gen.seed(400);  //Debugging
+    else
+		gen.seed(time(NULL));  //Production
+}
 template <typename T>
 T randomT(T min, T max)
 {

@@ -18,14 +18,21 @@ private:
 	Tree *parent;
 	int nodeSize;
 	int splittingAtt;
-	double splittingPoint;
-	int depth;
-	double minAttVal,maxAttVal;
+    double splittingPoint;
+    int depth;
+    double minAttVal,maxAttVal;
 public:
+	int getNodeSize() const;
+	int getSplittingAtt() const;
+	double getSplittingPoint() const;
+	int getDepth() const;
+	double getMinAttVal() const;
+	double getMaxAttVal() const;
 	static bool rangeCheck;
 	std::vector<int> trainIndex;
-
-    Tree()
+	Tree* getLeftChild(){return leftChild;}
+	Tree* getRightChild(){return rightChild;}
+	Tree()
 	{
 		leftChild = NULL;
 		rightChild = NULL;

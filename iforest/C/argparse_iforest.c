@@ -1,6 +1,6 @@
 #include "argparse_iforest.h"
 
-#define NOPTS 17
+#define NOPTS 18
 #define IOPT 0
 #define OOPT 1
 #define MOPT 2
@@ -18,6 +18,7 @@
 #define JOPT 14
 #define QOPT 15
 #define EOPT 16
+#define DBG 17
 d(option)* option_spec() {
     d(option)* opts = vecalloc(option,NOPTS);
     opts[IOPT] = (option){
@@ -92,6 +93,7 @@ d(option)* option_spec() {
         .isflag = false,
         .flagged = false
     };
+
     opts[HOPT] = (option){
         .sarg = 'H',
         .larg = "header",
@@ -111,6 +113,17 @@ d(option)* option_spec() {
         .value = NULL,
         .isflag = true,
         .flagged = false
+    };
+
+    opts[DBG] = (option){
+            .sarg = 'z',
+            .larg = "debug",
+            .name = NULL,
+            .desc = "Toggle whether or not to use debug mode.",
+            .default_value = "false",
+            .value = NULL,
+            .isflag = true,
+            .flagged = false
     };
 
     opts[AOPT] = (option){
@@ -262,7 +275,7 @@ parsed_args* validate_args(d(option*) opts) {
     pargs->rangecheck = opts[GOPT].flagged;  
     pargs->precision = strtof(opts[JOPT].value,NULL);
     pargs->alpha= strtof(opts[QOPT].value,NULL);
-    
+    pargs->debug = opts[DBG].flagged;
     //strtof();
     return pargs;
 }

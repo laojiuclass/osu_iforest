@@ -31,7 +31,7 @@ Default value is 100.
  Print this help message and exit.
  */
 
-#include "iforest/main.hpp"
+#include "iforestlib/main.hpp"
 //log file
 //ofstream util::logfile("treepath.csv");
 

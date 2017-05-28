@@ -6,27 +6,9 @@
  */
 
 #include "convForest.hpp"
-using namespace std;
-
-struct topscore
+void convForest::inserTopK(std::vector<std::pair<int,int> > &sl,int b)
 {
-	bool operator() (const pair<int,double> p1,const pair<int,double> p2)
-	{
-		return p1.second < p2.second;
-	}
-};
-struct larger
-{
-	bool operator()(const pair<int,double> p1,const pair<int,double> p2)
-
-	{
-		return p1.second <p2.second;
-	}	
-};
-
-void inserTopK(vector<pair<int,int> > &sl,int b)
-{
-	for(vector<pair<int,int> >::iterator it=sl.begin();it!=sl.end();++it)
+	for(std::vector<std::pair<int,int> >::iterator it=sl.begin();it!=sl.end();++it)
 	{
 
 	if(it->first==b)
@@ -35,46 +17,47 @@ void inserTopK(vector<pair<int,int> > &sl,int b)
 		return;
 	}
 	}
-	sl.push_back(pair<int,int>(b,1));
+	sl.push_back(std::pair<int,int>(b,1));
 }
 
 /*
  * @input two vector v1 and v2 a
- * @return proporation of intersection ,[0,1]
+ * @return proportion of intersection ,[0,1]
  */
-double topcommonK(vector<int> &v1,vector<int> &v2)
+double convForest::topcommonK(std::vector<int> &v1,std::vector<int> &v2)
 {
-	vector<int> v3;
-	sort(v1.begin(),v1.end());
-	sort(v2.begin(),v2.end());
-	set_intersection(v1.begin(),v1.end(),v2.begin(),v2.end(),back_inserter(v3));
+	std::vector<int> v3;
+    std::sort(v1.begin(),v1.end());
+    std::sort(v2.begin(),v2.end());
+    std::set_intersection(v1.begin(),v1.end(),v2.begin(),v2.end(),back_inserter(v3));
 	return (double)v3.size()/(double)v1.size();
 }
 
 
-//convergent Forest
+//convergent Forest based on the top k-rank argument.
+
 void convForest::convergeIF(double tau,double alpha)
 {
 //	this->nsample = nsample;
+
 	double tk = ceil(alpha*4*dataset->nrow);
-	vector<int> sampleIndex;
-//	this->rSample = rSample;
-	
-	vector<double> totalDepth(dataset->nrow,0);
+    std::vector<int> sampleIndex;
+    std::vector<double> totalDepth(dataset->nrow,0);
     int conv_cnt =0;  //convergence counter
 
-	vector<double> squaredDepth(dataset->nrow,0);
- 	priority_queue<pair<int,double>,vector<pair<int,double> >, larger> pq;
+    std::vector<double> squaredDepth(dataset->nrow,0);
+    std::priority_queue<std::pair<int,double>,std::vector<std::pair<int,double> >, larger> pq;
 	double  ntree=0.0;
 	bool converged=false;
 
-	vector<pair<int ,int> > topk;
+    std::vector<std::pair<int ,int> > topk;
     util::logfile<<"ntree,index,currentscore,probinter \n";
-	vector<int> topIndex(tk);
-	vector<int> prevIndex;
+    std::vector<int> topIndex(tk);
+    std::vector<int> prevIndex;
+
 	double prob =0;
 	while (!converged) {
-     pq= priority_queue<pair<int,double>,vector<pair<int,double> >,larger >();
+     pq= std::priority_queue<std::pair<int,double>,std::vector<std::pair<int,double> >,larger >();
 
 		//Sample data for training
 		getSample(sampleIndex,nsample,rsample,dataset->nrow);
@@ -93,7 +76,7 @@ void convForest::convergeIF(double tau,double alpha)
 			squaredDepth[inst] +=d*d;
 			dbar=totalDepth[inst]/ntree;
 			scores = pow(2, -dbar / util::avgPL(this->nsample));
-			pq.push( pair<int, double>(inst,scores));
+			pq.push( std::pair<int, double>(inst,scores));
 			
 
 		}
@@ -154,7 +137,7 @@ void convForest::convergeIF(double tau,double alpha)
 			pq.pop();
 		}
 	
-	prob=topcommonK(topIndex,prevIndex);
+	prob=this->topcommonK(topIndex,prevIndex);
 	prevIndex = topIndex;
     if(prob==1)
         conv_cnt++;
@@ -174,31 +157,31 @@ void convForest::convergeIF(double tau,double alpha)
 //Sequential confidence interval stopping
 
 /*
- * Stopping confidence interval width on \theta (k)
+ * Stopping based on confidence interval width on \theta (k)
  */
 void convForest::confstop(double alpha)
 {
 //	this->nsample = nsample;
 	double tk = ceil(alpha*2*dataset->nrow);  //top k ranked scores 
-	vector<int> sampleIndex;  //index for sample row 
+    std::vector<int> sampleIndex;  //index for sample row
 //	this->rSample = rSample;
-	vector<double> totalDepth(dataset->nrow,0);
+    std::vector<double> totalDepth(dataset->nrow,0);
 	double tua =0.008; // 1/(double)dt->nrow;   //need to be changed 
-	vector<double> squaredDepth(dataset->nrow,0);
+    std::vector<double> squaredDepth(dataset->nrow,0);
     //priority_queue<pair<int,double>,vector<pair<int,double> >,topscore > pq;
 	double hm=0.0 ; //inflation factor will be used later 	
 	double  ntree=0.0;
 	bool converged=false;
 	//double theta_es;
-	vector<double> theta_k; //top k score
-	vector<pair<int,double> > topk_ac; 
-	vector<pair<int ,double> > topk;	
+    std::vector<double> theta_k; //top k score
+    std::vector<std::pair<int,double> > topk_ac;
+    std::vector<std::pair<int ,double> > topk;
     util::logfile<<"point,ntree,depth\n";
     //logfile<<"tree,thetain,thetaacc\n";
 
-    priority_queue<pair<int,double>,vector<pair<int,double> >, larger> pq;
+    std::priority_queue<std::pair<int,double>,std::vector<std::pair<int,double> >, larger> pq;
 	while (!converged) {
-	    pq= priority_queue<pair<int,double>,vector<pair<int,double> >,larger >();
+	    pq= std::priority_queue<std::pair<int,double>,std::vector<std::pair<int,double> >,larger >();
 
 		//Sample data for training
 		topk.clear();
@@ -220,8 +203,8 @@ void convForest::confstop(double alpha)
 			dbar=totalDepth[inst]/ntree; //Current average depth 
 			score = pow(2, -dbar / util::avgPL(this->nsample));
             //currentscore = pow(2,-d/avgPL(this->nsample));
-			pq.push(pair<int, double>(inst,score));
-			topk.push_back(pair<int,double>(inst,d));
+			pq.push(std::pair<int, double>(inst,score));
+			topk.push_back(std::pair<int,double>(inst,d));
 		    //topk_ac.push_back(pair<int,double>(inst,scores));
             util::logfile<<inst<<","<<ntree<<","<<d<<"\n";
 		}
@@ -251,19 +234,51 @@ void convForest::confstop(double alpha)
         //logfile<<ntree<<","<<halfwidth<<","<<mean(theta_k)<<","<<var<<"\n";
  
 	    converged=(halfwidth+hm)<=tua;
-        converged = false;
+        //converged = false;
         //converged = ntree>1;
 	  //converged = ntree>300; //    halfwidth <=tua;
       if(ntree>400) break;  	
 }
 
-
-
-
-
 }
 
+/*
+int rpoison(int lambda , int v){
+    return 0;
+}
+void convForest::bootstrapConvergent(double alpha, int b) {
+    int n = this->nsample;
+     arma::mat depthSum(n,b,arma::fill::zeros);
+    arma::mat numBoot(n,b,arma::fill::zeros);
 
+
+    std::map<std::set, int> setCount;
+    std::vector<int> sampleIndex;
+    while(true){
+    setCount.clear();
+        getSample(sampleIndex,nsample,rsample,dataset->nrow);
+        Tree *tree = new Tree();
+        tree->iTree(sampleIndex,dataset, 0, maxheight, stopheight);
+        for(int bs=0;bs<b;bs++){
+            for(int i=0;i<dataset->nrow;i++){
+                int v = rpoison(dataset->nrow,1);
+                depthSum(i,bs) += v*tree->pathLength(&dataset[i]);
+
+            }
+        }
+
+
+
+
+        this->trees.push_back(tree);
+
+
+
+
+        ntree++;
+    }
+
+}*/
 
 
 

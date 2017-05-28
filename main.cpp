@@ -162,6 +162,11 @@ int main(int argc, char* argv[])
  }
   //Anomaly score and path length
  // util::logfile.close();
+    //for(auto &px : {pargs,metacol,csv,metadata})
+//    delete pargs;
+//    delete[] metacol;
+//    delete[] csv;
+
   return 0;
 }
 

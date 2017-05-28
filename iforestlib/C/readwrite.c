@@ -56,6 +56,10 @@ ntstringframe* read_csv(char* fname,bool header,bool rownames,bool column_major)
             tokens = tokenize(line,',');
         }
     });)
+    free(tokens);
+    free(lines);
+    fclose(file);
+
     return csv;
 }
 

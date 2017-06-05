@@ -1,0 +1,12 @@
+## Requirement
+1. gcc 4.8 or latest (support c++11)
+
+## INSTALL
+1. clone the repository
+2. checkout cmake 
+3. For linux os execute
+ build_linux.sh
+4. For windows
+ build_windows.bat
+
+

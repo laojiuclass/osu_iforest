@@ -18,7 +18,7 @@
 #define JOPT 14
 #define QOPT 15
 #define EOPT 16
-#define DBG 17
+#define SDOPT 17
 d(option)* option_spec() {
     d(option)* opts = vecalloc(option,NOPTS);
     opts[IOPT] = (option){
@@ -115,14 +115,14 @@ d(option)* option_spec() {
         .flagged = false
     };
 
-    opts[DBG] = (option){
+    opts[SDOPT] = (option){
             .sarg = 'z',
-            .larg = "debug",
-            .name = NULL,
-            .desc = "Toggle whether or not to use debug mode.",
-            .default_value = "false",
+            .larg = "seed",
+            .name = "seed",
+            .desc = "Specify seed for randomization. Default random seed",
+            .default_value = "-1",
             .value = NULL,
-            .isflag = true,
+            .isflag = false,
             .flagged = false
     };
 
@@ -275,7 +275,7 @@ parsed_args* validate_args(d(option*) opts) {
     pargs->rangecheck = opts[GOPT].flagged;  
     pargs->precision = strtof(opts[JOPT].value,NULL);
     pargs->alpha= strtof(opts[QOPT].value,NULL);
-    pargs->debug = opts[DBG].flagged;
+    pargs->seed = strtol(opts[SDOPT].value,NULL,10);
     //strtof();
     return pargs;
 }

@@ -18,10 +18,10 @@ struct parsed_args {
     int columns;
     bool verbose;
     bool rangecheck;
-	float precision;
-	float alpha;
+    float precision;
+    float alpha;
     int epoch;
-	bool debug;
+    int seed;
 };
 
 

@@ -1,8 +1,12 @@
 Required  gcc verstion 4.7 or greater. Tested on gcc version 4.9
 
 **Build command**
-In the source file execute the command.
-`make fresh`
+1. clone the repository
+2. checkout cmake 
+3. For linux os execute
+ build_linux.sh
+4. For windows
+build_windows.bat
 
 **Usage**
 
@@ -32,3 +36,4 @@ iforest.exe -h will display the available switches.
 2. This can also be written as
 
   `iforest.exe -iostm inputfile.csv score.csv 512 100 1,8-10`
+

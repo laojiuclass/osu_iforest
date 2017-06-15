@@ -13,8 +13,8 @@ namespace util {
 void initialize()
 {
 	//std::cout<<util::debug<<" True if debug";
-    if(util::debug)
-		gen.seed(400);  //Debugging
+    if(util::debug>=0)
+		gen.seed(util::debug);  //Debugging
     else
 		gen.seed(time(NULL));  //Production
 }

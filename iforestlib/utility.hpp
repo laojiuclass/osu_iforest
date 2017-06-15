@@ -58,7 +58,7 @@ std::vector<double> ADdistance(const std::vector<std::vector<double> > &depths, 
 //log file
 extern std::ofstream logfile;
 extern std::string tmpVar;
-extern bool debug;
+extern int debug;
 double score(double depth,int n);
 //extern Data *dt;
 }

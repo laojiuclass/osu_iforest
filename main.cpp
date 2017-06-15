@@ -3,6 +3,8 @@
  *
  @Created on: Mar 22, 2015
  * @Author: Tadeze
+ *
+ *
  * Main entry: accepts the the
  * @param argv
  *    Usage: iforest [options]
@@ -101,14 +103,14 @@ void buildForest(Forest &iff, doubleframe* test_dt, const double alpha,int stopL
 /* Static variable 
  */
 bool Tree::rangeCheck ;  //range check for Tree score calculation.
-bool util::debug;
+int util::debug;
 int main(int argc, char* argv[])
 {
 
     /*parse argument from command line*/
 	parsed_args* pargs = parse_args(argc, argv);
-    bool debug = pargs->debug;
-    util::debug = debug;
+    int seed = pargs->seed;
+    util::debug = seed;
     util::initialize();
 	ntstring input_name = pargs->input_name;
 	ntstring output_name = pargs->output_name;

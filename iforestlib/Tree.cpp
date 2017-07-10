@@ -173,3 +173,29 @@ return 1.0;
 
 }
 */
+//std::vector<std::vector<double>>
+//std::map<int,double>
+struct Contrib Tree::featureContribution(double* inst) { //std::vector<double> &inst){
+
+    Tree *root = this;
+    double instAttVal;
+    double depth =0.0;
+    Contrib contribution(sizeof(inst)/sizeof(double) - 1);
+    while((root->rightChild != NULL) || (root->leftChild!=NULL)) {
+        instAttVal = inst[root->splittingAtt];
+
+        //contributions[root->splittingAtt] = depth + util::avgPL(root->nodeSize);
+
+        if (instAttVal >= root->splittingPoint)
+            root = root->rightChild;
+        else
+            root = root->leftChild ;
+        depth = depth +1.0;
+        if (root->splittingAtt!=-1)
+            contribution.addcont(root->splittingAtt,depth+util::avgPL(root->nodeSize));
+
+    }
+    //depth = util::avgPL(root->nodeSize) + depth;
+    return contribution;//.featureContribution();
+
+}

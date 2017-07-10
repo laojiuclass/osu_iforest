@@ -1,6 +1,6 @@
 #include "argparse_iforest.h"
 
-#define NOPTS 18
+#define NOPTS 19
 #define IOPT 0
 #define OOPT 1
 #define MOPT 2
@@ -19,6 +19,7 @@
 #define QOPT 15
 #define EOPT 16
 #define SDOPT 17
+#define LXOPT 18
 d(option)* option_spec() {
     d(option)* opts = vecalloc(option,NOPTS);
     opts[IOPT] = (option){
@@ -210,6 +211,16 @@ d(option)* option_spec() {
         .isflag = false,
         .flagged = false
     };
+    opts[LXOPT] = (option){
+            .sarg = 'l',
+            .larg = "explain",
+            .name = "L",
+            .desc = "Toggle whether to output feature explanation or not.",
+            .default_value = "false",
+            .value = NULL,
+            .isflag = true,
+            .flagged = false
+    };
      
     return opts;
 }
@@ -276,6 +287,7 @@ parsed_args* validate_args(d(option*) opts) {
     pargs->precision = strtof(opts[JOPT].value,NULL);
     pargs->alpha= strtof(opts[QOPT].value,NULL);
     pargs->seed = strtol(opts[SDOPT].value,NULL,10);
+    pargs->explanation = opts[LXOPT].flagged;
     //strtof();
     return pargs;
 }

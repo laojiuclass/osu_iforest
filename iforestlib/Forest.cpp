@@ -109,24 +109,6 @@ vector<double> IsolationForest::ADtest(const vector<vector<double> > &pathlength
 //Will fix later
 	return ADdistance(pathlength,weighttotail);
 }*/
-/* Compute the feature importance of a point
- * input: *inst data instance
- * output: feature importance
- * status: Incomplete!!
- */
-std::vector<double> Forest::importance(double *inst)
-{
-	//Need to be re-implemented
-	std::vector<double> depth;
-	for (std::vector<Tree*>::iterator it = this->trees.begin(); it != trees.end();
-			++it)
-	{
-
-		depth.push_back(ceil((*it)->pathLength(inst)));
-
-	}
-return depth;
-}
 
 //Sample data from the datset
 void Forest::getSample(std::vector<int> &sampleIndex,const int nsample,bool rsample,int nrow)
@@ -150,3 +132,56 @@ int Forest::confTree(double alpha,double rho, int init_tree){
 	//For now remove warning
 	return (int)alpha*rho*init_tree;
 }
+/*
+ * Feature contribution
+ */
+std::vector<std::map<int, double> > Forest::featureContrib(double *inst) {
+	// Iterate through all trees and collect their contributions
+
+	std::vector<std::map<int, double> > contributions;
+	for (auto tree : this->trees) {
+		auto treeexplanation = tree->featureContribution(inst).featureContribution();
+		contributions.push_back(treeexplanation);
+	}
+
+	return contributions;
+}
+
+/* Compute the feature importance of a point
+ * input: *inst data instance
+ * output: feature importance
+ * status: Incomplete!!
+ */
+std::map<int, double>
+Forest::importance(double* inst){ //std::vector<double> &inst) {
+	//Need to be re-implemented
+	std::map<int, double> totalexplan;
+	std::vector<std::map<int,double> > featureExplanation = Forest::featureContrib(inst);
+	for (const auto feature : featureExplanation) {
+		for (auto explan : feature) {
+
+			if (totalexplan.count(explan.first) > 0)
+				totalexplan[explan.first] += explan.second;
+			else
+				totalexplan.insert(explan);
+		}
+	}
+    return totalexplan;
+}
+
+void Forest::featureExplanation(doubleframe* df,std::ofstream &out){
+	out<<"ix";
+    // /header
+    for(int i=0;i<df->ncol;i++)
+        out<<","<<"V"<<i; //+std::to_string(i);
+
+    out<<"\n";
+    for (int r = 0; r < df->nrow; r++) {
+        out<<r;
+        for(auto mpr : this->importance(df->data[r]))
+            out<<","<<mpr.second;
+        out<<"\n";
+    }
+
+}
+//TODO: Modify for all explanation methods

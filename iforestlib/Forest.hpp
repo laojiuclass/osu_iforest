@@ -58,7 +58,7 @@ virtual ~Forest()
 	std::vector<std::vector<double> > pathLength(doubleframe* data);
 	std::vector<double> meandepth();
 	std::vector<double> ADtest(const std::vector<std::vector<double> > &pathlength, bool weighttotail);
-	std::vector<double> importance(double *inst);
+	std::map<int, double> importance(double* inst) ;//std::vector<double> &inst);
 	virtual double getdepth(double *inst,Tree* tree);
 	void getSample(std::vector<int> &sampleIndex,const int nsample,bool rSample,int nrow);
 	struct larger
@@ -91,6 +91,7 @@ virtual ~Forest()
 		return (double)v3.size()/(double)v1.size();
 	}
 
-
+	virtual std::vector<std::map<int,double> > featureContrib(double *inst); //std::vector<double> &inst);
+	void featureExplanation(doubleframe* df, std::ofstream &out);
 };
 #endif /* FOREST_H_ */

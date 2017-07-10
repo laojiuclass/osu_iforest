@@ -11,8 +11,6 @@ if [[ $SERVER == "HPC" || $SERVERi == "EECS" ]]; then
 make clean
 make
 
-
-
 else   
 
 

@@ -22,6 +22,7 @@ struct parsed_args {
     float alpha;
     int epoch;
     int seed;
+    bool explanation;
 };
 
 

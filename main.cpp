@@ -132,7 +132,7 @@ int main(int argc, char* argv[])
     float alpha = pargs->alpha;
     int epoch  = pargs->epoch;
     //Input file to dataframe
-    
+    bool explanation = pargs->explanation;
     ntstringframe* csv = read_csv(input_name, header, false, false);
     ntstringframe* metadata = split_frame(ntstring, csv, metacol,true);
 	doubleframe* dt = conv_frame(double, ntstring, csv); //read data to the global variable
@@ -162,15 +162,23 @@ int main(int argc, char* argv[])
     std::string rot_output(output_name);
     buildForest(rff,test_dt,alpha,stopLimit,rho,"rotate_"+rot_output,metadata,pathlength,epoch);
  }
-  //Anomaly score and path length
- // util::logfile.close();
-    //for(auto &px : {pargs,metacol,csv,metadata})
+
+if(explanation) {
+    std::string explanationName = std::string(output_name) +"_explanation.csv";
+    std::ofstream oexp (explanationName);
+    iff.featureExplanation(test_dt,oexp);
+    oexp.close();
+}
+  return 0;
+}
+
+//Anomaly score and path length
+// util::logfile.close();
+//for(auto &px : {pargs,metacol,csv,metadata})
 //    delete pargs;
 //    delete[] metacol;
 //    delete[] csv;
 
-  return 0;
-}
 
 
 

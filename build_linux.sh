@@ -8,6 +8,7 @@ SERVER=`/bin/hostname|/bin/awk -F. '{print $2}'|tr "[a-z]" "[A-Z]"`
 echo $SERVER
 if [[ $SERVER == "HPC" || $SERVERi == "EECS" ]]; then
 # use the make file to compile it 
+mkdir -p C
 make clean
 make
 

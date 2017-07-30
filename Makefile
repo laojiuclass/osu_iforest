@@ -7,7 +7,6 @@ all: iforest
 
 C/%.o: iforestlib/C/%.c iforestlib/C/%.h
 	$(CC) $(CFLAGS) $(LDFLAGS) -c $< -o $@
-
 cincl.o: C/common.o C/object.o C/strfun.o C/readwrite.o C/argparse.o C/argparse_iforest.o C/frames.o
 	ld -r C/common.o C/object.o C/strfun.o C/readwrite.o C/argparse.o C/argparse_iforest.o C/frames.o -o cincl.o
 
@@ -16,7 +15,7 @@ cincl.o: C/common.o C/object.o C/strfun.o C/readwrite.o C/argparse.o C/argparse_
 main.o: main.cpp iforestlib/main.hpp
 	$(PP) $(PFLAGS) $(LDFLAGS) -c $< -o $@
 
-iforest.exe: cincl.o Forest.o RForest.o IsolationForest.o Tree.o utility.o main.o
+iforest: cincl.o Forest.o RForest.o IsolationForest.o Tree.o utility.o main.o
 	$(PP) $(PFLAGS) $(LDFLAGS) -o iforest cincl.o IsolationForest.o Tree.o utility.o Forest.o RForest.o main.o
 fresh:
 	make clean

@@ -48,16 +48,7 @@ void saveScoreToFile(std::vector<double> &scores, std::vector<std::vector<double
         // outscore << "groundtruth,score\n";
         outscore << "score\n";
     for (int j = 0; j < (int) scores.size(); j++) {
-        /* Disable writing metadata
-         if (metadata)
-           {
-
-               outscore<<metadata->data[j][0]<<",";
-             //if(metadata->data[j][0]=="anomaly" || metadata->data[j][0] ==1)
-               //groundtruth[j] = 1;
-            }
-       */
-        outscore << scores[j]; //<<util::mean(pathLength[j])<<","<<rscores[j];
+        outscore << scores[j];
         if (savePathLength) {
             //for generating all depth
             for (int i = 0; i < (int) pathLength[1].size(); i++) {
@@ -65,19 +56,16 @@ void saveScoreToFile(std::vector<double> &scores, std::vector<std::vector<double
             }
         }
         outscore << "\n";
-
     }
-
     outscore.close();
-
 }
 
 void buildForest(Forest *iff, doubleframe *test_dt, const double alpha, int stopLimit, float rho,
                  std::string output_name, ntstringframe *metadata, bool savePathLength,
                  int epoch) {
-    if (iff->ntree > 0)
+    if (iff->ntree > 0) //if fixed tree chosen.
         iff->fixedTreeForest(epoch);
-    else {
+    else{
         //int treeRequired = iff.adaptiveForest(ALPHA,stopLimit);
         if (rho < 0) {
             int treeRequired = iff->adaptiveForest(alpha, stopLimit);
@@ -95,8 +83,7 @@ void buildForest(Forest *iff, doubleframe *test_dt, const double alpha, int stop
 }
 
 
-/* Static variable 
- */
+
 bool Tree::rangeCheck;  //range check for Tree score calculation.
 int util::debug;
 
@@ -132,20 +119,19 @@ int main(int argc, char *argv[]) {
     ntstringframe *metadata = split_frame(ntstring, csv, metacol, true);
     doubleframe *dt = conv_frame(double, ntstring, csv); //read data to the global variable
 
-
-
-    //Test file to data frame 
+    //Test file to data frame
     ntstringframe *csv_test = read_csv(test_name, header, false, false);
     metadata = split_frame(ntstring, csv_test, metacol, true);
     doubleframe *test_dt = dt;
 
+    // Check if test data is given
     if (test_name == input_name)
         test_dt = dt;
     else
         test_dt = conv_frame(double, ntstring, csv_test); //read data to the global variable
 
     nsample = nsample == 0 ? dt->nrow : nsample;
-    //const double ALPHA=0.01;
+
     Tree::rangeCheck = rangecheck;
     Forest* iff;
     if (rotate){
@@ -167,15 +153,6 @@ int main(int argc, char *argv[]) {
     delete iff;
     return 0;
 }
-
-//Anomaly score and path length
-// util::logfile.close();
-//for(auto &px : {pargs,metacol,csv,metadata})
-//    delete pargs;
-//    delete[] metacol;
-//    delete[] csv;
-
-
 
 
 

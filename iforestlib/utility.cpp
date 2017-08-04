@@ -233,6 +233,26 @@ vector<double> ADdistance(vector<vector<double> > depths, bool weightToTail =
 	}
 }
 
+/** Matrix class
+ *
+ * @param D
+ * @param N
+ * @return
+ */
+template <typename  T>
+util::Matrix<T>::Matrix(size_t rows, size_t cols):nRows(rows),
+										 nCols(cols),
+										 mData(rows*cols){}
+template <typename  T>
+double& util::Matrix<T>::operator()(size_t i, size_t j){
+	return mData[i*nCols + j];
+}
+template <typename  T>
+double util::Matrix<T>::operator()(size_t i, size_t j) const {
+	return mData[i*nCols + j];
+}
+
+
 /* Generate 2-D data
  *
  */

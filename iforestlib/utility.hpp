@@ -52,7 +52,21 @@ std::map<double,double> ecdf(std::vector<double> points);
 std::vector<double> ADdistance(const std::vector<std::vector<double> > &depths, bool weightToTail);
 
 //void convertVtoDf(std::vector<std::vector<double> > &sourceVec,doubleframe* df);
+//Matrix class
+	template <typename T>
+	class Matrix{
+	public:
+		Matrix(size_t rows, size_t cols);
+		double& operator()(size_t i, size_t j);
+		double operator()(size_t i, size_t j) const;
+		int nrows();
+		size_t ncols();
 
+	private:
+		size_t nRows;
+		size_t nCols;
+		std::vector<T> mData;
+	};
 
 //extern doubleframe* dt;
 //log file

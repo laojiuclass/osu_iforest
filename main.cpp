@@ -62,7 +62,7 @@ void saveScoreToFile(std::vector<double> &scores, std::vector<std::vector<double
 
 void buildForest(Forest *iff, doubleframe *test_dt, const double alpha, int stopLimit, float rho,
                  std::string output_name, ntstringframe *metadata, bool savePathLength,
-                 int epoch) {
+                 int epoch,bool oob) {
     if (iff->ntree > 0) //if fixed tree chosen.
         iff->fixedTreeForest(epoch);
     else{
@@ -77,8 +77,16 @@ void buildForest(Forest *iff, doubleframe *test_dt, const double alpha, int stop
         }
 
     }
-    std::vector<double> scores = iff->AnomalyScore(test_dt); //generate anomaly score
-    std::vector<std::vector<double> > pathLength = iff->pathLength(test_dt); //generate Depth all points in all trees
+    std::vector<double> scores;
+    std::vector<std::vector<double> > pathLength;
+    if(oob){
+        scores = iff->outOfBagScore(test_dt);
+        pathLength = iff->oOBPathLength(test_dt);
+    }else {
+         scores= iff->AnomalyScore(test_dt); //generate anomaly score
+         pathLength = iff->pathLength(
+                test_dt); //generate Depth all points in all trees
+    }
     saveScoreToFile(scores, pathLength, metadata, output_name, savePathLength);
 }
 
@@ -113,6 +121,7 @@ int main(int argc, char *argv[]) {
     float rho = pargs->precision;
     float alpha = pargs->alpha;
     int epoch = pargs->epoch;
+    bool oob = pargs->oobag;
     //Input file to dataframe
     bool explanation = pargs->explanation;
     ntstringframe *csv = read_csv(input_name, header, false, false);
@@ -137,10 +146,12 @@ int main(int argc, char *argv[]) {
     if (rotate){
          iff = new RForest(ntree, dt, nsample, maxheight, stopheight, rsample);
         std::string rot_output(output_name);
-        buildForest(iff, test_dt, alpha, stopLimit, rho, "rotate_" + rot_output, metadata, pathlength, epoch);
+        buildForest(iff, test_dt, alpha, stopLimit, rho, "rotate_" + rot_output,
+                    metadata, pathlength, epoch,oob);
     }else {
          iff = new IsolationForest(ntree, dt, nsample, maxheight, stopheight, rsample); //build iForest
-        buildForest(iff, test_dt, alpha, stopLimit, rho, output_name, metadata, pathlength, epoch);
+        buildForest(iff, test_dt, alpha, stopLimit, rho, output_name,
+                    metadata, pathlength, epoch, oob);
 
     }
 

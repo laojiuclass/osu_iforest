@@ -1,6 +1,6 @@
 #include "argparse_iforest.h"
 
-#define NOPTS 19
+#define NOPTS 20
 #define IOPT 0
 #define OOPT 1
 #define MOPT 2
@@ -20,6 +20,7 @@
 #define EOPT 16
 #define SDOPT 17
 #define LXOPT 18
+#define KOPT 19
 d(option)* option_spec() {
     d(option)* opts = vecalloc(option,NOPTS);
     opts[IOPT] = (option){
@@ -137,6 +138,18 @@ d(option)* option_spec() {
            .isflag = false,
            .flagged = false
        };
+    opts[KOPT] = (option){
+            .sarg = 'k',
+            .larg = "oob",
+            .name = NULL,
+            .desc = "Check if you want use out of bag estimate for scoring. Default false.",
+            .default_value = "false",
+            .value = NULL,
+            .isflag = true,
+            .flagged = false
+    };
+
+
     opts[ROPT] = (option){
            .sarg = 'r',
            .larg = "rotate",
@@ -288,6 +301,7 @@ parsed_args* validate_args(d(option*) opts) {
     pargs->alpha= strtof(opts[QOPT].value,NULL);
     pargs->seed = strtol(opts[SDOPT].value,NULL,10);
     pargs->explanation = opts[LXOPT].flagged;
+    pargs->oobag = opts[KOPT].flagged;
     //strtof();
     return pargs;
 }

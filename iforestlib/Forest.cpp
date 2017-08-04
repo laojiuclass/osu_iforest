@@ -47,27 +47,52 @@ std::vector<double> Forest::outOfBagScore(doubleframe* df)
 {
 	std::vector<double> scores;
 	double score;
-    int numTreeUsed;
-    double depth;
-	//iterate through all points
-	for (int inst = 0; inst <df->nrow; inst++)
-	{
-	  depth =0.0;
-	  for(int it=0;it<this->ntree;it++)
-	    {
-         numTreeUsed =0;
-		if(!this->trees[it]->indexAvailable(inst))
-		{
-			depth +=getdepth(df->data[inst],this->trees[it]);
-			numTreeUsed++;
-		}
+//    int numTreeUsed;
+    double avgDepth;
+//	//iterate through all points
+//	for (int inst = 0; inst <df->nrow; inst++)
+//	{
+//	  depth =0.0;
+//	  for(int it=0;it<this->ntree;it++)
+//	    {
+//         numTreeUsed =0;
+//		if(!this->trees[it]->indexAvailable(inst)){
+//			depth +=getdepth(df->data[inst],this->trees[it]);
+//			numTreeUsed++;
+//		}
+//
+//	   }
+    std::vector<std::vector<double> > depths = oOBPathLength(df);
+    for(auto& instDepth : depths) {
+     avgDepth =  util::mean(instDepth);
+     score = pow(2, -avgDepth / util::avgPL(this->nsample));
+     scores.push_back(score);
 
-	   }
-	score = pow(2,-(depth/numTreeUsed)/util::avgPL(this->nsample));
-	scores.push_back(score);			
+    }
+
+	//score = pow(2,-(depth/numTreeUsed)*util::avgPL(this->nsample));
+	//scores.push_back(score);
  
-	}
+
 	return scores;
+}
+std::vector<std::vector<double> > Forest::oOBPathLength(doubleframe *df){
+	std::vector<double> scores;
+	double depth;
+	//iterate through all points
+	std::vector<std::vector<double> > depths;
+	for (int inst = 0; inst <df->nrow; inst++) {
+		std::vector<double> itDepth;
+		for(int it=0;it<this->ntree;it++) {
+			depth =0.0;
+			if(!this->trees[it]->indexAvailable(inst)) {
+				depth = getdepth(df->data[inst],this->trees[it]);
+			}
+			itDepth.push_back(depth);
+		}
+		depths.push_back(itDepth);
+	}
+	return depths;
 }
 
 

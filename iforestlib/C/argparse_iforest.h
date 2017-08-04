@@ -23,6 +23,7 @@ struct parsed_args {
     int epoch;
     int seed;
     bool explanation;
+    bool oobag;
 };
 
 

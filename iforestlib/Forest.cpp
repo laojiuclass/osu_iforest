@@ -16,24 +16,19 @@ double Forest::getdepth(double* inst,Tree* tree)
 /*
  * Accepts single point (row) and return Anomaly Score
  */
-double Forest::instanceScore(double *inst)
-{
-
+double Forest::instanceScore(double *inst) {
 	double avgPathLength = util::mean(pathLength(inst));
 	double scores = pow(2, -avgPathLength / util::avgPL(this->nsample));
 	return scores;
-
 }
 
 /*
  * Score for  a set of dataframe in dataset
  */
-std::vector<double> Forest::AnomalyScore(doubleframe* df)
-{
+std::vector<double> Forest::AnomalyScore(doubleframe* df) {
 	std::vector<double> scores;
 	//iterate through all points
-	for (int inst = 0; inst <df->nrow; inst++)
-	{
+	for (int inst = 0; inst <df->nrow; inst++) {
 		scores.push_back(instanceScore(df->data[inst]));
 	}
 	return scores;
@@ -43,8 +38,7 @@ std::vector<double> Forest::AnomalyScore(doubleframe* df)
 /*
  * Score for out of bag scoring 
  */
-std::vector<double> Forest::outOfBagScore(doubleframe* df)
-{
+std::vector<double> Forest::outOfBagScore(doubleframe* df) {
 	std::vector<double> scores;
 	double score;
 //    int numTreeUsed;

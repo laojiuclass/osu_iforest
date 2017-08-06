@@ -34,7 +34,7 @@ struct OOBEstimator{
      */
     std::vector<int> OOBTrees(int xIndex){
         std::vector<int> treeIndexes;
-        for(size_t i=0;i<ntree;i++)
+        for(int i=0;i<ntree;i++)
             if((*mat)(i,(size_t )xIndex))
                 treeIndexes.push_back(i);
         return treeIndexes;

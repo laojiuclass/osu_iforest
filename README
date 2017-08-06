@@ -4,9 +4,9 @@ Required  gcc verstion 4.7 or greater. Tested on gcc version 4.9
 1. clone the repository
 2. checkout cmake 
 3. For linux os execute
- build_linux.sh
+./build_linux.sh
 4. For windows
-build_windows.bat
+./build_windows.bat
 
 **Usage**
 
@@ -25,8 +25,10 @@ iforest.exe -h will display the available switches.
                 Default value is true.
  * -v, --verbose   Toggle verbose ouput.
  Default value is false.
+ * -z --seed Specify integer value of random seed. 
  * -h, --help
  Print this help message and exit.
+ * -k --oob Toggle whether or not to use out-of-bag estimate for depth. Default value is false. If `-k` specified score or depths will be from oout of bag trees. 
 
 **Example**
 

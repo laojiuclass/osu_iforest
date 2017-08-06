@@ -49,8 +49,7 @@ struct Contrib{
 
 };
 typedef  struct Contrib contrib;
-class Tree
-{
+class Tree {
 private:
 	Tree *leftChild;
 	Tree *rightChild;

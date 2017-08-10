@@ -8,7 +8,7 @@
 #include "Forest.hpp"
 //TODO: Complete the out of bag scoring 
 //Update tree for saving index used for training. 
-double Forest::getdepth(double* inst,Tree* tree)
+double Forest::getdepth(double* inst,std::shared_ptr<Tree> tree)
 {
 	return tree->pathLength(inst);
 }
@@ -98,13 +98,8 @@ std::vector<std::vector<double> > Forest::oOBPathLength(doubleframe *df){
 std::vector<double> Forest::pathLength(double *inst)
 {
 	std::vector<double> depth;
-	for (std::vector<Tree*>::iterator it = this->trees.begin(); it != trees.end();
-			++it)
-	{
- 	
-		 depth.push_back((*it)->pathLength(inst));
-
-	}
+	for(auto const &tree : trees)
+		depth.push_back(tree->pathLength(inst));
 	return depth;
 }
 
@@ -205,6 +200,7 @@ void Forest::featureExplanation(doubleframe* df,std::ofstream &out){
 }
 
 // Serialization
+/*
 void Forest::serialize(std::ostream &s) const {
 
    s<<ntree;
@@ -231,9 +227,9 @@ void Forest::deserialize(Forest *ff, std::istream &s)  {
         rootTree->deserialize(s);
         ff->trees.push_back(rootTree);
     }
+*/
 
 
-}
 
 
 //json jff;

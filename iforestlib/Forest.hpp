@@ -7,20 +7,14 @@
 
 #ifndef FOREST_H_
 #define FOREST_H_
-
-#include "utility.hpp"
 #include "Tree.hpp"
-#include "cincl.hpp"
 #include "OOBEstimator.hpp"
 
 
 class Forest {
-protected:
-//    std::vector<std::vector<bool> > oobMatrix;
-    OOBEstimator *oobEstimator;
-
 public:
-    std::vector<Tree *> trees;
+    std::vector<std::shared_ptr<Tree> > trees;
+
     int ntree;
     bool rsample;
     int nsample;
@@ -50,11 +44,11 @@ public:
     };
 
     virtual ~Forest() {
-        for (std::vector<Tree *>::iterator it = trees.begin(); it != trees.end();
-             ++it) {
-            delete (*it);
-
-        }
+//        for (std::vector<Tree *>::iterator it = trees.begin(); it != trees.end();
+//             ++it) {
+//            delete (*it);
+//
+//        }
         //delete oobEstimator;
 
     }
@@ -76,7 +70,7 @@ public:
     std::vector<double> ADtest(const std::vector<std::vector<double> > &pathlength, bool weighttotail);
 
     std::map<int, double> importance(double *inst);//std::vector<double> &inst);
-    virtual double getdepth(double *inst, Tree *tree);
+    virtual double getdepth(double *inst, std::shared_ptr<Tree> tree);
 
     void getSample(std::vector<int> &sampleIndex, const int nsample, bool rSample, int nrow);
 
@@ -116,8 +110,15 @@ public:
    // void save(std::ofstream &out);
     //void load(std::istream &in);
 
-    void serialize(std::ostream &s) const;
-      void deserialize(Forest *ff,std::istream &s) ;
+    //void serialize(std::ostream &s) const;
+     // void deserialize(Forest *ff,std::istream &s) ;
+    template<class Archive>
+     void serialize(Archive & archive){
+        /*archive(cereal::make_nvp("ntree",ntree),cereal::make_nvp("nsample",nsample),
+                cereal::make_nvp("rsample",rsample),cereal::make_nvp("stopheight",stopheight),
+                cereal::make_nvp("trees",trees));
+*/
+    }
 };
 
 #endif /* FOREST_H_ */

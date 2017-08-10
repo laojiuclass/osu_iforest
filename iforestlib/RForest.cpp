@@ -127,7 +127,7 @@ void RForest::rForest()
     doubleframe* sampleDf = new doubleframe();
     sampleDf->data = new double*[this->nsample];
     //logfile<<"point,tree,x1,x2\n";
-
+    std::shared_ptr<Tree> tree;
     for(int n=0;n<ntree;n++)
           {
             //get sample data
@@ -149,7 +149,7 @@ void RForest::rForest()
             sampleIndex.clear();
 
             for(int i=0;i<sampleDf->nrow;i++) sampleIndex.push_back(i);
-            Tree *tree  = new Tree();
+            tree  = std::make_shared<Tree>();
 
             tree->iTree(sampleIndex,sampleDf,0,maxheight,stopheight);
             this->trees.push_back(tree);
@@ -181,6 +181,7 @@ int RForest::adaptiveForest(double alpha,int stopLimit){
     std::priority_queue<std::pair<int,double>,std::vector<std::pair<int,double> >, larger> pq;
     double* transInst = new double[dataset->ncol];
    //util::logfile<<"0,0,0,0,0,0,0,0,0\n";
+    std::shared_ptr<Tree> tree;
     while(!converged)
     {
     	pq= std::priority_queue<std::pair<int,double>,std::vector<std::pair<int,double> >,larger >();
@@ -202,7 +203,7 @@ int RForest::adaptiveForest(double alpha,int stopLimit){
             sampleIndex.clear();
             for(int i=0;i<sampleDf->nrow;i++) sampleIndex.push_back(i);
 
-            Tree *tree  = new Tree();
+            tree  = std::make_shared<Tree>();
             tree->iTree(sampleIndex,sampleDf,0,maxheight,stopheight);
             this->trees.push_back(tree);
             ntree++;
@@ -267,18 +268,14 @@ std::vector<double> RForest::pathLength(double *inst)
     std::vector<double> depth;
     int i=0;
     double* transInst=new double[dataset->ncol];//NULL;
-
-   for(std::vector<Tree*>::iterator it=this->trees.begin();it!=trees.end();it++)
-    {
-    	depth.push_back(getdepth(inst,*it,this->rotMatrices[i],transInst));
-        i++;
-     }
+    for(auto const &tree : trees)
+        depth.push_back(getdepth(inst,tree,this->rotMatrices[i],transInst));
 
 delete transInst;
 return depth;
 }
 
-double RForest::getdepth(double* inst, Tree* tree, MatrixXd &rotmat,double* transInst)
+double RForest::getdepth(double* inst, std::shared_ptr<Tree> tree, MatrixXd &rotmat,double* transInst)
 {
 
 	rotateInstance(inst,rotmat,transInst);
@@ -295,6 +292,7 @@ void RForest::projectedForest()
     std::vector<int> sampleIndex(this->nsample);
     doubleframe* sampleDf = new doubleframe();
     sampleDf->data = new double*[this->nsample];
+    std::shared_ptr<Tree> tree;
     //logfile<<"point,tree,x1,x2\n";
     int rfeatures = ceil(sqrt(sampleDf->ncol)/2)+2;
     for(int n=0;n<ntree;n++)
@@ -319,7 +317,7 @@ void RForest::projectedForest()
             sampleIndex.clear();
 
             for(int i=0;i<sampleDf->nrow;i++) sampleIndex.push_back(i);
-            Tree *tree  = new Tree();
+            tree  = std::make_shared<Tree>();
 
             tree->iTree(sampleIndex,sampleDf,0,maxheight,stopheight);
             this->trees.push_back(tree);

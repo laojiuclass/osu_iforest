@@ -5,7 +5,7 @@ include_directories(iforestlib)
 add_subdirectory(iforestlib)
 #find_package(Armadillo REQUIRED)
 #include_directories(${ARMADILLO_INCLUDE_DIRS})
-include_directories(${SOURCE_FILES}/cereal)
+include_directories(${SOURCE_FILES}/iforestlib/cereal)
 set(SOURCE_FILES main.cpp)
 add_executable(iforest ${SOURCE_FILES})
 

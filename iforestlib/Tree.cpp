@@ -90,12 +90,12 @@ void Tree::iTree(std::vector<int> const &dIndex,const doubleframe *dt, int heigh
 			lnodeData.push_back(dIndex.at(i));
 		}
 	}
-	leftChild = new Tree(); //&dataL,height+1,maxheight);
-	leftChild->parent = this;
+	leftChild = std::make_shared<Tree>();// new Tree(); //&dataL,height+1,maxheight);
+	//leftChild->parent = this->shared_from_this();
 	leftChild->iTree(lnodeData,dt, this->depth + 1, maxheight, stopheight);
 
-	rightChild = new Tree(); //&dataR,height+1,maxheight);
-	rightChild->parent = this;
+	rightChild = std::make_shared<Tree>();//new Tree(); //&dataR,height+1,maxheight);
+	//rightChild->parent = this->shared_from_this();
 	rightChild->iTree(rnodeData,dt, this->depth + 1, maxheight, stopheight);
 
 }
@@ -107,13 +107,13 @@ void Tree::iTree(std::vector<int> const &dIndex,const doubleframe *dt, int heigh
 double Tree::pathLength(double *inst)
 {
 
- 	if (this->leftChild==NULL||this->rightChild==NULL)
+ 	if (this->leftChild== nullptr||this->rightChild== nullptr)
         { ///referenced as null for some input data .
                	return util::avgPL(this->nodeSize);
         }
-	//Range check added
-       double instAttVal = inst[this->splittingAtt]; 
-	if(Tree::rangeCheck==true)
+	// Check range of input data
+    double instAttVal = inst[this->splittingAtt];
+	if(Tree::rangeCheck)
  	{ 
 		
 		if(instAttVal < this->minAttVal && util::randomD(instAttVal,this->minAttVal)<this->minAttVal)
@@ -175,13 +175,13 @@ return 1.0;
 */
 //std::vector<std::vector<double>>
 //std::map<int,double>
-struct Contrib Tree::featureContribution(double* inst) { //std::vector<double> &inst){
+struct Contrib Tree::featureContribution(double* inst) const { //std::vector<double> &inst){
 
-    Tree *root = this;
+    auto root = this->shared_from_this();
     double instAttVal;
     double depth =0.0;
     Contrib contribution(sizeof(inst)/sizeof(double) - 1);
-    while((root->rightChild != NULL) || (root->leftChild!=NULL)) {
+    while((root->rightChild != nullptr) || (root->leftChild!= nullptr)) {
         instAttVal = inst[root->splittingAtt];
 
         //contributions[root->splittingAtt] = depth + util::avgPL(root->nodeSize);
@@ -195,7 +195,7 @@ struct Contrib Tree::featureContribution(double* inst) { //std::vector<double> &
             contribution.addcont(root->splittingAtt,depth+util::avgPL(root->nodeSize));
 
     }
-    //depth = util::avgPL(root->nodeSize) + depth;
+    depth = util::avgPL(root->nodeSize) + depth;
     return contribution;//.featureContribution();
 
 }
@@ -205,6 +205,7 @@ struct Contrib Tree::featureContribution(double* inst) { //std::vector<double> &
  *
  */
 
+/*
 const int NULL_TREE_CHILD = -999;
 void Tree::serialize(std::ostream &s) const {
 
@@ -234,7 +235,7 @@ void Tree::serialize(std::ostream &s) const {
 			j["nodesize"]=nextTree->nodeSize;
 			j["minAttVal"] = nextTree->minAttVal;
 			j["maxAttVal"] = nextTree->maxAttVal;
-			*/
+
 			qtree.push(nextTree->leftChild);
 			qtree.push(nextTree->rightChild);
 
@@ -290,7 +291,7 @@ Tree* Tree::assignTree(Tree *tr, std::istream &s) const {
 
 }
 
-
+*/
 /*
 	while(iNode<numNodes){
 		if(iNode==0){  //root node

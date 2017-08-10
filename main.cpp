@@ -106,7 +106,7 @@ int main(int argc, char *argv[]) {
     /*parse argument from command line*/
     parsed_args *pargs = parse_args(argc, argv);
     int seed = pargs->seed;
-    util::debug = 100;//seed;
+    util::debug = seed;
     util::initialize();
     ntstring input_name = pargs->input_name;
     ntstring output_name = pargs->output_name;

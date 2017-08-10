@@ -5,8 +5,11 @@ echo "Build command for iforest"
 
 
 SERVER=`/bin/hostname|/bin/awk -F. '{print $2}'|tr "[a-z]" "[A-Z]"` 
+GCC=`gcc --version |head -1 | /bin/awk '{print substr($3,1,3)}'`
 echo $SERVER
-if [[ $SERVER == "HPC" || $SERVERi == "EECS" ]]; then
+echo $GCC
+#if [[ $SERVER == "HPC" || $SERVERi == "EECS" ]]; then
+if [[ $GCC == "4.4" ]]; then
 # use the make file to compile it 
 mkdir -p C
 make clean

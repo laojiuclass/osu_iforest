@@ -8,7 +8,7 @@
 #include "Forest.hpp"
 //TODO: Complete the out of bag scoring 
 //Update tree for saving index used for training. 
-double Forest::getdepth(double* inst,Tree* tree)
+double Forest::getdepth(double* inst,std::shared_ptr<Tree> tree)
 {
 	return tree->pathLength(inst);
 }
@@ -98,13 +98,8 @@ std::vector<std::vector<double> > Forest::oOBPathLength(doubleframe *df){
 std::vector<double> Forest::pathLength(double *inst)
 {
 	std::vector<double> depth;
-	for (std::vector<Tree*>::iterator it = this->trees.begin(); it != trees.end();
-			++it)
-	{
- 	
-		 depth.push_back((*it)->pathLength(inst));
-
-	}
+	for(auto const &tree : trees)
+		depth.push_back(tree->pathLength(inst));
 	return depth;
 }
 
@@ -203,4 +198,53 @@ void Forest::featureExplanation(doubleframe* df,std::ofstream &out){
     }
 
 }
-//TODO: Modify for all explanation methods
+
+// Serialization
+/*
+void Forest::serialize(std::ostream &s) const {
+
+   s<<ntree;
+   s<<" "<<maxheight;
+   s<<" "<<stopheight;
+   s<<" "<<rangecheck;
+   s<<" "<<nsample;
+   for(int i=0;i<ntree;i++){
+       trees[i]->serialize(s);
+   }
+}
+
+void Forest::deserialize(Forest *ff, std::istream &s)  {
+    //int ntree_;
+    //Forest ff*;
+    size_t ntree_;
+    s >> ff->ntree; //ntree_;
+    s >> ff->maxheight;
+    s >> ff->stopheight;
+    s >> ff->rangecheck;
+    s >> ff->nsample;
+    for(int i=0;i<ff->ntree;i++){
+        Tree* rootTree = new Tree();
+        rootTree->deserialize(s);
+        ff->trees.push_back(rootTree);
+    }
+*/
+
+
+
+
+//json jff;
+//input >> jff;
+//
+//this->nsample = jff["nsample"];
+//this->rsample = jff["rsample"];
+//this->maxheight = jff["maxheight"];
+//this->stopheight = jff["stopheight"];
+//this->rangecheck = jff["rangecheck"];
+//this->ntree = jff["ntree"];
+//
+//for (int i = 0; i < this->ntree; i++) {
+//// json* rootTree = &jff["trees"][i];
+//Tree *rootTree = new Tree();
+//rootTree->from_json(jff["trees"][i]);
+//this->trees.push_back(rootTree);
+//}

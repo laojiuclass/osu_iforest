@@ -36,6 +36,10 @@ Default value is 100.
 #include "iforestlib/main.hpp"
 //log file
 //ofstream util::logfile("treepath.csv");
+#include "cereal/archives/binary.hpp"
+//#include "cereal/archives/json.hpp"
+//#include "cereal/archives/xml.hpp"
+#include "cereal/types/utility.hpp"
 
 //Save score to flat file
 void saveScoreToFile(std::vector<double> &scores, std::vector<std::vector<double> > &pathLength,
@@ -60,12 +64,11 @@ void saveScoreToFile(std::vector<double> &scores, std::vector<std::vector<double
     outscore.close();
 }
 
-void buildForest(Forest *iff, doubleframe *test_dt, const double alpha, int stopLimit, float rho,
-                 std::string output_name, ntstringframe *metadata, bool savePathLength,
-                 int epoch,bool oob) {
+void buildForest(std::shared_ptr<Forest> iff,  const double alpha, int stopLimit, float rho,
+                                int epoch) {
     if (iff->ntree > 0) //if fixed tree chosen.
         iff->fixedTreeForest(epoch);
-    else{
+    else {
         //int treeRequired = iff.adaptiveForest(ALPHA,stopLimit);
         if (rho < 0) {
             int treeRequired = iff->adaptiveForest(alpha, stopLimit);
@@ -77,6 +80,9 @@ void buildForest(Forest *iff, doubleframe *test_dt, const double alpha, int stop
         }
 
     }
+}
+void scoreData(std::shared_ptr<Forest> iff,doubleframe* test_dt,bool oob,bool savePathLength,
+               const ntstringframe* metadata, std::string outputName){
     std::vector<double> scores;
     std::vector<std::vector<double> > pathLength;
     if(oob){
@@ -87,9 +93,9 @@ void buildForest(Forest *iff, doubleframe *test_dt, const double alpha, int stop
          pathLength = iff->pathLength(
                 test_dt); //generate Depth all points in all trees
     }
-    saveScoreToFile(scores, pathLength, metadata, output_name, savePathLength);
-}
+    saveScoreToFile(scores, pathLength, metadata, outputName, savePathLength);
 
+}
 
 
 bool Tree::rangeCheck;  //range check for Tree score calculation.
@@ -100,11 +106,14 @@ int main(int argc, char *argv[]) {
     /*parse argument from command line*/
     parsed_args *pargs = parse_args(argc, argv);
     int seed = pargs->seed;
-    util::debug = seed;
+    util::debug = 100;//seed;
     util::initialize();
     ntstring input_name = pargs->input_name;
     ntstring output_name = pargs->output_name;
     ntstring test_name = pargs->test_name;
+    ntstring load_forest = pargs->load_forest;
+    ntstring save_forest = pargs->save_forest;
+
     d(int) *metacol = pargs->metacol;
     int ntree = pargs->ntrees;
     int nsample = pargs->sampsize;
@@ -127,7 +136,6 @@ int main(int argc, char *argv[]) {
     ntstringframe *csv = read_csv(input_name, header, false, false);
     ntstringframe *metadata = split_frame(ntstring, csv, metacol, true);
     doubleframe *dt = conv_frame(double, ntstring, csv); //read data to the global variable
-
     //Test file to data frame
     ntstringframe *csv_test = read_csv(test_name, header, false, false);
     metadata = split_frame(ntstring, csv_test, metacol, true);
@@ -142,18 +150,32 @@ int main(int argc, char *argv[]) {
     nsample = nsample == 0 ? dt->nrow : nsample;
 
     Tree::rangeCheck = rangecheck;
-    Forest* iff;
-    if (rotate){
-         iff = new RForest(ntree, dt, nsample, maxheight, stopheight, rsample);
-        std::string rot_output(output_name);
-        buildForest(iff, test_dt, alpha, stopLimit, rho, "rotate_" + rot_output,
-                    metadata, pathlength, epoch,oob);
-    }else {
-         iff = new IsolationForest(ntree, dt, nsample, maxheight, stopheight, rsample); //build iForest
-        buildForest(iff, test_dt, alpha, stopLimit, rho, output_name,
-                    metadata, pathlength, epoch, oob);
+    std::shared_ptr<Forest> iff;
+    /**
+     * Check if load or save option is triggered
+     */
+    // Read model
+    if (load_forest != NULL) { //if filename given
+        std::ifstream ifile{load_forest};
+        {
+            if (!ifile.is_open()) {
+                throw std::runtime_error{" could not be opened"};
+            }
+            //cereal::JSONInputArchive iarchive{ifile};
 
+            cereal::BinaryInputArchive iarchive(ifile); // Create an input archive
+            iarchive(iff);
+        }
+    } else {
+        if (rotate)
+            iff = std::make_shared<RForest>(ntree, dt, nsample, maxheight, stopheight, rsample);
+        else
+            iff = std::make_shared<IsolationForest>(ntree, dt, nsample, maxheight, stopheight, rsample); //build iForest
+
+        buildForest(iff, alpha, stopLimit, rho, epoch);
     }
+    // Score using trained forest
+    scoreData(iff, test_dt, oob, pathlength, metadata, output_name);
 
     if (explanation) {
         std::string explanationName = std::string(output_name) + "_explanation.csv";
@@ -161,9 +183,23 @@ int main(int argc, char *argv[]) {
         iff->featureExplanation(test_dt, oexp);
         oexp.close();
     }
-    delete iff;
+
+    // Save model
+    if (save_forest != NULL) {
+        std::string filenamex{save_forest};
+        {
+            std::ofstream file{filenamex};
+            if (!file.is_open()) {
+                throw std::runtime_error{filenamex + " could not be opened"};
+            }
+            //cereal::JSONOutputArchive archive{file};
+            cereal::BinaryOutputArchive archive{file};
+            archive(iff);
+        }
+    }
     return 0;
 }
+
 
 
 

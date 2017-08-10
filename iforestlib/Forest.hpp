@@ -7,50 +7,12 @@
 
 #ifndef FOREST_H_
 #define FOREST_H_
-
-#include "utility.hpp"
 #include "Tree.hpp"
-#include "cincl.hpp"
-
-struct OOBEstimator{
-    util::Matrix<bool> *mat;
-    int ntree,sampleSize;
-    OOBEstimator(size_t _ntree, size_t _nsample):
-            ntree(_ntree),sampleSize(_nsample){
-        mat = new util::Matrix<bool>(_ntree,_nsample);
-        for(unsigned i=0;i<_ntree;i++)
-            for(unsigned j=0;j<_nsample;j++)
-                (*mat)(i,j) = false; //initialy all false
-    }
-    void markTree(int treeIndex, int xIndex){
-        if(treeIndex>ntree || xIndex > sampleSize)
-            return ;
-        (*mat)(treeIndex,xIndex) = true;
-    }
-    /**
-     * Returns all out of bag trees that don't invole x
-     * @param xIndex : int index of sample
-     * @return Tree index in the forest that XIndex don't involve
-     */
-    std::vector<int> OOBTrees(int xIndex){
-        std::vector<int> treeIndexes;
-        for(int i=0;i<ntree;i++)
-            if((*mat)(i,(size_t )xIndex))
-                treeIndexes.push_back(i);
-        return treeIndexes;
-    }
-
-    ~OOBEstimator(){delete mat;}
-};
-typedef struct OOBEstimator OOBEstimator;
 
 class Forest {
-protected:
-//    std::vector<std::vector<bool> > oobMatrix;
-    OOBEstimator *oobEstimator;
-
 public:
-    std::vector<Tree *> trees;
+    std::vector<std::shared_ptr<Tree> > trees;
+
     int ntree;
     bool rsample;
     int nsample;
@@ -80,11 +42,11 @@ public:
     };
 
     virtual ~Forest() {
-        for (std::vector<Tree *>::iterator it = trees.begin(); it != trees.end();
-             ++it) {
-            delete (*it);
-
-        }
+//        for (std::vector<Tree *>::iterator it = trees.begin(); it != trees.end();
+//             ++it) {
+//            delete (*it);
+//
+//        }
         //delete oobEstimator;
 
     }
@@ -106,7 +68,7 @@ public:
     std::vector<double> ADtest(const std::vector<std::vector<double> > &pathlength, bool weighttotail);
 
     std::map<int, double> importance(double *inst);//std::vector<double> &inst);
-    virtual double getdepth(double *inst, Tree *tree);
+    virtual double getdepth(double *inst, std::shared_ptr<Tree> tree);
 
     void getSample(std::vector<int> &sampleIndex, const int nsample, bool rSample, int nrow);
 
@@ -140,6 +102,21 @@ public:
 
     virtual std::vector<std::map<int, double> > featureContrib(double *inst); //std::vector<double> &inst);
     void featureExplanation(doubleframe *df, std::ofstream &out);
+
+
+    //  Serialize
+   // void save(std::ofstream &out);
+    //void load(std::istream &in);
+
+    //void serialize(std::ostream &s) const;
+     // void deserialize(Forest *ff,std::istream &s) ;
+    template<class Archive>
+     void serialize(Archive & archive){
+        /*archive(cereal::make_nvp("ntree",ntree),cereal::make_nvp("nsample",nsample),
+                cereal::make_nvp("rsample",rsample),cereal::make_nvp("stopheight",stopheight),
+                cereal::make_nvp("trees",trees));
+*/
+    }
 };
 
 #endif /* FOREST_H_ */

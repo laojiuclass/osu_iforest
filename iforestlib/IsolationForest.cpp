@@ -22,7 +22,7 @@ void IsolationForest::fixedTreeForest(int epoch) {
 
         std::cout << "\n Number of trees required " << ntree_ep;
     }
-    //buildForest();
+
 }
 
 int IsolationForest::batchForest(int epoch) {
@@ -42,7 +42,7 @@ int IsolationForest::batchForest(int epoch) {
             //Sample and shuffle the data.
             //build tree
 
-            Tree *tree = new Tree();
+            auto tree = std::make_shared<Tree>();
             //	tree->rangeCheck = this->rangecheck;
             std::vector<int> batchIndex(sampleIndex.begin() + n * nsample, sampleIndex.begin() + (n + 1) * nsample);
             tree->iTree(batchIndex, dataset, 0, maxheight, stopheight);
@@ -69,7 +69,7 @@ void IsolationForest::buildForest() {
         //Sample and shuffle the data.
         sampleIndex.clear();
         getSample(sampleIndex, nsample, rsample, dataset->nrow);
-        Tree *tree = new Tree();
+        auto tree = std::make_shared<Tree>();
         tree->iTree(sampleIndex, dataset, 0, maxheight, stopheight);
         if (nsample < dataset->nrow)
             tree->trainIndex = sampleIndex;
@@ -89,13 +89,13 @@ int IsolationForest::adaptiveForest(double alpha, int stopLimit) {
     //logfile<<"point,tree,x1,x2\n";
     bool converged = false;
     int convCounter = 0;
-    double ntree = 0;
+    int ntree = 0;
     std::vector<int> topKIndex;
     std::vector<int> prevTopKIndex;
     std::vector<double> totalDepth(dataset->nrow, 0);
     double prob = 0.0;
     std::priority_queue<std::pair<int, double>, std::vector<std::pair<int, double> >, larger> pq;
-
+    std::shared_ptr<Tree> tree;
     while (!converged) {
         pq = std::priority_queue<std::pair<int, double>, std::vector<std::pair<int, double> >, larger>();
 
@@ -103,7 +103,7 @@ int IsolationForest::adaptiveForest(double alpha, int stopLimit) {
         getSample(sampleIndex, nsample, rsample, dataset->nrow);
 
         //Fill the sampleIndex with indices of the sample rotated data
-        Tree *tree = new Tree();
+        tree = std::make_shared<Tree>(); //new Tree();
         //    tree->rangeCheck = this->rangecheck;
         tree->iTree(sampleIndex, dataset, 0, maxheight, stopheight);
         this->trees.push_back(tree);
@@ -155,6 +155,7 @@ struct smaller {
     }
 };
 
+/*
 int IsolationForest::confTree(double alpha, double rho, int init_tree) {
     //Build the RForest model
     double tk = ceil(alpha * dataset->nrow);
@@ -228,4 +229,4 @@ int IsolationForest::confTree(double alpha, double rho, int init_tree) {
     }
     //increase number of trees
     return ntree;
-}
+}*/

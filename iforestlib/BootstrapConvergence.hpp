@@ -4,9 +4,9 @@
 
 #ifndef OSU_IFOREST_BOOTSTRAPCONVERGENCE_HPP
 #define OSU_IFOREST_BOOTSTRAPCONVERGENCE_HPP
-#include<Forest.hpp>
+//#include<Forest.hpp>
 
-class BootstrapConvergence: public Forest {
+class BootstrapConvergence {
 
 
 };

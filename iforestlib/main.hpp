@@ -10,10 +10,10 @@
 #include "RForest.hpp"
 #include "IsolationForest.hpp"
 #include "utility.hpp"
-#include "cincl.hpp"
-#include "convForest.hpp"
+//#include "cincl.hpp"
+//#include "convForest.hpp"
 
-void buildForest(Forest &iff, doubleframe* test_dt, const double alpha,int stopLimit,float rho,
+void buildForest(std::shared_ptr<Forest> iff, doubleframe* test_dt, const double alpha,int stopLimit,float rho,
 		std::string output_name,ntstringframe* metadata,bool savePathLength);
 
 //void buildForestPy(Forest &iff, doubleframe* test_dt, const double alpha,int stopLimit,float rho);

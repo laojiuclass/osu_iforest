@@ -20,6 +20,7 @@
 #include "Eigen/Dense"
 #include "Eigen/QR"
 #include "Forest.hpp"
+#include "cereal/types/memory.hpp"
 class RForest: public Forest {
  
 
@@ -53,11 +54,23 @@ public:
 	Eigen::MatrixXd convertDfToMatrix(const doubleframe* data,
 					std::vector<int> &sampleIndex);
 	std::vector<double> pathLength(double *inst);
-	double getdepth(double* inst, Tree* tree,Eigen::MatrixXd &rotmat,double* transInst);
+	double getdepth(double* inst, std::shared_ptr<Tree> tree,Eigen::MatrixXd &rotmat,double* transInst);
 	void rForest();
 	int adaptiveForest(double alpha,int stopLimit); 
     void fixedTreeForest(int epoch);
     void projectedForest();
+	/*
+	 * Serialization
+	 *
+	 */
+	 template<class Archive>
+    void serialize(Archive & archive){
+        archive(cereal::make_nvp("ntree",ntree),cereal::make_nvp("nsample",nsample),
+                cereal::make_nvp("rsample",rsample),cereal::make_nvp("stopheight",stopheight),
+                cereal::make_nvp("trees",trees));
+
+    }
+
 };
 #endif /* RFOREST_H_ */
 

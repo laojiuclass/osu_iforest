@@ -7,58 +7,22 @@
 
 #ifndef TREE_H_
 #define TREE_H_
+#include "cereal/cereal.hpp"
+#include "cereal/types/vector.hpp"
+#include "cereal/types/memory.hpp"
+#include "cereal/types/polymorphic.hpp"
 #include "utility.hpp"
 #include "cincl.hpp"
+#include "Contribution.hpp"
+#include <memory>
 
-struct Contrib{
-	int feature;
-	std::map<int,std::vector<double> > contributions;
-    Contrib(int ncols):feature(ncols) { //initialize all features.
-        for(int i=0;i<feature;i++) {
-            std::vector<double> contr;
-            contr.push_back(0.0);
-            contributions.insert({i, contr});
-
-        }
-    }
-
-	void addcont(int index, double depth){
-		if(contributions.count(index)<1) {
-			std::vector<double> contr;
-			contr.push_back(depth);
-			contributions.insert({index,contr});
-		}
-		else{
-			contributions[index].push_back(depth);
-		}
-	}
-	std::map<int,double> featureContribution(){
-		std::map<int,double> explanation;
-
-
-		for(const auto & contr : contributions){
-			double expl=0.0;
-			expl = 1.0/contr.second[0];
-			//for(auto depth : contr.second)
-			//   expl += 1.0/depth;
-			explanation.insert({contr.first,expl});
-
-		}
-		return explanation;
-	}
-
-};
-typedef  struct Contrib contrib;
-class Tree {
+class Tree: public std::enable_shared_from_this<Tree> {
 private:
-	Tree *leftChild;
-	Tree *rightChild;
-	Tree *parent;
-	int nodeSize;
-	int splittingAtt;
-    double splittingPoint;
-    int depth;
-    double minAttVal,maxAttVal;
+
+    std::shared_ptr<Tree> leftChild,rightChild,parent;
+    int nodeSize,splittingAtt,depth;
+	double splittingPoint,minAttVal,maxAttVal;
+
 public:
 	int getNodeSize() const;
 	int getSplittingAtt() const;
@@ -68,26 +32,25 @@ public:
 	double getMaxAttVal() const;
 	static bool rangeCheck;
 	std::vector<int> trainIndex;
+
+   // void serialize(std::ostream &s) const;
+//	void deserialize(std::istream &s) const;
+	/*Tree* assignTree(Tree* tr, std::istream &s) const;
 	Tree* getLeftChild(){return leftChild;}
 	Tree* getRightChild(){return rightChild;}
-	Tree()
-	{
-		leftChild = NULL;
-		rightChild = NULL;
-		parent = NULL;
-		splittingAtt = -1;
-		splittingPoint = 999;
-		depth = 0;
-		nodeSize = 0;
-		minAttVal=maxAttVal=0;
-	}
-	;
+	 */
+    const std::shared_ptr<Tree> &getLeftChild() const;
+    const std::shared_ptr<Tree> &getRightChild() const;
+
+    Tree():leftChild(nullptr),rightChild(nullptr),parent(nullptr)
+    ,splittingAtt(-1),splittingPoint(999),depth(0),nodeSize(0),
+    minAttVal(0),maxAttVal(0) {};
 
 	virtual ~Tree()
 	{
-        delete leftChild; //check if deleting the child is need.
+  /*      delete leftChild; //check if deleting the child is need.
         delete rightChild;
-
+*/
 	};
 
 	void iTree(std::vector<int> const &dIndex,const doubleframe* dt, int height, int maxHeight, bool stopheight);
@@ -95,10 +58,21 @@ public:
 	bool indexAvailable(int index);
 
 	//Contribution
-	contrib featureContribution(double* inst);//std::vector<double> &inst);
+	contrib featureContribution(double* inst) const;//std::vector<double> &inst);
 	std::map<int,double> explanation(double* inst){ // /std::vector<double> &inst){
 		return featureContribution(inst).featureContribution();
 	};
+
+    // Serialization
+    template<class Archive>
+    void  serialize(Archive & archive){
+        archive(cereal::make_nvp("nodesize",nodeSize),cereal::make_nvp("depth",depth),
+                cereal::make_nvp("splittingAtt",splittingAtt),cereal::make_nvp("splittingPoint",splittingPoint),
+                cereal::make_nvp("minAttVal",minAttVal),cereal::make_nvp("maxAttVal",maxAttVal),
+                cereal::make_nvp("leftChild",leftChild),cereal::make_nvp("rightChild",rightChild)
+
+        );
+    }
 
 };
 

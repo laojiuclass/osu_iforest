@@ -1,6 +1,6 @@
 #include "argparse_iforest.h"
 
-#define NOPTS 20
+#define NOPTS 22
 #define IOPT 0
 #define OOPT 1
 #define MOPT 2
@@ -19,8 +19,10 @@
 #define QOPT 15
 #define EOPT 16
 #define SDOPT 17
-#define LXOPT 18
+#define LOPT 18
 #define KOPT 19
+#define BOPT 20
+#define FOPT 21
 d(option)* option_spec() {
     d(option)* opts = vecalloc(option,NOPTS);
     opts[IOPT] = (option){
@@ -53,7 +55,29 @@ d(option)* option_spec() {
         .isflag = false,
         .flagged = false
     };
-  
+
+    opts[FOPT] = (option){
+            .sarg = 'f',
+            .larg = "load",
+            .name = "FILE",
+            .desc = "Specify path to load saved iforest model, if you want to load from saved forest.",
+            .default_value = NULL,
+            .value = NULL,
+            .isflag = false,
+            .flagged = false
+    };
+    opts[BOPT] = (option){
+            .sarg = 'b',
+            .larg = "save",
+            .name = "FILE",
+            .desc = "Specify path to save iforest model.",
+            .default_value = NULL,
+            .value = NULL,
+            .isflag = false,
+            .flagged = false
+    };
+
+
     opts[MOPT] = (option){
         .sarg = 'm',
         .larg = "metacol",
@@ -224,7 +248,7 @@ d(option)* option_spec() {
         .isflag = false,
         .flagged = false
     };
-    opts[LXOPT] = (option){
+    opts[LOPT] = (option){
             .sarg = 'l',
             .larg = "explain",
             .name = "L",
@@ -239,15 +263,20 @@ d(option)* option_spec() {
 }
 
 parsed_args* validate_args(d(option*) opts) {
+
     parsed_args* pargs = talloc(parsed_args,1);
+    pargs->load_forest = opts[FOPT].value;
+    pargs->save_forest = opts[BOPT].value;
     pargs->input_name = opts[IOPT].value;
-    if (pargs->input_name==NULL) err_and_exit(1,"Must specify path to input with option -i/--infile.\n");
+    if (pargs->input_name==NULL)
+        err_and_exit(1,"Must specify path to input with option -i/--infile.\n");
+
     pargs->output_name = opts[OOPT].value;
     if (pargs->output_name==NULL) err_and_exit(1,"Must specify path to output with option -o/--outfile.\n");
-  
     pargs->test_name = opts[XOPT].value; //set test file if available
-   if(pargs->test_name==NULL)pargs->test_name = opts[IOPT].value;  //if not specified set test file to input file
-    if (opts[MOPT].value) {
+   if(pargs->test_name==NULL)
+       pargs->test_name = opts[IOPT].value;  //if not specified set test file to input file
+   if (opts[MOPT].value) {
         pargs->metacol = parse_multi_ints(opts[MOPT].value);
         if (pargs->metacol==NULL) {
             err_and_exit(1,"Invalid specification of meta columns.");
@@ -258,7 +287,7 @@ parsed_args* validate_args(d(option*) opts) {
     if (str_conv_strict(&(pargs->ntrees),int,opts[TOPT].value)) {
         err_and_exit(1,"Expected integer as number of trees.\n");
     }
-  
+
     if (pargs->ntrees<0) {
         err_and_exit(1,"Number of trees must be at least 1.\n");
     }
@@ -286,8 +315,9 @@ parsed_args* validate_args(d(option*) opts) {
    if (pargs->epoch<0) {
         err_and_exit(1,"Number of epoch must be at least 1.\n");
         }
-  
-    
+
+
+
     pargs->sampsize = strtol(opts[SOPT].value,NULL,10);
     pargs->maxdepth = strtol(opts[DOPT].value,NULL,10);
     pargs->header = opts[HOPT].flagged;
@@ -300,7 +330,7 @@ parsed_args* validate_args(d(option*) opts) {
     pargs->precision = strtof(opts[JOPT].value,NULL);
     pargs->alpha= strtof(opts[QOPT].value,NULL);
     pargs->seed = strtol(opts[SDOPT].value,NULL,10);
-    pargs->explanation = opts[LXOPT].flagged;
+    pargs->explanation = opts[LOPT].flagged;
     pargs->oobag = opts[KOPT].flagged;
     //strtof();
     return pargs;

@@ -24,6 +24,8 @@ struct parsed_args {
     int seed;
     bool explanation;
     bool oobag;
+    char* save_forest;
+    char* load_forest;
 };
 
 

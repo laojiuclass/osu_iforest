@@ -56,7 +56,7 @@ d(option)* option_spec() {
         .flagged = false
     };
 
-    opts[BOPT] = (option){
+    opts[FOPT] = (option){
             .sarg = 'f',
             .larg = "load",
             .name = "FILE",
@@ -66,7 +66,7 @@ d(option)* option_spec() {
             .isflag = false,
             .flagged = false
     };
-    opts[FOPT] = (option){
+    opts[BOPT] = (option){
             .sarg = 'b',
             .larg = "save",
             .name = "FILE",
@@ -263,13 +263,17 @@ d(option)* option_spec() {
 }
 
 parsed_args* validate_args(d(option*) opts) {
+
     parsed_args* pargs = talloc(parsed_args,1);
+    pargs->load_forest = opts[FOPT].value;
+    pargs->save_forest = opts[BOPT].value;
     pargs->input_name = opts[IOPT].value;
-    if (pargs->input_name==NULL) err_and_exit(1,"Must specify path to input with option -i/--infile.\n");
+    if (pargs->input_name==NULL)
+        err_and_exit(1,"Must specify path to input with option -i/--infile.\n");
+
     pargs->output_name = opts[OOPT].value;
     if (pargs->output_name==NULL) err_and_exit(1,"Must specify path to output with option -o/--outfile.\n");
-  
-   pargs->test_name = opts[XOPT].value; //set test file if available
+    pargs->test_name = opts[XOPT].value; //set test file if available
    if(pargs->test_name==NULL)
        pargs->test_name = opts[IOPT].value;  //if not specified set test file to input file
    if (opts[MOPT].value) {
@@ -283,7 +287,7 @@ parsed_args* validate_args(d(option*) opts) {
     if (str_conv_strict(&(pargs->ntrees),int,opts[TOPT].value)) {
         err_and_exit(1,"Expected integer as number of trees.\n");
     }
-  
+
     if (pargs->ntrees<0) {
         err_and_exit(1,"Number of trees must be at least 1.\n");
     }
@@ -311,8 +315,8 @@ parsed_args* validate_args(d(option*) opts) {
    if (pargs->epoch<0) {
         err_and_exit(1,"Number of epoch must be at least 1.\n");
         }
-    pargs->load_forest = opts[BOPT].value;
-    pargs->save_forest = opts[FOPT].value;
+
+
 
     pargs->sampsize = strtol(opts[SOPT].value,NULL,10);
     pargs->maxdepth = strtol(opts[DOPT].value,NULL,10);

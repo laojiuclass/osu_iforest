@@ -205,59 +205,6 @@ int main(int argc, char *argv[]) {
 
 
 
-/*
- *  Serialization trials
- */
-/*    std::string filenamex{"forest.cereal"};
-
-        std::ofstream file{filenamex};
-        if (!file.is_open()) {
-            throw std::runtime_error{filenamex + " could not be opened"};
-        }
-        //cereal::JSONOutputArchive archive{file};
-        cereal::BinaryOutputArchive archive{file};
-        archive(iff);
-      file.close();
-*/
-// Read forest
-
-
-//        std::ifstream ifile{filenamex};
-//
-//        if (!ifile.is_open()) {
-//            throw std::runtime_error{filenamex + " could not be opened"};
-//        }
-//        std::shared_ptr<Forest> newif;
-//        //cereal::JSONInputArchive iarchive{ifile};
-//
-//        cereal::BinaryInputArchive iarchive(ifile); // Create an input archive
-//        iarchive(newif);
-//        std::cout<<newif->ntree;
-//        auto scor = newif->AnomalyScore(dt);
-//        auto orscore = iff->AnomalyScore(dt);
-//
-//       for(auto iscore : orscore)
-//            std::cout<<iscore<<"\t";
-//      std::cout<<"\n Second score \n";
-//        for(auto iscore : scor)
-//            std::cout<<iscore<<"\t";
-//        ifile.close();
-////    std::cout<<iff->nsample<<iff->ntree;
-//    //std::cout<<newforest.nsample<<newforest.ntree;
-//
-////    buildForest(&newforest, test_dt, alpha, stopLimit, rho, "new_"+std::string(output_name),
-////                metadata, pathlength, epoch, oob);
-//
-//  //  delete iff;
-//
-//
-//    return 0;
-//}
-
-
-
-
-
 
 
 

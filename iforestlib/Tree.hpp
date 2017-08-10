@@ -9,46 +9,9 @@
 #define TREE_H_
 #include "utility.hpp"
 #include "cincl.hpp"
-
-struct Contrib{
-	int feature;
-	std::map<int,std::vector<double> > contributions;
-    Contrib(int ncols):feature(ncols) { //initialize all features.
-        for(int i=0;i<feature;i++) {
-            std::vector<double> contr;
-            contr.push_back(0.0);
-            contributions.insert({i, contr});
-
-        }
-    }
-
-	void addcont(int index, double depth){
-		if(contributions.count(index)<1) {
-			std::vector<double> contr;
-			contr.push_back(depth);
-			contributions.insert({index,contr});
-		}
-		else{
-			contributions[index].push_back(depth);
-		}
-	}
-	std::map<int,double> featureContribution(){
-		std::map<int,double> explanation;
+#include "Contribution.hpp"
 
 
-		for(const auto & contr : contributions){
-			double expl=0.0;
-			expl = 1.0/contr.second[0];
-			//for(auto depth : contr.second)
-			//   expl += 1.0/depth;
-			explanation.insert({contr.first,expl});
-
-		}
-		return explanation;
-	}
-
-};
-typedef  struct Contrib contrib;
 class Tree {
 private:
 	Tree *leftChild;
@@ -59,6 +22,7 @@ private:
     double splittingPoint;
     int depth;
     double minAttVal,maxAttVal;
+
 public:
 	int getNodeSize() const;
 	int getSplittingAtt() const;
@@ -68,10 +32,13 @@ public:
 	double getMaxAttVal() const;
 	static bool rangeCheck;
 	std::vector<int> trainIndex;
+
+    void serialize(std::ostream &s) const;
+	void deserialize(std::istream &s) const;
+	Tree* assignTree(Tree* tr, std::istream &s) const;
 	Tree* getLeftChild(){return leftChild;}
 	Tree* getRightChild(){return rightChild;}
-	Tree()
-	{
+	Tree() {
 		leftChild = NULL;
 		rightChild = NULL;
 		parent = NULL;

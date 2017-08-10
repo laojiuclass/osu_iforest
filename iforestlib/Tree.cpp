@@ -199,3 +199,147 @@ struct Contrib Tree::featureContribution(double* inst) { //std::vector<double> &
     return contribution;//.featureContribution();
 
 }
+
+/*
+ *  Serialize Tree into output stream
+ *
+ */
+
+const int NULL_TREE_CHILD = -999;
+void Tree::serialize(std::ostream &s) const {
+
+	// Define empty queute
+	std::queue<const Tree*> qtree ;
+	qtree.push(this);
+	int i=0;
+	while(!qtree.empty()) {
+		const Tree* nextTree = qtree.front();
+		qtree.pop();
+		if(nextTree==NULL){
+			//j["depth"] =  NULL_TREE_CHILD_DEPTH;
+			s<<" "<< NULL_TREE_CHILD;
+		}
+		else {
+
+			s<<" "<<nodeSize;
+			s<<" "<<splittingAtt;
+			s<<" "<<splittingPoint;
+			s<<" "<<depth;
+			s<<" "<<minAttVal;
+			s<<" "<<maxAttVal;
+			/*j["depth"] = nextTree->depth;
+			j["splittingAtt"] = nextTree->splittingAtt;
+			j["splittingPoint"] = nextTree->splittingPoint;
+			j["depth"]= nextTree->depth;
+			j["nodesize"]=nextTree->nodeSize;
+			j["minAttVal"] = nextTree->minAttVal;
+			j["maxAttVal"] = nextTree->maxAttVal;
+			*/
+			qtree.push(nextTree->leftChild);
+			qtree.push(nextTree->rightChild);
+
+		}
+
+		i++;
+	}
+}
+void Tree::deserialize(std::istream &s) const {
+
+	std::queue<Tree*> qTree;
+	int checkTree;
+	Tree* root = assignTree((Tree*)this,s);
+	if(root == NULL)
+		return;
+	qTree.push(root);
+	while(!qTree.empty() && s!= nullptr){
+
+		Tree* node = qTree.front();
+		qTree.pop();
+		//node->leftChild = new Tree();
+		if(assignTree(node->leftChild,s)!=NULL) {
+			qTree.push(node->leftChild);
+		}
+		if(assignTree(node->rightChild,s)!=NULL) {
+
+			qTree.push(node->rightChild);
+
+		}
+
+	}
+
+}
+
+Tree* Tree::assignTree(Tree *tr, std::istream &s) const {
+	int tempnodesize;
+	s >> tempnodesize;
+	if(tempnodesize == NULL_TREE_CHILD) {
+		tr = NULL;
+
+	}else {
+		tr = new Tree();
+		tr->nodeSize = tempnodesize;
+		s >> tr->splittingAtt; // = (*rtree)["splittingAtt"];
+		s >> tr->splittingPoint; //= (*rtree)["splittingPoint"];
+		s >> tr->depth;
+		s >> tr->minAttVal; //  = (*rtree)["minAttVal"];
+		s >> tr->maxAttVal; // = (*rtree)["maxAttVal"];
+	}
+	return tr;
+
+
+
+}
+
+
+/*
+	while(iNode<numNodes){
+		if(iNode==0){  //root node
+			root = this;//new Tree();
+			assignTree(root, &jsontree[iNode]);
+			qTree.push(root);
+			iNode++;
+		}
+		else {
+			Tree* node = qTree.front();
+			qTree.pop();
+			json* jleft = &jsontree[iNode];//ootTree[iNode];
+			json* jright=NULL;
+
+			if(iNode<(numNodes-1))
+				jright =&jsontree[iNode+1];
+
+			if(jleft!=NULL && (*jleft)["depth"]>0) {
+				node->leftChild = new Tree();
+				assignTree(node->leftChild,jleft);
+				qTree.push(node->leftChild);
+			}
+			if(jright!=NULL && (*jright)["depth"]>0){
+				node->rightChild = new Tree();
+				assignTree(node->rightChild,jright);
+				qTree.push(node->rightChild);
+			}
+			iNode +=2;
+		}
+	}
+
+}
+
+
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

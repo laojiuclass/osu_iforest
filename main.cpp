@@ -100,7 +100,7 @@ int main(int argc, char *argv[]) {
     /*parse argument from command line*/
     parsed_args *pargs = parse_args(argc, argv);
     int seed = pargs->seed;
-    util::debug = seed;
+    util::debug = 100;//seed;
     util::initialize();
     ntstring input_name = pargs->input_name;
     ntstring output_name = pargs->output_name;
@@ -161,7 +161,27 @@ int main(int argc, char *argv[]) {
         iff->featureExplanation(test_dt, oexp);
         oexp.close();
     }
+
+/*
+ *  Serialization trials
+ */
+/*
+    std::ofstream ff("forest.dat");
+    iff->serialize(ff);
+    ff.close();
+
+    std::ifstream inp("forest.dat");
+    iff = new IsolationForest();
+    iff->deserialize(iff,inp);
+    std::cout<<iff->nsample<<iff->ntree;
+    //std::cout<<newforest.nsample<<newforest.ntree;
+
+//    buildForest(&newforest, test_dt, alpha, stopLimit, rho, "new_"+std::string(output_name),
+//                metadata, pathlength, epoch, oob);
+*/
     delete iff;
+
+
     return 0;
 }
 

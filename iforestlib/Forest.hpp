@@ -11,38 +11,8 @@
 #include "utility.hpp"
 #include "Tree.hpp"
 #include "cincl.hpp"
+#include "OOBEstimator.hpp"
 
-struct OOBEstimator{
-    util::Matrix<bool> *mat;
-    int ntree,sampleSize;
-    OOBEstimator(size_t _ntree, size_t _nsample):
-            ntree(_ntree),sampleSize(_nsample){
-        mat = new util::Matrix<bool>(_ntree,_nsample);
-        for(unsigned i=0;i<_ntree;i++)
-            for(unsigned j=0;j<_nsample;j++)
-                (*mat)(i,j) = false; //initialy all false
-    }
-    void markTree(int treeIndex, int xIndex){
-        if(treeIndex>ntree || xIndex > sampleSize)
-            return ;
-        (*mat)(treeIndex,xIndex) = true;
-    }
-    /**
-     * Returns all out of bag trees that don't invole x
-     * @param xIndex : int index of sample
-     * @return Tree index in the forest that XIndex don't involve
-     */
-    std::vector<int> OOBTrees(int xIndex){
-        std::vector<int> treeIndexes;
-        for(size_t i=0;i<ntree;i++)
-            if((*mat)(i,(size_t )xIndex))
-                treeIndexes.push_back(i);
-        return treeIndexes;
-    }
-
-    ~OOBEstimator(){delete mat;}
-};
-typedef struct OOBEstimator OOBEstimator;
 
 class Forest {
 protected:
@@ -140,6 +110,14 @@ public:
 
     virtual std::vector<std::map<int, double> > featureContrib(double *inst); //std::vector<double> &inst);
     void featureExplanation(doubleframe *df, std::ofstream &out);
+
+
+    //  Serialize
+   // void save(std::ofstream &out);
+    //void load(std::istream &in);
+
+    void serialize(std::ostream &s) const;
+      void deserialize(Forest *ff,std::istream &s) ;
 };
 
 #endif /* FOREST_H_ */

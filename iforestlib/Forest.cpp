@@ -34,6 +34,13 @@ std::vector<double> Forest::AnomalyScore(doubleframe* df) {
 	return scores;
 }
 
+// Filter vector 
+template<class T>
+double oobMeanDepth(std::vector<T> &vec){
+   auto numNonZeroDepth = std::count_if(vec.begin(),vec.end(),[](T x){return x>0;});
+    auto sum = std::accumulate(vec.begin(),vec.end(),0);
+    return  sum/(double)numNonZeroDepth;
+}
 
 /*
  * Score for out of bag scoring 
@@ -41,24 +48,12 @@ std::vector<double> Forest::AnomalyScore(doubleframe* df) {
 std::vector<double> Forest::outOfBagScore(doubleframe* df) {
 	std::vector<double> scores;
 	double score;
-//    int numTreeUsed;
     double avgDepth;
-//	//iterate through all points
-//	for (int inst = 0; inst <df->nrow; inst++)
-//	{
-//	  depth =0.0;
-//	  for(int it=0;it<this->ntree;it++)
-//	    {
-//         numTreeUsed =0;
-//		if(!this->trees[it]->indexAvailable(inst)){
-//			depth +=getdepth(df->data[inst],this->trees[it]);
-//			numTreeUsed++;
-//		}
-//
-//	   }
+    int countNonZeroDepth;;
+
     std::vector<std::vector<double> > depths = oOBPathLength(df);
     for(auto& instDepth : depths) {
-     avgDepth =  util::mean(instDepth);
+     avgDepth = oobMeanDepth(instDepth);// util::mean(instDepth);
      score = pow(2, -avgDepth / util::avgPL(this->nsample));
      scores.push_back(score);
 

@@ -33,33 +33,22 @@ public:
 	static bool rangeCheck;
 	std::vector<int> trainIndex;
 
-   // void serialize(std::ostream &s) const;
-//	void deserialize(std::istream &s) const;
-	/*Tree* assignTree(Tree* tr, std::istream &s) const;
-	Tree* getLeftChild(){return leftChild;}
-	Tree* getRightChild(){return rightChild;}
-	 */
     const std::shared_ptr<Tree> &getLeftChild() const;
     const std::shared_ptr<Tree> &getRightChild() const;
 
     Tree():leftChild(nullptr),rightChild(nullptr),parent(nullptr)
-    ,splittingAtt(-1),splittingPoint(999),depth(0),nodeSize(0),
-    minAttVal(0),maxAttVal(0) {};
+    ,splittingAtt(-1),splittingPoint(999.0),depth(0),nodeSize(0),
+    minAttVal(0.0),maxAttVal(0.0) {};
 
-	virtual ~Tree()
-	{
-  /*      delete leftChild; //check if deleting the child is need.
-        delete rightChild;
-*/
-	};
+	virtual ~Tree() = default;
 
 	void iTree(std::vector<int> const &dIndex,const doubleframe* dt, int height, int maxHeight, bool stopheight);
 	double pathLength(double *inst);
 	bool indexAvailable(int index);
 
 	//Contribution
-	contrib featureContribution(double* inst) const;//std::vector<double> &inst);
-	std::map<int,double> explanation(double* inst){ // /std::vector<double> &inst){
+	contrib featureContribution(double* inst) const;
+	inline std::map<int,double> explanation(double* inst){
 		return featureContribution(inst).featureContribution();
 	};
 

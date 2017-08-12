@@ -22,13 +22,8 @@ public:
     int maxheight;
     bool rangecheck;
     doubleframe *dataset;  // holds the original dataset
-    Forest() {
-        rsample = false;
-        ntree = 0;
-        nsample = 256;
-        dataset = NULL;
-        //oobEstimator= nullptr;//new OOBEstimator(ntree,nsample);
-    };
+    Forest():rsample(false),ntree(0),nsample(256),dataset(NULL) {
+         };
 
     Forest(int _ntree, doubleframe *_dataset, int _nsample, int _maxheight, bool _stopheight,
            bool _rsample) {
@@ -43,15 +38,7 @@ public:
 //	Tree::rangeCheck = rangecheck;
     };
 
-    virtual ~Forest() {
-//        for (std::vector<Tree *>::iterator it = trees.begin(); it != trees.end();
-//             ++it) {
-//            delete (*it);
-//
-//        }
-        //delete oobEstimator;
-
-    }
+    virtual ~Forest() = default;
 
     double instanceScore(double *inst);
 
@@ -114,10 +101,10 @@ public:
      // void deserialize(Forest *ff,std::istream &s) ;
     template<class Archive>
      void serialize(Archive & archive){
-        /*archive(cereal::make_nvp("ntree",ntree),cereal::make_nvp("nsample",nsample),
+        archive(cereal::make_nvp("ntree",ntree),cereal::make_nvp("nsample",nsample),
                 cereal::make_nvp("rsample",rsample),cereal::make_nvp("stopheight",stopheight),
                 cereal::make_nvp("trees",trees));
-*/
+
     }
 };
 

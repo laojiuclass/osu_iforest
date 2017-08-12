@@ -37,11 +37,16 @@ Default value is 100.
 //log file
 //ofstream util::logfile("treepath.csv");
 #include "cereal/archives/binary.hpp"
-//#include "cereal/archives/json.hpp"
-//#include "cereal/archives/xml.hpp"
 #include "cereal/types/utility.hpp"
 
-//Save score to flat file
+/**
+ *
+ * @param scores : Generated anomaly score of training data
+ * @param pathLength : All tree depths across the forest
+ * @param metadata : A prefix column to include in the output file
+ * @param fName : String name of output file
+ * @param savePathLength : A boolean that toggle whether to save depth to file/not
+ */
 void saveScoreToFile(std::vector<double> &scores, std::vector<std::vector<double> > &pathLength,
                      const ntstringframe *metadata, std::string fName, bool savePathLength = false) {
     metadata = metadata;
@@ -63,13 +68,19 @@ void saveScoreToFile(std::vector<double> &scores, std::vector<std::vector<double
     }
     outscore.close();
 }
-
+/*!
+ *
+ * @param iff : An instance of a Forest object.
+ * @param alpha : Anomaly proportion for training Isolation Forest using adaptive trees (0,1)
+ * @param stopLimit : Stop growing trees after seeing stopLimit agreement
+ * @param rho : Relaxation parameter for stopping condition (0,1)
+ * @param epoch : Number of epoch to grow if batch tree growing chosen.
+ */
 void buildForest(std::shared_ptr<Forest> iff,  const double alpha, int stopLimit, float rho,
                                 int epoch) {
     if (iff->ntree > 0) //if fixed tree chosen.
         iff->fixedTreeForest(epoch);
     else {
-        //int treeRequired = iff.adaptiveForest(ALPHA,stopLimit);
         if (rho < 0) {
             int treeRequired = iff->adaptiveForest(alpha, stopLimit);
             std::cout << "\n# of Tree required from k-agreement \n " << treeRequired;
@@ -81,6 +92,15 @@ void buildForest(std::shared_ptr<Forest> iff,  const double alpha, int stopLimit
 
     }
 }
+/**
+ *
+ * @param iff : A pointer to a trained Forest object
+ * @param test_dt - A Test data for scoring
+ * @param oob : Use Out of bag estimate for scoring, boolean value True/False. Default False
+ * @param savePathLength : Save pathLength of all trees
+ * @param metadata : Column to include in the output file
+ * @param outputName : Output file name.
+ */
 void scoreData(std::shared_ptr<Forest> iff,doubleframe* test_dt,bool oob,bool savePathLength,
                const ntstringframe* metadata, std::string outputName){
     std::vector<double> scores;
@@ -106,7 +126,7 @@ int main(int argc, char *argv[]) {
     /*parse argument from command line*/
     parsed_args *pargs = parse_args(argc, argv);
     int seed = pargs->seed;
-    util::debug = 100;//seed;
+    util::debug = seed;
     util::initialize();
     ntstring input_name = pargs->input_name;
     ntstring output_name = pargs->output_name;
@@ -131,6 +151,7 @@ int main(int argc, char *argv[]) {
     float alpha = pargs->alpha;
     int epoch = pargs->epoch;
     bool oob = pargs->oobag;
+   
     //Input file to dataframe
     bool explanation = pargs->explanation;
     ntstringframe *csv = read_csv(input_name, header, false, false);
@@ -151,10 +172,11 @@ int main(int argc, char *argv[]) {
 
     Tree::rangeCheck = rangecheck;
     std::shared_ptr<Forest> iff;
+ 
     /**
      * Check if load or save option is triggered
+     * Read model
      */
-    // Read model
     if (load_forest != NULL) { //if filename given
         std::ifstream ifile{load_forest};
         {
@@ -162,11 +184,11 @@ int main(int argc, char *argv[]) {
                 throw std::runtime_error{" could not be opened"};
             }
             //cereal::JSONInputArchive iarchive{ifile};
-
             cereal::BinaryInputArchive iarchive(ifile); // Create an input archive
             iarchive(iff);
         }
-    } else {
+    }
+    else {
         if (rotate)
             iff = std::make_shared<RForest>(ntree, dt, nsample, maxheight, stopheight, rsample);
         else
@@ -174,9 +196,11 @@ int main(int argc, char *argv[]) {
 
         buildForest(iff, alpha, stopLimit, rho, epoch);
     }
+
     // Score using trained forest
     scoreData(iff, test_dt, oob, pathlength, metadata, output_name);
-
+    
+    // if explanation switch is choosen, output explanation for the test_dt. 
     if (explanation) {
         std::string explanationName = std::string(output_name) + "_explanation.csv";
         std::ofstream oexp(explanationName);
@@ -185,6 +209,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Save model
+
     if (save_forest != NULL) {
         std::string filenamex{save_forest};
         {

@@ -8,8 +8,6 @@
 #ifndef FOREST_H_
 #define FOREST_H_
 #include "Tree.hpp"
-#include "OOBEstimator.hpp"
-
 
 class Forest {
 public:

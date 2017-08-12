@@ -21,7 +21,7 @@ private:
 
     std::shared_ptr<Tree> leftChild,rightChild,parent;
     int nodeSize,splittingAtt,depth;
-	double splittingPoint,minAttVal,maxAttVal;
+    double splittingPoint,minAttVal,maxAttVal;
 
 public:
 	int getNodeSize() const;

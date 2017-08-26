@@ -9,4 +9,4 @@ include_directories(${SOURCE_FILES}/iforestlib/cereal)
 set(SOURCE_FILES main.cpp)
 add_executable(iforest ${SOURCE_FILES})
 
-target_link_libraries(iforest iforestlib Clib ${ARMADILLO_INCLUDE_DIRS})
+target_link_libraries(iforest iforestlib Clib) # ${ARMADILLO_INCLUDE_DIRS})

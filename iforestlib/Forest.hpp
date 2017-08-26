@@ -90,11 +90,6 @@ public:
     virtual std::vector<std::map<int, double> > featureContrib(double *inst); //std::vector<double> &inst);
     void featureExplanation(doubleframe *df, std::ofstream &out);
 
-
-    //  Serialize
-   // void save(std::ofstream &out);
-    //void load(std::istream &in);
-
     //void serialize(std::ostream &s) const;
      // void deserialize(Forest *ff,std::istream &s) ;
     template<class Archive>

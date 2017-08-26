@@ -4,6 +4,7 @@ include_directories(C)
 #include_directories(cereal)
 add_subdirectory(C)
 set(HEADER_FILES Tree.hpp Forest.hpp IsolationForest.hpp utility.hpp cincl.hpp RForest.hpp main.hpp)
-set(SOURCE_FILES Tree.cpp Forest.cpp IsolationForest.cpp utility.cpp OOBEstimator.hpp RForest.cpp Contribution.hpp)
+set(SOURCE_FILES Tree.cpp Forest.cpp IsolationForest.cpp utility.cpp OOBEstimator.hpp
+        RForest.cpp Contribution.hpp)
 #add_subdirectory(Eigen)
 add_library(iforestlib STATIC ${SOURCE_FILES} ${HEADER_FILES})

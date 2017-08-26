@@ -161,6 +161,7 @@ int main(int argc, char *argv[]) {
     ntstringframe *csv_test = read_csv(test_name, header, false, false);
     metadata = split_frame(ntstring, csv_test, metacol, true);
     doubleframe *test_dt = dt;
+    Tree::rangeCheck = rangecheck;
 
     // Check if test data is given
     if (test_name == input_name)
@@ -170,9 +171,9 @@ int main(int argc, char *argv[]) {
 
     nsample = nsample == 0 ? dt->nrow : nsample;
 
-    Tree::rangeCheck = rangecheck;
+
     std::shared_ptr<Forest> iff;
- 
+    //std::unique_ptr<Forest> iff;
     /**
      * Check if load or save option is triggered
      * Read model

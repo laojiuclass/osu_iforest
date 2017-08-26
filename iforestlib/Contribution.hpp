@@ -46,5 +46,6 @@ struct Contrib{
     }
 
 };
-typedef  struct Contrib contrib;
+//typedef  struct Contrib contrib;
+using contrib = struct Contrib;
 #endif //OSU_IFOREST_CONTRIBUTION_HPP

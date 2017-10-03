@@ -7,10 +7,14 @@
 
 #ifndef TREE_H_
 #define TREE_H_
+
+#ifdef SERIALIZATION
 #include "cereal/cereal.hpp"
 #include "cereal/types/vector.hpp"
 #include "cereal/types/memory.hpp"
 #include "cereal/types/polymorphic.hpp"
+#endif
+
 #include "utility.hpp"
 #include "cincl.hpp"
 #include "Contribution.hpp"
@@ -51,7 +55,7 @@ public:
 	inline std::map<int,double> explanation(double* inst){
 		return featureContribution(inst).featureContribution();
 	};
-
+#ifdef SERIALIZATION
     // Serialization
     template<class Archive>
     void  serialize(Archive & archive){
@@ -62,6 +66,7 @@ public:
 
         );
     }
+#endif
 
 };
 

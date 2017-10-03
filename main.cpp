@@ -26,9 +26,8 @@ Default value is 100.
  -H, --header
  Toggle whether or not to expect a header input.
  Default value is true.
- -v, --verbose
- Toggle verbose ouput.
- Default value is false.
+ -v, --verbose  Toggle verbose ouput. Default value is false.
+ -l, toggle explanation based on node depth. Default false.
  -h, --help
  Print this help message and exit.
  */
@@ -197,16 +196,17 @@ int main(int argc, char *argv[]) {
 
         buildForest(iff, alpha, stopLimit, rho, epoch);
     }
+    if(output_name!=NULL) {
+        // Score using trained forest
+        scoreData(iff, test_dt, oob, pathlength, metadata, output_name);
 
-    // Score using trained forest
-    scoreData(iff, test_dt, oob, pathlength, metadata, output_name);
-    
-    // if explanation switch is choosen, output explanation for the test_dt. 
-    if (explanation) {
-        std::string explanationName = std::string(output_name) + "_explanation.csv";
-        std::ofstream oexp(explanationName);
-        iff->featureExplanation(test_dt, oexp);
-        oexp.close();
+        // if explanation switch is choosen, output explanation for the test_dt.
+        if (explanation) {
+            std::string explanationName = std::string(output_name) + "_explanation.csv";
+            std::ofstream oexp(explanationName);
+            iff->featureExplanation(test_dt, oexp);
+            oexp.close();
+        }
     }
 
     // Save model

@@ -20,7 +20,7 @@
 #include "Eigen/Dense"
 #include "Eigen/QR"
 #include "Forest.hpp"
-#include "cereal/types/memory.hpp"
+
 class RForest: public Forest {
  
 
@@ -62,9 +62,11 @@ public:
 
 
 };
-
+#ifdef SERIALIZATION
+#include "cereal/types/memory.hpp"
 CEREAL_REGISTER_TYPE(RForest);
 CEREAL_REGISTER_POLYMORPHIC_RELATION(Forest,RForest);
+#endif
 
 #endif /* RFOREST_H_ */
 

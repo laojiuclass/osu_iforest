@@ -90,15 +90,16 @@ public:
     virtual std::vector<std::map<int, double> > featureContrib(double *inst); //std::vector<double> &inst);
     void featureExplanation(doubleframe *df, std::ofstream &out);
 
-    //void serialize(std::ostream &s) const;
-     // void deserialize(Forest *ff,std::istream &s) ;
-    template<class Archive>
+#ifdef SERIALIZATION
+      template<class Archive>
      void serialize(Archive & archive){
         archive(cereal::make_nvp("ntree",ntree),cereal::make_nvp("nsample",nsample),
                 cereal::make_nvp("rsample",rsample),cereal::make_nvp("stopheight",stopheight),
                 cereal::make_nvp("trees",trees));
 
     }
+#endif
+
 };
 
 #endif /* FOREST_H_ */

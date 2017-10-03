@@ -20,8 +20,8 @@
 #include<algorithm>
 #include<map>
 #include<set>
-#include "cincl.hpp"
 #include<random>
+#include "cincl.hpp"
 #include<utility>
 
 ////default_random_engine gen(time(NULL));

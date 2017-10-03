@@ -272,7 +272,8 @@ parsed_args* validate_args(d(option*) opts) {
         err_and_exit(1,"Must specify path to input with option -i/--infile.\n");
 
     pargs->output_name = opts[OOPT].value;
-    if (pargs->output_name==NULL) err_and_exit(1,"Must specify path to output with option -o/--outfile.\n");
+    if (pargs->output_name==NULL && pargs->save_forest ==NULL)
+        err_and_exit(1,"Must specify path to output with option -o/--outfile or specify save model with -b.\n");
     pargs->test_name = opts[XOPT].value; //set test file if available
    if(pargs->test_name==NULL)
        pargs->test_name = opts[IOPT].value;  //if not specified set test file to input file

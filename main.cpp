@@ -33,6 +33,8 @@ Default value is 100.
  */
 
 #include "iforestlib/main.hpp"
+//#include <Eigen/Dense>
+
 //log file
 //ofstream util::logfile("treepath.csv");
 #include "cereal/archives/binary.hpp"
@@ -121,6 +123,7 @@ bool Tree::rangeCheck;  //range check for Tree score calculation.
 int util::debug;
 
 int main(int argc, char *argv[]) {
+
 
     /*parse argument from command line*/
     parsed_args *pargs = parse_args(argc, argv);

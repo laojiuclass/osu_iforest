@@ -6,10 +6,10 @@
  */
 
 #include "Forest.hpp"
+
 //TODO: Complete the out of bag scoring 
 //Update tree for saving index used for training. 
-double Forest::getdepth(double* inst,std::shared_ptr<Tree> tree)
-{
+double Forest::getdepth(double* inst,std::shared_ptr<Tree> tree) {
 	return tree->pathLength(inst);
 }
 

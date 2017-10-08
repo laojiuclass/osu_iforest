@@ -12,6 +12,7 @@ FIND_PACKAGE(Threads REQUIRED)
 set(LIBS ${LIBS} ${CMAKE_THREAD_LIBS_INIT})
 include_directories(iforestlib)
 add_subdirectory(iforestlib)
+
  # look for Eigen
 set(EIGEN3_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/lib/eigen)  ## Added by TZ
 # look for Eigen
@@ -20,13 +21,13 @@ if (DEFINED ENV{EIGEN3_INCLUDE_DIR} AND NOT DEFINED EIGEN3_INCLUDE_DIR) # use en
 endif()
 get_filename_component(EIGEN3_INCLUDE_DIR "${EIGEN3_INCLUDE_DIR}" REALPATH BASE_DIR "${CMAKE_BINARY_DIR}")
 message("-- Eigen dir is " ${EIGEN3_INCLUDE_DIR})
-find_package(Eigen3 QUIET)
+#list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}")
+#find_package(Eigen3 REQUIRED)
 if (NOT Eigen_FOUND)
     include(${PROJECT_SOURCE_DIR}/lib/eigen/CTestConfig.cmake)
     set(Eigen_INCLUDE_DIR ${EIGEN3_INCLUDE_DIR})
 endif()
-include_directories(${EIGEN3_INCLUDE_DIR})
-
+include_directories("${EIGEN3_INCLUDE_DIR}")
 FIND_PACKAGE(Threads REQUIRED)
 set(LIBS ${LIBS} ${CMAKE_THREAD_LIBS_INIT})
 
@@ -36,4 +37,4 @@ include_directories(${SOURCE_FILES}/iforestlib/cereal)
 set(SOURCE_FILES main.cpp)
 add_executable(iforest ${SOURCE_FILES})
 
-target_link_libraries(iforest iforestlib Clib) # ${ARMADILLO_INCLUDE_DIRS})
+target_link_libraries(iforest iforestlib Clib ${Eigen_INCLUDE_DIR}) # ${ARMADILLO_INCLUDE_DIRS})

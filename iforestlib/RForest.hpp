@@ -17,8 +17,15 @@
 
 #ifndef RFOREST_H_
 #define RFOREST_H_
+/*
 #include "Eigen/Dense"
 #include "Eigen/QR"
+*/
+
+//#include <Eigen/Dense>
+//#include <Eigen/QR>
+#include "../lib/eigen/Eigen/Dense"
+#include "../lib/eigen/Eigen/QR"
 #include "Forest.hpp"
 
 class RForest: public Forest {

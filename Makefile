@@ -124,6 +124,19 @@ iforest/fast:
 .PHONY : iforest/fast
 
 #=============================================================================
+# Target rules for targets named osu_iforest_doc
+
+# Build rule for target.
+osu_iforest_doc: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 osu_iforest_doc
+.PHONY : osu_iforest_doc
+
+# fast build rule for target.
+osu_iforest_doc/fast:
+	$(MAKE) -f CMakeFiles/osu_iforest_doc.dir/build.make CMakeFiles/osu_iforest_doc.dir/build
+.PHONY : osu_iforest_doc/fast
+
+#=============================================================================
 # Target rules for targets named iforestlib
 
 # Build rule for target.
@@ -133,7 +146,7 @@ iforestlib: cmake_check_build_system
 
 # fast build rule for target.
 iforestlib/fast:
-	$(MAKE) -f iforestlib/CMakeFiles/iforestlib.dir/build.make iforestlib/CMakeFiles/iforestlib.dir/build
+	$(MAKE) -f src/CMakeFiles/iforestlib.dir/build.make src/CMakeFiles/iforestlib.dir/build
 .PHONY : iforestlib/fast
 
 #=============================================================================
@@ -146,7 +159,7 @@ Clib: cmake_check_build_system
 
 # fast build rule for target.
 Clib/fast:
-	$(MAKE) -f iforestlib/C/CMakeFiles/Clib.dir/build.make iforestlib/C/CMakeFiles/Clib.dir/build
+	$(MAKE) -f src/C/CMakeFiles/Clib.dir/build.make src/C/CMakeFiles/Clib.dir/build
 .PHONY : Clib/fast
 
 main.o: main.cpp.o
@@ -185,6 +198,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... iforest"
+	@echo "... osu_iforest_doc"
 	@echo "... iforestlib"
 	@echo "... Clib"
 	@echo "... main.o"

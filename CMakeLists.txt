@@ -1,6 +1,13 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.2)
 project(osu_iforest)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+
+## User defined options
+option(BUILD_DOC "Build documenation with Doxygen" ON)
+option(BUIL_EXe "Build documenation with Doxygen" ON)
+option(BUIL_shared_LIBS "Build documenation with Doxygen" ON)
+
+
 if (UNIX)
     message("Serialization of models can work good.")
 add_definitions(-DSERIALIZATION=true)
@@ -8,11 +15,20 @@ endif (UNIX)
 if (WIN32)
     message("Serialization don't work properly.")
 endif(WIN32)
+include_directories(src)
+add_subdirectory(src)
+if(BUILD_DOC)
+    find_package(Doxygen)
+        if(DOXYGEN_FOUND)
+            configure_file(${PROJECT_SOURCE_DIR}/doc/Doxygen/Doxyfile.in ${PROJECT_SOURCE_DIR}/doc/Doxyfile @ONLY)
+            add_custom_target(${PROJECT_NAME}_doc ALL ${DOXYGEN_EXECUTABLE} ${PROJECT_BINARY_DIR}/doc/Doxyfile)
+        endif()
+endif()
+#configure_file("${PROJECT_SOURCE_DIR}/cmake/cmake_install.cmake.in" "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake" @ONLY)
+#install(FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake" DESTINATION lib/cmake/${PROJECT_NAME})
+# Third party libs
 FIND_PACKAGE(Threads REQUIRED)
 set(LIBS ${LIBS} ${CMAKE_THREAD_LIBS_INIT})
-include_directories(iforestlib)
-add_subdirectory(iforestlib)
-
  # look for Eigen
 set(EIGEN3_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/lib/eigen)  ## Added by TZ
 # look for Eigen
@@ -28,13 +44,7 @@ if (NOT Eigen_FOUND)
     set(Eigen_INCLUDE_DIR ${EIGEN3_INCLUDE_DIR})
 endif()
 include_directories("${EIGEN3_INCLUDE_DIR}")
-FIND_PACKAGE(Threads REQUIRED)
-set(LIBS ${LIBS} ${CMAKE_THREAD_LIBS_INIT})
+include_directories(${SOURCE_FILES}/src/cereal)
 
-#find_package(Armadillo REQUIRED)
-#include_directories(${ARMADILLO_INCLUDE_DIRS})
-include_directories(${SOURCE_FILES}/iforestlib/cereal)
-set(SOURCE_FILES main.cpp)
-add_executable(iforest ${SOURCE_FILES})
-
+add_executable(iforest main.cpp ${SOURCE_FILES})
 target_link_libraries(iforest iforestlib Clib ${Eigen_INCLUDE_DIR}) # ${ARMADILLO_INCLUDE_DIRS})

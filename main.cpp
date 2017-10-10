@@ -32,7 +32,7 @@ Default value is 100.
  Print this help message and exit.
  */
 
-#include "iforestlib/main.hpp"
+#include "src/main.hpp"
 //#include <Eigen/Dense>
 
 //log file

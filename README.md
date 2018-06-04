@@ -3,7 +3,7 @@ Required  gcc verstion 4.7 or greater. Tested on gcc version 4.9
 **Build command**
 
 1. clone the repository
-2. type `git checkout cmake` 
+2. type `git checkout cmake`
 3. create debug folder `mkdir debug`
 4. change directory to debug `cd debug`
 5. type `cmake ..`
@@ -18,18 +18,13 @@ iforest.exe -h will display the available switches.
  * -o FILE, --outfile=FILE  Specify path to output results file. (Required).
  * -m COLS, --metacol=COLS  Specify columns to preserve as meta-data. (Separated by ',' Use '-' to specify ranges).
  * -t N, --ntrees=N   Specify number of trees to build. Default value is 100.
- * -s S, --sampsize=S  Specify subsampling rate for each tree. (Value of 0 indicates to use entire data set).
-                      Default value is 2048.
- * -d MAX, --maxdepth=MAX Specify maximum depth of trees. (Value of 0 indicates no maximum).
-                     Default value is 0.
- * -H, --header    Toggle whether or not to expect a header input.
-                Default value is true.
- * -v, --verbose   Toggle verbose ouput.
- Default value is false.
- * -z --seed Specify integer value of random seed. 
- * -h, --help
- Print this help message and exit.
- * -k --oob Toggle whether or not to use out-of-bag estimate for depth. Default value is false. If `-k` specified score or depths will be from oout of bag trees. 
+ * -s S, --sampsize=S  Specify subsampling rate for each tree. (Value of 0 indicates to use entire data set). Default value is 2048.
+ * -d MAX, --maxdepth=MAX Specify maximum depth of trees. (Value of 0 indicates no maximum). Default value is 0.
+ * -H, --header    Toggle whether or not to expect a header input. Default value is true.
+ * -v, --verbose   Toggle verbose ouput. Default value is false.
+ * -z --seed Specify integer value of random seed.
+ * -h, --help  Print this help message and exit.
+ * -k --oob Toggle whether or not to use out-of-bag estimate for depth. Default value is false. If `-k` specified score or depths will be from oout of bag trees.
 
 **Example**
 
@@ -39,4 +34,3 @@ iforest.exe -h will display the available switches.
 2. This can also be written as
 
   `iforest.exe -iostm inputfile.csv score.csv 512 100 1,8-10`
-

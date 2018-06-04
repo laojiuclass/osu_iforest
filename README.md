@@ -2,12 +2,12 @@ Required  gcc verstion 4.7 or greater. Tested on gcc version 4.9
 
 **Build command**
 
-1. clone the repository
-2. type `git checkout cmake`
-3. create debug folder `mkdir debug`
+1. clone the repository `https://github.com/tadeze/osu_iforest`
+3. create debug folder inside the repository `mkdir debug`
 4. change directory to debug `cd debug`
 5. type `cmake ..`
 4. type `make`
+5. run the iforest inside the debug folder `./iforest`
 
 **Usage**
 

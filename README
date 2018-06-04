@@ -1,12 +1,13 @@
 Required  gcc verstion 4.7 or greater. Tested on gcc version 4.9
 
 **Build command**
+
 1. clone the repository
-2. checkout cmake 
-3. For linux os execute
-./build_linux.sh
-4. For windows
-./build_windows.bat
+2. type `git checkout cmake` 
+3. create debug folder `mkdir debug`
+4. change directory to debug `cd debug`
+5. type `cmake ..`
+4. type `make`
 
 **Usage**
 

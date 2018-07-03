@@ -1,0 +1,286 @@
+\hypertarget{classForest}{}\section{Forest Class Reference}
+\label{classForest}\index{Forest@{Forest}}
+
+
+{\ttfamily \#include $<$Forest.\+hpp$>$}
+
+
+
+Inheritance diagram for Forest\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classForest__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Forest\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=180pt]{classForest__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structForest_1_1larger}{larger}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classForest_af9ad2787ae306cb4da8d7443da124d15}{Forest} ()
+\item 
+\hyperlink{classForest_ab5be587f4e0768155c39a9bc8484bc57}{Forest} (int \+\_\+ntree, doubleframe $\ast$\+\_\+dataset, int \+\_\+nsample, int \+\_\+maxheight, bool \+\_\+stopheight, bool \+\_\+rsample)
+\item 
+virtual \hyperlink{classForest_a5ae182b3027fb3be4f1f5c76388ea211}{$\sim$\+Forest} ()=default
+\item 
+double \hyperlink{classForest_ac88b19d31bc5cc92b429af2716b81325}{instance\+Score} (double $\ast$inst)
+\item 
+std\+::vector$<$ double $>$ \hyperlink{classForest_a39c34e59ac0088959ce86ddd6bacf9f1}{Anomaly\+Score} (doubleframe $\ast$df)
+\item 
+std\+::vector$<$ double $>$ \hyperlink{classForest_abc30331242d62253818f72585f757502}{out\+Of\+Bag\+Score} (doubleframe $\ast$df)
+\item 
+std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \hyperlink{classForest_a2ec4ab1b6cec96a7492a6a8b25a7075d}{o\+O\+B\+Path\+Length} (doubleframe $\ast$data)
+\item 
+virtual std\+::vector$<$ double $>$ \hyperlink{classForest_a8e3bac70e9f10ce6f301e297e32e8f5a}{path\+Length} (double $\ast$inst)
+\item 
+std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \hyperlink{classForest_af031c54e9e04b11c21c2b629d6bd0c5c}{path\+Length} (doubleframe $\ast$data)
+\item 
+std\+::vector$<$ double $>$ \hyperlink{classForest_ac30644f1c7bfc633005875b845e9cd8a}{meandepth} ()
+\item 
+std\+::vector$<$ double $>$ \hyperlink{classForest_a695e24a0ca4a1a5685f4ab1eb996984c}{A\+Dtest} (const std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \&pathlength, bool weighttotail)
+\item 
+std\+::map$<$ int, double $>$ \hyperlink{classForest_acb23b1464f1244ad49e178935485384c}{importance} (double $\ast$inst)
+\item 
+virtual double \hyperlink{classForest_a977abbe81e409465546cef0164b5b439}{getdepth} (double $\ast$inst, std\+::shared\+\_\+ptr$<$ \hyperlink{classTree}{Tree} $>$ tree)
+\item 
+void \hyperlink{classForest_aaa05ed85d49d7b465e518e62f1393210}{get\+Sample} (std\+::vector$<$ int $>$ \&sample\+Index, const int \hyperlink{classForest_a3a9831dba286e35fbe1f46ad9d363bf4}{nsample}, bool r\+Sample, int nrow)
+\item 
+virtual int \hyperlink{classForest_a825bb350730c50aa8924e9f761c4a2a4}{adaptive\+Forest} (double alpha, int stop\+Limit)
+\item 
+virtual void \hyperlink{classForest_a0699073aa8d6b46fdbdc36b7299a1a34}{fixed\+Tree\+Forest} (int epoch)
+\item 
+virtual int \hyperlink{classForest_aa2b99dda19e39783a6da9de8fa318ceb}{conf\+Tree} (double alpha, double rho, int init\+\_\+tree)
+\item 
+double \hyperlink{classForest_a43ce9dc43658d70521aa2aee91b9a60a}{topcommonK} (std\+::vector$<$ int $>$ \&v1, std\+::vector$<$ int $>$ \&v2)
+\item 
+virtual std\+::vector$<$ std\+::map$<$ int, double $>$ $>$ \hyperlink{classForest_a1c17fba4c766d0dbd41df7a050b1fa81}{feature\+Contrib} (double $\ast$inst)
+\item 
+void \hyperlink{classForest_abcae06f2a9b350eac3f8617ac7bc9e1a}{feature\+Explanation} (doubleframe $\ast$df, std\+::ofstream \&out)
+\end{DoxyCompactItemize}
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \hyperlink{classTree}{Tree} $>$ $>$ \hyperlink{classForest_acbfc6b953ce79295ecc9646fdb52e917}{trees}
+\item 
+int \hyperlink{classForest_a63aab05561b82d08972ee8fe455c45cc}{ntree}
+\item 
+bool \hyperlink{classForest_a64b54558dfe88223f0521443c0b34b17}{rsample}
+\item 
+int \hyperlink{classForest_a3a9831dba286e35fbe1f46ad9d363bf4}{nsample}
+\item 
+bool \hyperlink{classForest_a066998b292bc6c764b7244830f027631}{stopheight}
+\item 
+int \hyperlink{classForest_a296ffbe5ca7db543740dda34c71771f5}{maxheight}
+\item 
+bool \hyperlink{classForest_a590efbd7b01fa3fdb023d10df3d9792b}{rangecheck}
+\item 
+doubleframe $\ast$ \hyperlink{classForest_ac3704ed2300734a73cba5b04a8f4b6ae}{dataset}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classForest_af9ad2787ae306cb4da8d7443da124d15}\label{classForest_af9ad2787ae306cb4da8d7443da124d15}} 
+\index{Forest@{Forest}!Forest@{Forest}}
+\index{Forest@{Forest}!Forest@{Forest}}
+\subsubsection{\texorpdfstring{Forest()}{Forest()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Forest\+::\+Forest (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classForest_ab5be587f4e0768155c39a9bc8484bc57}\label{classForest_ab5be587f4e0768155c39a9bc8484bc57}} 
+\index{Forest@{Forest}!Forest@{Forest}}
+\index{Forest@{Forest}!Forest@{Forest}}
+\subsubsection{\texorpdfstring{Forest()}{Forest()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Forest\+::\+Forest (\begin{DoxyParamCaption}\item[{int}]{\+\_\+ntree,  }\item[{doubleframe $\ast$}]{\+\_\+dataset,  }\item[{int}]{\+\_\+nsample,  }\item[{int}]{\+\_\+maxheight,  }\item[{bool}]{\+\_\+stopheight,  }\item[{bool}]{\+\_\+rsample }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classForest_a5ae182b3027fb3be4f1f5c76388ea211}\label{classForest_a5ae182b3027fb3be4f1f5c76388ea211}} 
+\index{Forest@{Forest}!````~Forest@{$\sim$\+Forest}}
+\index{````~Forest@{$\sim$\+Forest}!Forest@{Forest}}
+\subsubsection{\texorpdfstring{$\sim$\+Forest()}{~Forest()}}
+{\footnotesize\ttfamily virtual Forest\+::$\sim$\+Forest (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classForest_a825bb350730c50aa8924e9f761c4a2a4}\label{classForest_a825bb350730c50aa8924e9f761c4a2a4}} 
+\index{Forest@{Forest}!adaptive\+Forest@{adaptive\+Forest}}
+\index{adaptive\+Forest@{adaptive\+Forest}!Forest@{Forest}}
+\subsubsection{\texorpdfstring{adaptive\+Forest()}{adaptiveForest()}}
+{\footnotesize\ttfamily int Forest\+::adaptive\+Forest (\begin{DoxyParamCaption}\item[{double}]{alpha,  }\item[{int}]{stop\+Limit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{classRForest_abc389cab7fa7ffee669b3add5aad4c52}{R\+Forest}, and \hyperlink{classIsolationForest_a33dae487524bd1fdaf085a36dab04ee9}{Isolation\+Forest}.
+
+\mbox{\Hypertarget{classForest_a695e24a0ca4a1a5685f4ab1eb996984c}\label{classForest_a695e24a0ca4a1a5685f4ab1eb996984c}} 
+\index{Forest@{Forest}!A\+Dtest@{A\+Dtest}}
+\index{A\+Dtest@{A\+Dtest}!Forest@{Forest}}
+\subsubsection{\texorpdfstring{A\+Dtest()}{ADtest()}}
+{\footnotesize\ttfamily std\+::vector$<$double$>$ Forest\+::\+A\+Dtest (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \&}]{pathlength,  }\item[{bool}]{weighttotail }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classForest_a39c34e59ac0088959ce86ddd6bacf9f1}\label{classForest_a39c34e59ac0088959ce86ddd6bacf9f1}} 
+\index{Forest@{Forest}!Anomaly\+Score@{Anomaly\+Score}}
+\index{Anomaly\+Score@{Anomaly\+Score}!Forest@{Forest}}
+\subsubsection{\texorpdfstring{Anomaly\+Score()}{AnomalyScore()}}
+{\footnotesize\ttfamily std\+::vector$<$ double $>$ Forest\+::\+Anomaly\+Score (\begin{DoxyParamCaption}\item[{doubleframe $\ast$}]{df }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classForest_aa2b99dda19e39783a6da9de8fa318ceb}\label{classForest_aa2b99dda19e39783a6da9de8fa318ceb}} 
+\index{Forest@{Forest}!conf\+Tree@{conf\+Tree}}
+\index{conf\+Tree@{conf\+Tree}!Forest@{Forest}}
+\subsubsection{\texorpdfstring{conf\+Tree()}{confTree()}}
+{\footnotesize\ttfamily int Forest\+::conf\+Tree (\begin{DoxyParamCaption}\item[{double}]{alpha,  }\item[{double}]{rho,  }\item[{int}]{init\+\_\+tree }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classForest_a1c17fba4c766d0dbd41df7a050b1fa81}\label{classForest_a1c17fba4c766d0dbd41df7a050b1fa81}} 
+\index{Forest@{Forest}!feature\+Contrib@{feature\+Contrib}}
+\index{feature\+Contrib@{feature\+Contrib}!Forest@{Forest}}
+\subsubsection{\texorpdfstring{feature\+Contrib()}{featureContrib()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::map$<$ int, double $>$ $>$ Forest\+::feature\+Contrib (\begin{DoxyParamCaption}\item[{double $\ast$}]{inst }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classForest_abcae06f2a9b350eac3f8617ac7bc9e1a}\label{classForest_abcae06f2a9b350eac3f8617ac7bc9e1a}} 
+\index{Forest@{Forest}!feature\+Explanation@{feature\+Explanation}}
+\index{feature\+Explanation@{feature\+Explanation}!Forest@{Forest}}
+\subsubsection{\texorpdfstring{feature\+Explanation()}{featureExplanation()}}
+{\footnotesize\ttfamily void Forest\+::feature\+Explanation (\begin{DoxyParamCaption}\item[{doubleframe $\ast$}]{df,  }\item[{std\+::ofstream \&}]{out }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classForest_a0699073aa8d6b46fdbdc36b7299a1a34}\label{classForest_a0699073aa8d6b46fdbdc36b7299a1a34}} 
+\index{Forest@{Forest}!fixed\+Tree\+Forest@{fixed\+Tree\+Forest}}
+\index{fixed\+Tree\+Forest@{fixed\+Tree\+Forest}!Forest@{Forest}}
+\subsubsection{\texorpdfstring{fixed\+Tree\+Forest()}{fixedTreeForest()}}
+{\footnotesize\ttfamily virtual void Forest\+::fixed\+Tree\+Forest (\begin{DoxyParamCaption}\item[{int}]{epoch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{classRForest_af8c8c06e5875c4a2a539d38ec65c9a7e}{R\+Forest}, and \hyperlink{classIsolationForest_a252267bf58f8bb812c4dca47d5390709}{Isolation\+Forest}.
+
+\mbox{\Hypertarget{classForest_a977abbe81e409465546cef0164b5b439}\label{classForest_a977abbe81e409465546cef0164b5b439}} 
+\index{Forest@{Forest}!getdepth@{getdepth}}
+\index{getdepth@{getdepth}!Forest@{Forest}}
+\subsubsection{\texorpdfstring{getdepth()}{getdepth()}}
+{\footnotesize\ttfamily double Forest\+::getdepth (\begin{DoxyParamCaption}\item[{double $\ast$}]{inst,  }\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{classTree}{Tree} $>$}]{tree }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classForest_aaa05ed85d49d7b465e518e62f1393210}\label{classForest_aaa05ed85d49d7b465e518e62f1393210}} 
+\index{Forest@{Forest}!get\+Sample@{get\+Sample}}
+\index{get\+Sample@{get\+Sample}!Forest@{Forest}}
+\subsubsection{\texorpdfstring{get\+Sample()}{getSample()}}
+{\footnotesize\ttfamily void Forest\+::get\+Sample (\begin{DoxyParamCaption}\item[{std\+::vector$<$ int $>$ \&}]{sample\+Index,  }\item[{const int}]{nsample,  }\item[{bool}]{r\+Sample,  }\item[{int}]{nrow }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classForest_acb23b1464f1244ad49e178935485384c}\label{classForest_acb23b1464f1244ad49e178935485384c}} 
+\index{Forest@{Forest}!importance@{importance}}
+\index{importance@{importance}!Forest@{Forest}}
+\subsubsection{\texorpdfstring{importance()}{importance()}}
+{\footnotesize\ttfamily std\+::map$<$ int, double $>$ Forest\+::importance (\begin{DoxyParamCaption}\item[{double $\ast$}]{inst }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classForest_ac88b19d31bc5cc92b429af2716b81325}\label{classForest_ac88b19d31bc5cc92b429af2716b81325}} 
+\index{Forest@{Forest}!instance\+Score@{instance\+Score}}
+\index{instance\+Score@{instance\+Score}!Forest@{Forest}}
+\subsubsection{\texorpdfstring{instance\+Score()}{instanceScore()}}
+{\footnotesize\ttfamily double Forest\+::instance\+Score (\begin{DoxyParamCaption}\item[{double $\ast$}]{inst }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classForest_ac30644f1c7bfc633005875b845e9cd8a}\label{classForest_ac30644f1c7bfc633005875b845e9cd8a}} 
+\index{Forest@{Forest}!meandepth@{meandepth}}
+\index{meandepth@{meandepth}!Forest@{Forest}}
+\subsubsection{\texorpdfstring{meandepth()}{meandepth()}}
+{\footnotesize\ttfamily std\+::vector$<$double$>$ Forest\+::meandepth (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classForest_a2ec4ab1b6cec96a7492a6a8b25a7075d}\label{classForest_a2ec4ab1b6cec96a7492a6a8b25a7075d}} 
+\index{Forest@{Forest}!o\+O\+B\+Path\+Length@{o\+O\+B\+Path\+Length}}
+\index{o\+O\+B\+Path\+Length@{o\+O\+B\+Path\+Length}!Forest@{Forest}}
+\subsubsection{\texorpdfstring{o\+O\+B\+Path\+Length()}{oOBPathLength()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ double $>$ $>$ Forest\+::o\+O\+B\+Path\+Length (\begin{DoxyParamCaption}\item[{doubleframe $\ast$}]{data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classForest_abc30331242d62253818f72585f757502}\label{classForest_abc30331242d62253818f72585f757502}} 
+\index{Forest@{Forest}!out\+Of\+Bag\+Score@{out\+Of\+Bag\+Score}}
+\index{out\+Of\+Bag\+Score@{out\+Of\+Bag\+Score}!Forest@{Forest}}
+\subsubsection{\texorpdfstring{out\+Of\+Bag\+Score()}{outOfBagScore()}}
+{\footnotesize\ttfamily std\+::vector$<$ double $>$ Forest\+::out\+Of\+Bag\+Score (\begin{DoxyParamCaption}\item[{doubleframe $\ast$}]{df }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classForest_a8e3bac70e9f10ce6f301e297e32e8f5a}\label{classForest_a8e3bac70e9f10ce6f301e297e32e8f5a}} 
+\index{Forest@{Forest}!path\+Length@{path\+Length}}
+\index{path\+Length@{path\+Length}!Forest@{Forest}}
+\subsubsection{\texorpdfstring{path\+Length()}{pathLength()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::vector$<$ double $>$ Forest\+::path\+Length (\begin{DoxyParamCaption}\item[{double $\ast$}]{inst }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{classRForest_ad2631b9a85a04079c603b1c8296bdb9d}{R\+Forest}.
+
+\mbox{\Hypertarget{classForest_af031c54e9e04b11c21c2b629d6bd0c5c}\label{classForest_af031c54e9e04b11c21c2b629d6bd0c5c}} 
+\index{Forest@{Forest}!path\+Length@{path\+Length}}
+\index{path\+Length@{path\+Length}!Forest@{Forest}}
+\subsubsection{\texorpdfstring{path\+Length()}{pathLength()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ double $>$ $>$ Forest\+::path\+Length (\begin{DoxyParamCaption}\item[{doubleframe $\ast$}]{data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classForest_a43ce9dc43658d70521aa2aee91b9a60a}\label{classForest_a43ce9dc43658d70521aa2aee91b9a60a}} 
+\index{Forest@{Forest}!topcommonK@{topcommonK}}
+\index{topcommonK@{topcommonK}!Forest@{Forest}}
+\subsubsection{\texorpdfstring{topcommon\+K()}{topcommonK()}}
+{\footnotesize\ttfamily double Forest\+::topcommonK (\begin{DoxyParamCaption}\item[{std\+::vector$<$ int $>$ \&}]{v1,  }\item[{std\+::vector$<$ int $>$ \&}]{v2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{classForest_ac3704ed2300734a73cba5b04a8f4b6ae}\label{classForest_ac3704ed2300734a73cba5b04a8f4b6ae}} 
+\index{Forest@{Forest}!dataset@{dataset}}
+\index{dataset@{dataset}!Forest@{Forest}}
+\subsubsection{\texorpdfstring{dataset}{dataset}}
+{\footnotesize\ttfamily doubleframe$\ast$ Forest\+::dataset}
+
+\mbox{\Hypertarget{classForest_a296ffbe5ca7db543740dda34c71771f5}\label{classForest_a296ffbe5ca7db543740dda34c71771f5}} 
+\index{Forest@{Forest}!maxheight@{maxheight}}
+\index{maxheight@{maxheight}!Forest@{Forest}}
+\subsubsection{\texorpdfstring{maxheight}{maxheight}}
+{\footnotesize\ttfamily int Forest\+::maxheight}
+
+\mbox{\Hypertarget{classForest_a3a9831dba286e35fbe1f46ad9d363bf4}\label{classForest_a3a9831dba286e35fbe1f46ad9d363bf4}} 
+\index{Forest@{Forest}!nsample@{nsample}}
+\index{nsample@{nsample}!Forest@{Forest}}
+\subsubsection{\texorpdfstring{nsample}{nsample}}
+{\footnotesize\ttfamily int Forest\+::nsample}
+
+\mbox{\Hypertarget{classForest_a63aab05561b82d08972ee8fe455c45cc}\label{classForest_a63aab05561b82d08972ee8fe455c45cc}} 
+\index{Forest@{Forest}!ntree@{ntree}}
+\index{ntree@{ntree}!Forest@{Forest}}
+\subsubsection{\texorpdfstring{ntree}{ntree}}
+{\footnotesize\ttfamily int Forest\+::ntree}
+
+\mbox{\Hypertarget{classForest_a590efbd7b01fa3fdb023d10df3d9792b}\label{classForest_a590efbd7b01fa3fdb023d10df3d9792b}} 
+\index{Forest@{Forest}!rangecheck@{rangecheck}}
+\index{rangecheck@{rangecheck}!Forest@{Forest}}
+\subsubsection{\texorpdfstring{rangecheck}{rangecheck}}
+{\footnotesize\ttfamily bool Forest\+::rangecheck}
+
+\mbox{\Hypertarget{classForest_a64b54558dfe88223f0521443c0b34b17}\label{classForest_a64b54558dfe88223f0521443c0b34b17}} 
+\index{Forest@{Forest}!rsample@{rsample}}
+\index{rsample@{rsample}!Forest@{Forest}}
+\subsubsection{\texorpdfstring{rsample}{rsample}}
+{\footnotesize\ttfamily bool Forest\+::rsample}
+
+\mbox{\Hypertarget{classForest_a066998b292bc6c764b7244830f027631}\label{classForest_a066998b292bc6c764b7244830f027631}} 
+\index{Forest@{Forest}!stopheight@{stopheight}}
+\index{stopheight@{stopheight}!Forest@{Forest}}
+\subsubsection{\texorpdfstring{stopheight}{stopheight}}
+{\footnotesize\ttfamily bool Forest\+::stopheight}
+
+\mbox{\Hypertarget{classForest_acbfc6b953ce79295ecc9646fdb52e917}\label{classForest_acbfc6b953ce79295ecc9646fdb52e917}} 
+\index{Forest@{Forest}!trees@{trees}}
+\index{trees@{trees}!Forest@{Forest}}
+\subsubsection{\texorpdfstring{trees}{trees}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::shared\+\_\+ptr$<$\hyperlink{classTree}{Tree}$>$ $>$ Forest\+::trees}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\hyperlink{Forest_8hpp}{Forest.\+hpp}\item 
+src/\hyperlink{Forest_8cpp}{Forest.\+cpp}\end{DoxyCompactItemize}

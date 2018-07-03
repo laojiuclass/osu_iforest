@@ -1,0 +1,2 @@
+/usr/bin/ar qc libClib.a  CMakeFiles/Clib.dir/argparse.c.o CMakeFiles/Clib.dir/argparse_iforest.c.o CMakeFiles/Clib.dir/common.c.o CMakeFiles/Clib.dir/frames.c.o CMakeFiles/Clib.dir/object.c.o CMakeFiles/Clib.dir/readwrite.c.o CMakeFiles/Clib.dir/strfun.c.o
+/usr/bin/ranlib libClib.a

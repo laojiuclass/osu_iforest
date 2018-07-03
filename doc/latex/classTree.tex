@@ -1,0 +1,243 @@
+\hypertarget{classTree}{}\section{Tree Class Reference}
+\label{classTree}\index{Tree@{Tree}}
+
+
+{\ttfamily \#include $<$Tree.\+hpp$>$}
+
+
+
+Inheritance diagram for Tree\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=194pt]{classTree__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Tree\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=194pt]{classTree__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classTree_a0ab54e1652274e304c25473759dcd0da}{get\+Node\+Size} () const
+\item 
+int \hyperlink{classTree_a877c320f9bed56b1f6d64fc04bd86b97}{get\+Splitting\+Att} () const
+\item 
+double \hyperlink{classTree_af06e12f440902448730cbe0a7d4fd9a6}{get\+Splitting\+Point} () const
+\item 
+int \hyperlink{classTree_ad9759be8d8887d04a29ebae7240ced85}{get\+Depth} () const
+\item 
+double \hyperlink{classTree_a3342558dd44c84ad29c19422f5af4e72}{get\+Min\+Att\+Val} () const
+\item 
+double \hyperlink{classTree_a70c0b9e6a3a982f6d7c0d38f81019bcf}{get\+Max\+Att\+Val} () const
+\item 
+\hyperlink{classTree_ad376a7c639d857312f5de2ef47482f68}{Tree} ()
+\item 
+virtual \hyperlink{classTree_aed209ec340bcf7a378d178e9b41efe44}{$\sim$\+Tree} ()=default
+\item 
+void \hyperlink{classTree_adf8961073e1d8d7c40c6cb6e6f41bc4c}{i\+Tree} (std\+::vector$<$ int $>$ const \&d\+Index, const doubleframe $\ast$dt, int height, int max\+Height, bool stopheight)
+\item 
+double \hyperlink{classTree_ad4fdb18020ffddf0250baeeaaaf4e3b5}{path\+Length} (double $\ast$inst)
+\item 
+bool \hyperlink{classTree_a55ec593d15665c30a9c060db4de09934}{index\+Available} (int index)
+\item 
+\hyperlink{Contribution_8hpp_a2616a8be768d8598bf3a607996f0f6a4}{contrib} \hyperlink{classTree_a9f3265f93db0eb30a42435d00e26365d}{feature\+Contribution} (double $\ast$inst) const
+\item 
+std\+::map$<$ int, double $>$ \hyperlink{classTree_a435fa1c641f2abe5e26d36507ba02555}{explanation} (double $\ast$inst)
+\end{DoxyCompactItemize}
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ int $>$ \hyperlink{classTree_a571ce830364b91f9467f5d464ca119e0}{train\+Index}
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static bool \hyperlink{classTree_a0acb952dac4fe2f6321f212402a8f159}{range\+Check}
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{classTree}{Tree} $>$ \hyperlink{classTree_a6fcca508488527e9028456375504e51e}{left\+Child}
+\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{classTree}{Tree} $>$ \hyperlink{classTree_af4d184b80d0e81e70d531911344a418b}{right\+Child}
+\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{classTree}{Tree} $>$ \hyperlink{classTree_ae042f82923500e0d34b82510cd02789a}{parent}
+\item 
+int \hyperlink{classTree_a3748ddc223ca3f6816de3f631026eb73}{node\+Size}
+\item 
+int \hyperlink{classTree_aae862b9dbe28c1f9d14ad408569b3078}{splitting\+Att}
+\item 
+int \hyperlink{classTree_aee829f12b9755333a0196190fbe07f1b}{depth}
+\item 
+double \hyperlink{classTree_a0aeb8a2115f635608ca9a9b0304d304c}{splitting\+Point}
+\item 
+double \hyperlink{classTree_a8f68db34d3b557765890aeb92f5d6f38}{min\+Att\+Val}
+\item 
+double \hyperlink{classTree_a4434a97ce3969349d711c0830df1661c}{max\+Att\+Val}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classTree_ad376a7c639d857312f5de2ef47482f68}\label{classTree_ad376a7c639d857312f5de2ef47482f68}} 
+\index{Tree@{Tree}!Tree@{Tree}}
+\index{Tree@{Tree}!Tree@{Tree}}
+\subsubsection{\texorpdfstring{Tree()}{Tree()}}
+{\footnotesize\ttfamily Tree\+::\+Tree (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classTree_aed209ec340bcf7a378d178e9b41efe44}\label{classTree_aed209ec340bcf7a378d178e9b41efe44}} 
+\index{Tree@{Tree}!````~Tree@{$\sim$\+Tree}}
+\index{````~Tree@{$\sim$\+Tree}!Tree@{Tree}}
+\subsubsection{\texorpdfstring{$\sim$\+Tree()}{~Tree()}}
+{\footnotesize\ttfamily virtual Tree\+::$\sim$\+Tree (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classTree_a435fa1c641f2abe5e26d36507ba02555}\label{classTree_a435fa1c641f2abe5e26d36507ba02555}} 
+\index{Tree@{Tree}!explanation@{explanation}}
+\index{explanation@{explanation}!Tree@{Tree}}
+\subsubsection{\texorpdfstring{explanation()}{explanation()}}
+{\footnotesize\ttfamily std\+::map$<$int,double$>$ Tree\+::explanation (\begin{DoxyParamCaption}\item[{double $\ast$}]{inst }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classTree_a9f3265f93db0eb30a42435d00e26365d}\label{classTree_a9f3265f93db0eb30a42435d00e26365d}} 
+\index{Tree@{Tree}!feature\+Contribution@{feature\+Contribution}}
+\index{feature\+Contribution@{feature\+Contribution}!Tree@{Tree}}
+\subsubsection{\texorpdfstring{feature\+Contribution()}{featureContribution()}}
+{\footnotesize\ttfamily struct \hyperlink{structContrib}{Contrib} Tree\+::feature\+Contribution (\begin{DoxyParamCaption}\item[{double $\ast$}]{inst }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classTree_ad9759be8d8887d04a29ebae7240ced85}\label{classTree_ad9759be8d8887d04a29ebae7240ced85}} 
+\index{Tree@{Tree}!get\+Depth@{get\+Depth}}
+\index{get\+Depth@{get\+Depth}!Tree@{Tree}}
+\subsubsection{\texorpdfstring{get\+Depth()}{getDepth()}}
+{\footnotesize\ttfamily int Tree\+::get\+Depth (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classTree_a70c0b9e6a3a982f6d7c0d38f81019bcf}\label{classTree_a70c0b9e6a3a982f6d7c0d38f81019bcf}} 
+\index{Tree@{Tree}!get\+Max\+Att\+Val@{get\+Max\+Att\+Val}}
+\index{get\+Max\+Att\+Val@{get\+Max\+Att\+Val}!Tree@{Tree}}
+\subsubsection{\texorpdfstring{get\+Max\+Att\+Val()}{getMaxAttVal()}}
+{\footnotesize\ttfamily double Tree\+::get\+Max\+Att\+Val (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classTree_a3342558dd44c84ad29c19422f5af4e72}\label{classTree_a3342558dd44c84ad29c19422f5af4e72}} 
+\index{Tree@{Tree}!get\+Min\+Att\+Val@{get\+Min\+Att\+Val}}
+\index{get\+Min\+Att\+Val@{get\+Min\+Att\+Val}!Tree@{Tree}}
+\subsubsection{\texorpdfstring{get\+Min\+Att\+Val()}{getMinAttVal()}}
+{\footnotesize\ttfamily double Tree\+::get\+Min\+Att\+Val (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classTree_a0ab54e1652274e304c25473759dcd0da}\label{classTree_a0ab54e1652274e304c25473759dcd0da}} 
+\index{Tree@{Tree}!get\+Node\+Size@{get\+Node\+Size}}
+\index{get\+Node\+Size@{get\+Node\+Size}!Tree@{Tree}}
+\subsubsection{\texorpdfstring{get\+Node\+Size()}{getNodeSize()}}
+{\footnotesize\ttfamily int Tree\+::get\+Node\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classTree_a877c320f9bed56b1f6d64fc04bd86b97}\label{classTree_a877c320f9bed56b1f6d64fc04bd86b97}} 
+\index{Tree@{Tree}!get\+Splitting\+Att@{get\+Splitting\+Att}}
+\index{get\+Splitting\+Att@{get\+Splitting\+Att}!Tree@{Tree}}
+\subsubsection{\texorpdfstring{get\+Splitting\+Att()}{getSplittingAtt()}}
+{\footnotesize\ttfamily int Tree\+::get\+Splitting\+Att (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classTree_af06e12f440902448730cbe0a7d4fd9a6}\label{classTree_af06e12f440902448730cbe0a7d4fd9a6}} 
+\index{Tree@{Tree}!get\+Splitting\+Point@{get\+Splitting\+Point}}
+\index{get\+Splitting\+Point@{get\+Splitting\+Point}!Tree@{Tree}}
+\subsubsection{\texorpdfstring{get\+Splitting\+Point()}{getSplittingPoint()}}
+{\footnotesize\ttfamily double Tree\+::get\+Splitting\+Point (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\mbox{\Hypertarget{classTree_a55ec593d15665c30a9c060db4de09934}\label{classTree_a55ec593d15665c30a9c060db4de09934}} 
+\index{Tree@{Tree}!index\+Available@{index\+Available}}
+\index{index\+Available@{index\+Available}!Tree@{Tree}}
+\subsubsection{\texorpdfstring{index\+Available()}{indexAvailable()}}
+{\footnotesize\ttfamily bool Tree\+::index\+Available (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classTree_adf8961073e1d8d7c40c6cb6e6f41bc4c}\label{classTree_adf8961073e1d8d7c40c6cb6e6f41bc4c}} 
+\index{Tree@{Tree}!i\+Tree@{i\+Tree}}
+\index{i\+Tree@{i\+Tree}!Tree@{Tree}}
+\subsubsection{\texorpdfstring{i\+Tree()}{iTree()}}
+{\footnotesize\ttfamily void Tree\+::i\+Tree (\begin{DoxyParamCaption}\item[{std\+::vector$<$ int $>$ const \&}]{d\+Index,  }\item[{const doubleframe $\ast$}]{dt,  }\item[{int}]{height,  }\item[{int}]{max\+Height,  }\item[{bool}]{stopheight }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classTree_ad4fdb18020ffddf0250baeeaaaf4e3b5}\label{classTree_ad4fdb18020ffddf0250baeeaaaf4e3b5}} 
+\index{Tree@{Tree}!path\+Length@{path\+Length}}
+\index{path\+Length@{path\+Length}!Tree@{Tree}}
+\subsubsection{\texorpdfstring{path\+Length()}{pathLength()}}
+{\footnotesize\ttfamily double Tree\+::path\+Length (\begin{DoxyParamCaption}\item[{double $\ast$}]{inst }\end{DoxyParamCaption})}
+
+referenced as null for some input data . 
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{classTree_aee829f12b9755333a0196190fbe07f1b}\label{classTree_aee829f12b9755333a0196190fbe07f1b}} 
+\index{Tree@{Tree}!depth@{depth}}
+\index{depth@{depth}!Tree@{Tree}}
+\subsubsection{\texorpdfstring{depth}{depth}}
+{\footnotesize\ttfamily int Tree\+::depth\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTree_a6fcca508488527e9028456375504e51e}\label{classTree_a6fcca508488527e9028456375504e51e}} 
+\index{Tree@{Tree}!left\+Child@{left\+Child}}
+\index{left\+Child@{left\+Child}!Tree@{Tree}}
+\subsubsection{\texorpdfstring{left\+Child}{leftChild}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\hyperlink{classTree}{Tree}$>$ Tree\+::left\+Child\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTree_a4434a97ce3969349d711c0830df1661c}\label{classTree_a4434a97ce3969349d711c0830df1661c}} 
+\index{Tree@{Tree}!max\+Att\+Val@{max\+Att\+Val}}
+\index{max\+Att\+Val@{max\+Att\+Val}!Tree@{Tree}}
+\subsubsection{\texorpdfstring{max\+Att\+Val}{maxAttVal}}
+{\footnotesize\ttfamily double Tree\+::max\+Att\+Val\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTree_a8f68db34d3b557765890aeb92f5d6f38}\label{classTree_a8f68db34d3b557765890aeb92f5d6f38}} 
+\index{Tree@{Tree}!min\+Att\+Val@{min\+Att\+Val}}
+\index{min\+Att\+Val@{min\+Att\+Val}!Tree@{Tree}}
+\subsubsection{\texorpdfstring{min\+Att\+Val}{minAttVal}}
+{\footnotesize\ttfamily double Tree\+::min\+Att\+Val\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTree_a3748ddc223ca3f6816de3f631026eb73}\label{classTree_a3748ddc223ca3f6816de3f631026eb73}} 
+\index{Tree@{Tree}!node\+Size@{node\+Size}}
+\index{node\+Size@{node\+Size}!Tree@{Tree}}
+\subsubsection{\texorpdfstring{node\+Size}{nodeSize}}
+{\footnotesize\ttfamily int Tree\+::node\+Size\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTree_ae042f82923500e0d34b82510cd02789a}\label{classTree_ae042f82923500e0d34b82510cd02789a}} 
+\index{Tree@{Tree}!parent@{parent}}
+\index{parent@{parent}!Tree@{Tree}}
+\subsubsection{\texorpdfstring{parent}{parent}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\hyperlink{classTree}{Tree}$>$ Tree\+::parent\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTree_a0acb952dac4fe2f6321f212402a8f159}\label{classTree_a0acb952dac4fe2f6321f212402a8f159}} 
+\index{Tree@{Tree}!range\+Check@{range\+Check}}
+\index{range\+Check@{range\+Check}!Tree@{Tree}}
+\subsubsection{\texorpdfstring{range\+Check}{rangeCheck}}
+{\footnotesize\ttfamily bool Tree\+::range\+Check\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classTree_af4d184b80d0e81e70d531911344a418b}\label{classTree_af4d184b80d0e81e70d531911344a418b}} 
+\index{Tree@{Tree}!right\+Child@{right\+Child}}
+\index{right\+Child@{right\+Child}!Tree@{Tree}}
+\subsubsection{\texorpdfstring{right\+Child}{rightChild}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\hyperlink{classTree}{Tree}$>$ Tree\+::right\+Child\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTree_aae862b9dbe28c1f9d14ad408569b3078}\label{classTree_aae862b9dbe28c1f9d14ad408569b3078}} 
+\index{Tree@{Tree}!splitting\+Att@{splitting\+Att}}
+\index{splitting\+Att@{splitting\+Att}!Tree@{Tree}}
+\subsubsection{\texorpdfstring{splitting\+Att}{splittingAtt}}
+{\footnotesize\ttfamily int Tree\+::splitting\+Att\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTree_a0aeb8a2115f635608ca9a9b0304d304c}\label{classTree_a0aeb8a2115f635608ca9a9b0304d304c}} 
+\index{Tree@{Tree}!splitting\+Point@{splitting\+Point}}
+\index{splitting\+Point@{splitting\+Point}!Tree@{Tree}}
+\subsubsection{\texorpdfstring{splitting\+Point}{splittingPoint}}
+{\footnotesize\ttfamily double Tree\+::splitting\+Point\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTree_a571ce830364b91f9467f5d464ca119e0}\label{classTree_a571ce830364b91f9467f5d464ca119e0}} 
+\index{Tree@{Tree}!train\+Index@{train\+Index}}
+\index{train\+Index@{train\+Index}!Tree@{Tree}}
+\subsubsection{\texorpdfstring{train\+Index}{trainIndex}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ Tree\+::train\+Index}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\hyperlink{Tree_8hpp}{Tree.\+hpp}\item 
+src/\hyperlink{Tree_8cpp}{Tree.\+cpp}\end{DoxyCompactItemize}

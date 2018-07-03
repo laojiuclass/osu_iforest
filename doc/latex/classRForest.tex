@@ -1,0 +1,210 @@
+\hypertarget{classRForest}{}\section{R\+Forest Class Reference}
+\label{classRForest}\index{R\+Forest@{R\+Forest}}
+
+
+{\ttfamily \#include $<$R\+Forest.\+hpp$>$}
+
+
+
+Inheritance diagram for R\+Forest\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=250pt]{classRForest__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for R\+Forest\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=250pt]{classRForest__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classRForest_a3314b007aa19d928f56f4bbaf35fae10}{R\+Forest} (int \+\_\+ntree, doubleframe $\ast$\+\_\+df, int \+\_\+nsample, int \+\_\+maxheight, bool \+\_\+stopheight, bool \+\_\+rsample)
+\item 
+\hyperlink{classRForest_a6058c1b7beb5c90e59e558847b8650f6}{R\+Forest} ()
+\item 
+\hyperlink{classRForest_a873a1b941163b4cccda4bf83607226f3}{$\sim$\+R\+Forest} ()
+\item 
+void \hyperlink{classRForest_a0d8c5dbc04ec8433403f40d289d28100}{convert\+To\+Df} (Eigen\+::\+Matrix\+Xd \&m, doubleframe $\ast$df)
+\item 
+void \hyperlink{classRForest_a068f39ee76aa3ece35f110975303f07b}{rotate\+Instance} (double $\ast$inst, Eigen\+::\+Matrix\+Xd \&m, double $\ast$rotated\+Data)
+\item 
+void \hyperlink{classRForest_a7e8959b5b54b454f34ed68d60132e80f}{build\+Forest} (doubleframe $\ast$df)
+\item 
+void \hyperlink{classRForest_ab1f0edda495b87ef9286907d44f2f8ff}{generate\+Random\+Rotation\+Matrix} (Eigen\+::\+Matrix\+Xd \&M, int n)
+\item 
+void \hyperlink{classRForest_ada11eb452d05c98cd481b9080a5703a3}{convert\+To\+Vector} (Eigen\+::\+Matrix\+Xd \&m, std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \&v)
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{classRForest_ad132bc186056d96d8979fbe238afe529}{convert\+To\+Matrix} (std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \&data)
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{classRForest_af149cda8d70a254ff0968d350f85b59d}{rotate\+Data} (doubleframe $\ast$dt, Eigen\+::\+Matrix\+Xd \&M)
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{classRForest_a17f0ad7b46a5bceff43411d4752002d3}{convert\+Df\+To\+Matrix} (const doubleframe $\ast$data, std\+::vector$<$ int $>$ \&sample\+Index)
+\item 
+std\+::vector$<$ double $>$ \hyperlink{classRForest_ad2631b9a85a04079c603b1c8296bdb9d}{path\+Length} (double $\ast$inst)
+\item 
+double \hyperlink{classRForest_a3ecb236540eade88548b9e7ace6f13a1}{getdepth} (double $\ast$inst, std\+::shared\+\_\+ptr$<$ \hyperlink{classTree}{Tree} $>$ tree, Eigen\+::\+Matrix\+Xd \&rotmat, double $\ast$trans\+Inst)
+\item 
+void \hyperlink{classRForest_af91b647289cd5631389cefbc2612f4b3}{r\+Forest} ()
+\item 
+int \hyperlink{classRForest_abc389cab7fa7ffee669b3add5aad4c52}{adaptive\+Forest} (double alpha, int stop\+Limit)
+\item 
+void \hyperlink{classRForest_af8c8c06e5875c4a2a539d38ec65c9a7e}{fixed\+Tree\+Forest} (int epoch)
+\item 
+void \hyperlink{classRForest_ab6d2b335db34e4845bebf8864cc4e0e1}{projected\+Forest} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ Eigen\+::\+Matrix\+Xd $>$ \hyperlink{classRForest_a2b03a249697e9a68362455a6be8b1762}{rot\+Matrices}
+\item 
+std\+::mt19937 \hyperlink{classRForest_ae42cae6b10ed270d226dc2871a1b4c5a}{eng} \{std\+::random\+\_\+device\{\}()\}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classRForest_a3314b007aa19d928f56f4bbaf35fae10}\label{classRForest_a3314b007aa19d928f56f4bbaf35fae10}} 
+\index{R\+Forest@{R\+Forest}!R\+Forest@{R\+Forest}}
+\index{R\+Forest@{R\+Forest}!R\+Forest@{R\+Forest}}
+\subsubsection{\texorpdfstring{R\+Forest()}{RForest()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily R\+Forest\+::\+R\+Forest (\begin{DoxyParamCaption}\item[{int}]{\+\_\+ntree,  }\item[{doubleframe $\ast$}]{\+\_\+df,  }\item[{int}]{\+\_\+nsample,  }\item[{int}]{\+\_\+maxheight,  }\item[{bool}]{\+\_\+stopheight,  }\item[{bool}]{\+\_\+rsample }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRForest_a6058c1b7beb5c90e59e558847b8650f6}\label{classRForest_a6058c1b7beb5c90e59e558847b8650f6}} 
+\index{R\+Forest@{R\+Forest}!R\+Forest@{R\+Forest}}
+\index{R\+Forest@{R\+Forest}!R\+Forest@{R\+Forest}}
+\subsubsection{\texorpdfstring{R\+Forest()}{RForest()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily R\+Forest\+::\+R\+Forest (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRForest_a873a1b941163b4cccda4bf83607226f3}\label{classRForest_a873a1b941163b4cccda4bf83607226f3}} 
+\index{R\+Forest@{R\+Forest}!````~R\+Forest@{$\sim$\+R\+Forest}}
+\index{````~R\+Forest@{$\sim$\+R\+Forest}!R\+Forest@{R\+Forest}}
+\subsubsection{\texorpdfstring{$\sim$\+R\+Forest()}{~RForest()}}
+{\footnotesize\ttfamily R\+Forest\+::$\sim$\+R\+Forest (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classRForest_abc389cab7fa7ffee669b3add5aad4c52}\label{classRForest_abc389cab7fa7ffee669b3add5aad4c52}} 
+\index{R\+Forest@{R\+Forest}!adaptive\+Forest@{adaptive\+Forest}}
+\index{adaptive\+Forest@{adaptive\+Forest}!R\+Forest@{R\+Forest}}
+\subsubsection{\texorpdfstring{adaptive\+Forest()}{adaptiveForest()}}
+{\footnotesize\ttfamily int R\+Forest\+::adaptive\+Forest (\begin{DoxyParamCaption}\item[{double}]{alpha,  }\item[{int}]{stop\+Limit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classForest_a825bb350730c50aa8924e9f761c4a2a4}{Forest}.
+
+\mbox{\Hypertarget{classRForest_a7e8959b5b54b454f34ed68d60132e80f}\label{classRForest_a7e8959b5b54b454f34ed68d60132e80f}} 
+\index{R\+Forest@{R\+Forest}!build\+Forest@{build\+Forest}}
+\index{build\+Forest@{build\+Forest}!R\+Forest@{R\+Forest}}
+\subsubsection{\texorpdfstring{build\+Forest()}{buildForest()}}
+{\footnotesize\ttfamily void R\+Forest\+::build\+Forest (\begin{DoxyParamCaption}\item[{doubleframe $\ast$}]{df }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classRForest_a17f0ad7b46a5bceff43411d4752002d3}\label{classRForest_a17f0ad7b46a5bceff43411d4752002d3}} 
+\index{R\+Forest@{R\+Forest}!convert\+Df\+To\+Matrix@{convert\+Df\+To\+Matrix}}
+\index{convert\+Df\+To\+Matrix@{convert\+Df\+To\+Matrix}!R\+Forest@{R\+Forest}}
+\subsubsection{\texorpdfstring{convert\+Df\+To\+Matrix()}{convertDfToMatrix()}}
+{\footnotesize\ttfamily Matrix\+Xd R\+Forest\+::convert\+Df\+To\+Matrix (\begin{DoxyParamCaption}\item[{const doubleframe $\ast$}]{data,  }\item[{std\+::vector$<$ int $>$ \&}]{sample\+Index }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classRForest_a0d8c5dbc04ec8433403f40d289d28100}\label{classRForest_a0d8c5dbc04ec8433403f40d289d28100}} 
+\index{R\+Forest@{R\+Forest}!convert\+To\+Df@{convert\+To\+Df}}
+\index{convert\+To\+Df@{convert\+To\+Df}!R\+Forest@{R\+Forest}}
+\subsubsection{\texorpdfstring{convert\+To\+Df()}{convertToDf()}}
+{\footnotesize\ttfamily void R\+Forest\+::convert\+To\+Df (\begin{DoxyParamCaption}\item[{Eigen\+::\+Matrix\+Xd \&}]{m,  }\item[{doubleframe $\ast$}]{df }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classRForest_ad132bc186056d96d8979fbe238afe529}\label{classRForest_ad132bc186056d96d8979fbe238afe529}} 
+\index{R\+Forest@{R\+Forest}!convert\+To\+Matrix@{convert\+To\+Matrix}}
+\index{convert\+To\+Matrix@{convert\+To\+Matrix}!R\+Forest@{R\+Forest}}
+\subsubsection{\texorpdfstring{convert\+To\+Matrix()}{convertToMatrix()}}
+{\footnotesize\ttfamily Matrix\+Xd R\+Forest\+::convert\+To\+Matrix (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \&}]{data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classRForest_ada11eb452d05c98cd481b9080a5703a3}\label{classRForest_ada11eb452d05c98cd481b9080a5703a3}} 
+\index{R\+Forest@{R\+Forest}!convert\+To\+Vector@{convert\+To\+Vector}}
+\index{convert\+To\+Vector@{convert\+To\+Vector}!R\+Forest@{R\+Forest}}
+\subsubsection{\texorpdfstring{convert\+To\+Vector()}{convertToVector()}}
+{\footnotesize\ttfamily void R\+Forest\+::convert\+To\+Vector (\begin{DoxyParamCaption}\item[{Eigen\+::\+Matrix\+Xd \&}]{m,  }\item[{std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \&}]{v }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classRForest_af8c8c06e5875c4a2a539d38ec65c9a7e}\label{classRForest_af8c8c06e5875c4a2a539d38ec65c9a7e}} 
+\index{R\+Forest@{R\+Forest}!fixed\+Tree\+Forest@{fixed\+Tree\+Forest}}
+\index{fixed\+Tree\+Forest@{fixed\+Tree\+Forest}!R\+Forest@{R\+Forest}}
+\subsubsection{\texorpdfstring{fixed\+Tree\+Forest()}{fixedTreeForest()}}
+{\footnotesize\ttfamily void R\+Forest\+::fixed\+Tree\+Forest (\begin{DoxyParamCaption}\item[{int}]{epoch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classForest_a0699073aa8d6b46fdbdc36b7299a1a34}{Forest}.
+
+\mbox{\Hypertarget{classRForest_ab1f0edda495b87ef9286907d44f2f8ff}\label{classRForest_ab1f0edda495b87ef9286907d44f2f8ff}} 
+\index{R\+Forest@{R\+Forest}!generate\+Random\+Rotation\+Matrix@{generate\+Random\+Rotation\+Matrix}}
+\index{generate\+Random\+Rotation\+Matrix@{generate\+Random\+Rotation\+Matrix}!R\+Forest@{R\+Forest}}
+\subsubsection{\texorpdfstring{generate\+Random\+Rotation\+Matrix()}{generateRandomRotationMatrix()}}
+{\footnotesize\ttfamily void R\+Forest\+::generate\+Random\+Rotation\+Matrix (\begin{DoxyParamCaption}\item[{Eigen\+::\+Matrix\+Xd \&}]{M,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classRForest_a3ecb236540eade88548b9e7ace6f13a1}\label{classRForest_a3ecb236540eade88548b9e7ace6f13a1}} 
+\index{R\+Forest@{R\+Forest}!getdepth@{getdepth}}
+\index{getdepth@{getdepth}!R\+Forest@{R\+Forest}}
+\subsubsection{\texorpdfstring{getdepth()}{getdepth()}}
+{\footnotesize\ttfamily double R\+Forest\+::getdepth (\begin{DoxyParamCaption}\item[{double $\ast$}]{inst,  }\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{classTree}{Tree} $>$}]{tree,  }\item[{Eigen\+::\+Matrix\+Xd \&}]{rotmat,  }\item[{double $\ast$}]{trans\+Inst }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classRForest_ad2631b9a85a04079c603b1c8296bdb9d}\label{classRForest_ad2631b9a85a04079c603b1c8296bdb9d}} 
+\index{R\+Forest@{R\+Forest}!path\+Length@{path\+Length}}
+\index{path\+Length@{path\+Length}!R\+Forest@{R\+Forest}}
+\subsubsection{\texorpdfstring{path\+Length()}{pathLength()}}
+{\footnotesize\ttfamily std\+::vector$<$ double $>$ R\+Forest\+::path\+Length (\begin{DoxyParamCaption}\item[{double $\ast$}]{inst }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classForest_a8e3bac70e9f10ce6f301e297e32e8f5a}{Forest}.
+
+\mbox{\Hypertarget{classRForest_ab6d2b335db34e4845bebf8864cc4e0e1}\label{classRForest_ab6d2b335db34e4845bebf8864cc4e0e1}} 
+\index{R\+Forest@{R\+Forest}!projected\+Forest@{projected\+Forest}}
+\index{projected\+Forest@{projected\+Forest}!R\+Forest@{R\+Forest}}
+\subsubsection{\texorpdfstring{projected\+Forest()}{projectedForest()}}
+{\footnotesize\ttfamily void R\+Forest\+::projected\+Forest (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classRForest_af91b647289cd5631389cefbc2612f4b3}\label{classRForest_af91b647289cd5631389cefbc2612f4b3}} 
+\index{R\+Forest@{R\+Forest}!r\+Forest@{r\+Forest}}
+\index{r\+Forest@{r\+Forest}!R\+Forest@{R\+Forest}}
+\subsubsection{\texorpdfstring{r\+Forest()}{rForest()}}
+{\footnotesize\ttfamily void R\+Forest\+::r\+Forest (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classRForest_af149cda8d70a254ff0968d350f85b59d}\label{classRForest_af149cda8d70a254ff0968d350f85b59d}} 
+\index{R\+Forest@{R\+Forest}!rotate\+Data@{rotate\+Data}}
+\index{rotate\+Data@{rotate\+Data}!R\+Forest@{R\+Forest}}
+\subsubsection{\texorpdfstring{rotate\+Data()}{rotateData()}}
+{\footnotesize\ttfamily Matrix\+Xd R\+Forest\+::rotate\+Data (\begin{DoxyParamCaption}\item[{doubleframe $\ast$}]{dt,  }\item[{Eigen\+::\+Matrix\+Xd \&}]{M }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classRForest_a068f39ee76aa3ece35f110975303f07b}\label{classRForest_a068f39ee76aa3ece35f110975303f07b}} 
+\index{R\+Forest@{R\+Forest}!rotate\+Instance@{rotate\+Instance}}
+\index{rotate\+Instance@{rotate\+Instance}!R\+Forest@{R\+Forest}}
+\subsubsection{\texorpdfstring{rotate\+Instance()}{rotateInstance()}}
+{\footnotesize\ttfamily void R\+Forest\+::rotate\+Instance (\begin{DoxyParamCaption}\item[{double $\ast$}]{inst,  }\item[{Eigen\+::\+Matrix\+Xd \&}]{m,  }\item[{double $\ast$}]{rotated\+Data }\end{DoxyParamCaption})}
+
+
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{classRForest_ae42cae6b10ed270d226dc2871a1b4c5a}\label{classRForest_ae42cae6b10ed270d226dc2871a1b4c5a}} 
+\index{R\+Forest@{R\+Forest}!eng@{eng}}
+\index{eng@{eng}!R\+Forest@{R\+Forest}}
+\subsubsection{\texorpdfstring{eng}{eng}}
+{\footnotesize\ttfamily std\+::mt19937 R\+Forest\+::eng \{std\+::random\+\_\+device\{\}()\}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classRForest_a2b03a249697e9a68362455a6be8b1762}\label{classRForest_a2b03a249697e9a68362455a6be8b1762}} 
+\index{R\+Forest@{R\+Forest}!rot\+Matrices@{rot\+Matrices}}
+\index{rot\+Matrices@{rot\+Matrices}!R\+Forest@{R\+Forest}}
+\subsubsection{\texorpdfstring{rot\+Matrices}{rotMatrices}}
+{\footnotesize\ttfamily std\+::vector$<$Eigen\+::\+Matrix\+Xd$>$ R\+Forest\+::rot\+Matrices\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\hyperlink{RForest_8hpp}{R\+Forest.\+hpp}\item 
+src/\hyperlink{RForest_8cpp}{R\+Forest.\+cpp}\end{DoxyCompactItemize}

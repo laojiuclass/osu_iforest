@@ -1,0 +1,5 @@
+<map id="Forest" name="Forest">
+<area shape="rect" id="node2" href="$classconvForest.html" title="{convForest\n|&#45; tau\l&#45; alpha\l|+ convForest()\l+ ~convForest()\l+ convergeIF()\l+ confstop()\l&#45; inserTopK()\l&#45; topcommonK()\l}" alt="" coords="5,419,120,584"/>
+<area shape="rect" id="node3" href="$classIsolationForest.html" title="{IsolationForest\n||+ IsolationForest()\l+ IsolationForest()\l+ buildForest()\l+ ~IsolationForest()\l+ adaptiveForest()\l+ fixedTreeForest()\l+ batchForest()\l}" alt="" coords="144,419,279,584"/>
+<area shape="rect" id="node4" href="$classRForest.html" title="{RForest\n|&#45; rotMatrices\l&#45; eng\l|+ RForest()\l+ RForest()\l+ ~RForest()\l+ convertToDf()\l+ rotateInstance()\l+ buildForest()\l+ generateRandomRotationMatrix()\l+ convertToVector()\l+ convertToMatrix()\l+ rotateData()\land 7 more...\l}" alt="" coords="304,382,531,621"/>
+</map>

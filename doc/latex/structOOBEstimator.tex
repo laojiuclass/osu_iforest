@@ -1,0 +1,99 @@
+\hypertarget{structOOBEstimator}{}\section{O\+O\+B\+Estimator Struct Reference}
+\label{structOOBEstimator}\index{O\+O\+B\+Estimator@{O\+O\+B\+Estimator}}
+
+
+{\ttfamily \#include $<$O\+O\+B\+Estimator.\+hpp$>$}
+
+
+
+Collaboration diagram for O\+O\+B\+Estimator\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=180pt]{structOOBEstimator__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structOOBEstimator_a14346003c044f4f83d901191db629838}{O\+O\+B\+Estimator} (size\+\_\+t \+\_\+ntree, size\+\_\+t \+\_\+nsample)
+\item 
+void \hyperlink{structOOBEstimator_a3f6c58438a669a75c2013e284c16c038}{mark\+Tree} (int tree\+Index, int x\+Index)
+\item 
+std\+::vector$<$ int $>$ \hyperlink{structOOBEstimator_a562eaa254b4d88129369ca3a33cd03f2}{O\+O\+B\+Trees} (int x\+Index)
+\item 
+\hyperlink{structOOBEstimator_a52be024d6b911e15a162f92c44760b7d}{$\sim$\+O\+O\+B\+Estimator} ()
+\end{DoxyCompactItemize}
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classutil_1_1Matrix}{util\+::\+Matrix}$<$ bool $>$ $\ast$ \hyperlink{structOOBEstimator_adff3279f68eba078d403e2673aa6627e}{mat}
+\item 
+int \hyperlink{structOOBEstimator_af09c508b17686ca379d67affa1f31333}{ntree}
+\item 
+int \hyperlink{structOOBEstimator_a199a3bf3234bd967e061b1c61a56aed6}{sample\+Size}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structOOBEstimator_a14346003c044f4f83d901191db629838}\label{structOOBEstimator_a14346003c044f4f83d901191db629838}} 
+\index{O\+O\+B\+Estimator@{O\+O\+B\+Estimator}!O\+O\+B\+Estimator@{O\+O\+B\+Estimator}}
+\index{O\+O\+B\+Estimator@{O\+O\+B\+Estimator}!O\+O\+B\+Estimator@{O\+O\+B\+Estimator}}
+\subsubsection{\texorpdfstring{O\+O\+B\+Estimator()}{OOBEstimator()}}
+{\footnotesize\ttfamily O\+O\+B\+Estimator\+::\+O\+O\+B\+Estimator (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{\+\_\+ntree,  }\item[{size\+\_\+t}]{\+\_\+nsample }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structOOBEstimator_a52be024d6b911e15a162f92c44760b7d}\label{structOOBEstimator_a52be024d6b911e15a162f92c44760b7d}} 
+\index{O\+O\+B\+Estimator@{O\+O\+B\+Estimator}!````~O\+O\+B\+Estimator@{$\sim$\+O\+O\+B\+Estimator}}
+\index{````~O\+O\+B\+Estimator@{$\sim$\+O\+O\+B\+Estimator}!O\+O\+B\+Estimator@{O\+O\+B\+Estimator}}
+\subsubsection{\texorpdfstring{$\sim$\+O\+O\+B\+Estimator()}{~OOBEstimator()}}
+{\footnotesize\ttfamily O\+O\+B\+Estimator\+::$\sim$\+O\+O\+B\+Estimator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{structOOBEstimator_a3f6c58438a669a75c2013e284c16c038}\label{structOOBEstimator_a3f6c58438a669a75c2013e284c16c038}} 
+\index{O\+O\+B\+Estimator@{O\+O\+B\+Estimator}!mark\+Tree@{mark\+Tree}}
+\index{mark\+Tree@{mark\+Tree}!O\+O\+B\+Estimator@{O\+O\+B\+Estimator}}
+\subsubsection{\texorpdfstring{mark\+Tree()}{markTree()}}
+{\footnotesize\ttfamily void O\+O\+B\+Estimator\+::mark\+Tree (\begin{DoxyParamCaption}\item[{int}]{tree\+Index,  }\item[{int}]{x\+Index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{structOOBEstimator_a562eaa254b4d88129369ca3a33cd03f2}\label{structOOBEstimator_a562eaa254b4d88129369ca3a33cd03f2}} 
+\index{O\+O\+B\+Estimator@{O\+O\+B\+Estimator}!O\+O\+B\+Trees@{O\+O\+B\+Trees}}
+\index{O\+O\+B\+Trees@{O\+O\+B\+Trees}!O\+O\+B\+Estimator@{O\+O\+B\+Estimator}}
+\subsubsection{\texorpdfstring{O\+O\+B\+Trees()}{OOBTrees()}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ O\+O\+B\+Estimator\+::\+O\+O\+B\+Trees (\begin{DoxyParamCaption}\item[{int}]{x\+Index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns all out of bag trees that don\textquotesingle{}t invole x 
+\begin{DoxyParams}{Parameters}
+{\em x\+Index} & \+: int index of sample \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{classTree}{Tree} index in the forest that X\+Index don\textquotesingle{}t involve 
+\end{DoxyReturn}
+
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{structOOBEstimator_adff3279f68eba078d403e2673aa6627e}\label{structOOBEstimator_adff3279f68eba078d403e2673aa6627e}} 
+\index{O\+O\+B\+Estimator@{O\+O\+B\+Estimator}!mat@{mat}}
+\index{mat@{mat}!O\+O\+B\+Estimator@{O\+O\+B\+Estimator}}
+\subsubsection{\texorpdfstring{mat}{mat}}
+{\footnotesize\ttfamily \hyperlink{classutil_1_1Matrix}{util\+::\+Matrix}$<$bool$>$$\ast$ O\+O\+B\+Estimator\+::mat}
+
+\mbox{\Hypertarget{structOOBEstimator_af09c508b17686ca379d67affa1f31333}\label{structOOBEstimator_af09c508b17686ca379d67affa1f31333}} 
+\index{O\+O\+B\+Estimator@{O\+O\+B\+Estimator}!ntree@{ntree}}
+\index{ntree@{ntree}!O\+O\+B\+Estimator@{O\+O\+B\+Estimator}}
+\subsubsection{\texorpdfstring{ntree}{ntree}}
+{\footnotesize\ttfamily int O\+O\+B\+Estimator\+::ntree}
+
+\mbox{\Hypertarget{structOOBEstimator_a199a3bf3234bd967e061b1c61a56aed6}\label{structOOBEstimator_a199a3bf3234bd967e061b1c61a56aed6}} 
+\index{O\+O\+B\+Estimator@{O\+O\+B\+Estimator}!sample\+Size@{sample\+Size}}
+\index{sample\+Size@{sample\+Size}!O\+O\+B\+Estimator@{O\+O\+B\+Estimator}}
+\subsubsection{\texorpdfstring{sample\+Size}{sampleSize}}
+{\footnotesize\ttfamily int O\+O\+B\+Estimator\+::sample\+Size}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\hyperlink{OOBEstimator_8hpp}{O\+O\+B\+Estimator.\+hpp}\end{DoxyCompactItemize}

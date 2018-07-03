@@ -1,0 +1,84 @@
+\hypertarget{utility_8hpp}{}\section{src/utility.hpp File Reference}
+\label{utility_8hpp}\index{src/utility.\+hpp@{src/utility.\+hpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$ctime$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$queue$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$iterator$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$set$>$}\newline
+{\ttfamily \#include $<$random$>$}\newline
+{\ttfamily \#include \char`\"{}cincl.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$utility$>$}\newline
+Include dependency graph for utility.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utility_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utility_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classutil_1_1Matrix}{util\+::\+Matrix$<$ T $>$}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceutil}{util}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{namespaceutil_a60fc54ed78936dca89472845766b61f8}{util\+::initialize} ()
+\item 
+int \hyperlink{namespaceutil_ab473893d6b386b2da951b72b4d40c085}{util\+::randomI} (int min, int max)
+\item 
+int \hyperlink{namespaceutil_ae080f004741b0ea81032b3ec0c723f4c}{util\+::random\+Ex} (int min, int max, std\+::set$<$ int $>$ \&exlude)
+\item 
+void \hyperlink{namespaceutil_a077f5faad89062a4013dc98fc85b7a40}{util\+::sampleI} (int min, int max, int nsample, std\+::vector$<$ int $>$ \&sample\+Indx)
+\item 
+double \hyperlink{namespaceutil_a1f106b9a1a65806393f73a3c8dbf01a6}{util\+::avg\+PL} (int n)
+\item 
+double \hyperlink{namespaceutil_a1327645fe6fef26083bc9e1185b8d586}{util\+::randomD} (double min, double max)
+\item 
+{\footnotesize template$<$typename T $>$ }\\T \hyperlink{namespaceutil_a254d46b3ebe9a685b6e0eca9db9d51ec}{util\+::randomT} (T min, T max)
+\item 
+void \hyperlink{namespaceutil_a8a222a481a56e4070f023d369483f707}{util\+::swap\+Int} (int a, int b, int $\ast$x)
+\item 
+double \hyperlink{namespaceutil_a2f9d2ca343c1e5fcbc1da5140de61f94}{util\+::variance} (std\+::vector$<$ double $>$ \&x)
+\item 
+double \hyperlink{namespaceutil_a67baa21858f5d569c1553bb179da7115}{util\+::mean} (std\+::vector$<$ double $>$ points)
+\item 
+double \hyperlink{namespaceutil_a0b673442b1c87f0daf8bb0a4179a6834}{util\+::tconf} (std\+::vector$<$ double $>$ \&points, double sigma)
+\item 
+vector$<$ vector$<$ double $>$ $>$ \hyperlink{namespaceutil_a84b10f9fb76cc3f825e8c680ca7d786e}{util\+::readcsv} (const char $\ast$filename, char delim=\textquotesingle{},\textquotesingle{}, bool header=true)
+\item 
+std\+::map$<$ double, double $>$ \hyperlink{namespaceutil_abfb0e38d71ca69f5f6a505b3f5f7dc52}{util\+::ecdf} (std\+::vector$<$ double $>$ points)
+\item 
+std\+::vector$<$ double $>$ \hyperlink{namespaceutil_a08fbdd196c73244d0e2130c3a70d2f2b}{util\+::\+A\+Ddistance} (const std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \&depths, bool weight\+To\+Tail)
+\item 
+double \hyperlink{namespaceutil_a71809e272f5a9c8e8297bab2c12666f7}{util\+::score} (double depth, int n)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ofstream \hyperlink{namespaceutil_af123fd54ef9ea843e69a69dfd986f59e}{util\+::logfile}
+\item 
+std\+::string \hyperlink{namespaceutil_a4839a6e82a650d17fe48a7ab99640835}{util\+::tmp\+Var}
+\item 
+int \hyperlink{namespaceutil_aeda4e5339822ac6c9fb3f1991c126bfb}{util\+::debug}
+\end{DoxyCompactItemize}

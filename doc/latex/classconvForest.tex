@@ -1,0 +1,120 @@
+\hypertarget{classconvForest}{}\section{conv\+Forest Class Reference}
+\label{classconvForest}\index{conv\+Forest@{conv\+Forest}}
+
+
+{\ttfamily \#include $<$conv\+Forest.\+hpp$>$}
+
+
+
+Inheritance diagram for conv\+Forest\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=180pt]{classconvForest__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for conv\+Forest\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=180pt]{classconvForest__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structconvForest_1_1larger}{larger}
+\item 
+struct \hyperlink{structconvForest_1_1topscore}{topscore}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classconvForest_a03387416058b37c24de2d7a901275695}{conv\+Forest} (int \+\_\+ntree, doubleframe $\ast$\+\_\+df, const int \+\_\+nsample, int \+\_\+maxheight, bool \+\_\+stopheight, bool \+\_\+rsample, double \+\_\+tau, double \+\_\+alpha)
+\item 
+virtual \hyperlink{classconvForest_a85d5cb4ec991893853acf4be144cdf52}{$\sim$conv\+Forest} ()=default
+\item 
+void \hyperlink{classconvForest_acf0da12a09b3aa4323c4dc3fe6f1be56}{converge\+IF} (double \hyperlink{classconvForest_a390216111823cd05c48aad3a358a49a7}{tau}, double \hyperlink{classconvForest_a69ed3ccc19fa0439f9fb64ce28c3c66f}{alpha})
+\item 
+void \hyperlink{classconvForest_a4a20fbcf944458fbbc62400bc0bb2de7}{confstop} (double \hyperlink{classconvForest_a69ed3ccc19fa0439f9fb64ce28c3c66f}{alpha})
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classconvForest_a64930c8a4d1e1f74fc45f3ce5c24a55e}{inser\+TopK} (std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ \&sl, int b)
+\item 
+double \hyperlink{classconvForest_a650511b77be61f6c5766fcd6b577b33e}{topcommonK} (std\+::vector$<$ int $>$ \&v1, std\+::vector$<$ int $>$ \&v2)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classconvForest_a390216111823cd05c48aad3a358a49a7}{tau}
+\item 
+int \hyperlink{classconvForest_a69ed3ccc19fa0439f9fb64ce28c3c66f}{alpha}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classconvForest_a03387416058b37c24de2d7a901275695}\label{classconvForest_a03387416058b37c24de2d7a901275695}} 
+\index{conv\+Forest@{conv\+Forest}!conv\+Forest@{conv\+Forest}}
+\index{conv\+Forest@{conv\+Forest}!conv\+Forest@{conv\+Forest}}
+\subsubsection{\texorpdfstring{conv\+Forest()}{convForest()}}
+{\footnotesize\ttfamily conv\+Forest\+::conv\+Forest (\begin{DoxyParamCaption}\item[{int}]{\+\_\+ntree,  }\item[{doubleframe $\ast$}]{\+\_\+df,  }\item[{const int}]{\+\_\+nsample,  }\item[{int}]{\+\_\+maxheight,  }\item[{bool}]{\+\_\+stopheight,  }\item[{bool}]{\+\_\+rsample,  }\item[{double}]{\+\_\+tau,  }\item[{double}]{\+\_\+alpha }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classconvForest_a85d5cb4ec991893853acf4be144cdf52}\label{classconvForest_a85d5cb4ec991893853acf4be144cdf52}} 
+\index{conv\+Forest@{conv\+Forest}!````~conv\+Forest@{$\sim$conv\+Forest}}
+\index{````~conv\+Forest@{$\sim$conv\+Forest}!conv\+Forest@{conv\+Forest}}
+\subsubsection{\texorpdfstring{$\sim$conv\+Forest()}{~convForest()}}
+{\footnotesize\ttfamily virtual conv\+Forest\+::$\sim$conv\+Forest (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classconvForest_a4a20fbcf944458fbbc62400bc0bb2de7}\label{classconvForest_a4a20fbcf944458fbbc62400bc0bb2de7}} 
+\index{conv\+Forest@{conv\+Forest}!confstop@{confstop}}
+\index{confstop@{confstop}!conv\+Forest@{conv\+Forest}}
+\subsubsection{\texorpdfstring{confstop()}{confstop()}}
+{\footnotesize\ttfamily void conv\+Forest\+::confstop (\begin{DoxyParamCaption}\item[{double}]{alpha }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classconvForest_acf0da12a09b3aa4323c4dc3fe6f1be56}\label{classconvForest_acf0da12a09b3aa4323c4dc3fe6f1be56}} 
+\index{conv\+Forest@{conv\+Forest}!converge\+IF@{converge\+IF}}
+\index{converge\+IF@{converge\+IF}!conv\+Forest@{conv\+Forest}}
+\subsubsection{\texorpdfstring{converge\+I\+F()}{convergeIF()}}
+{\footnotesize\ttfamily void conv\+Forest\+::converge\+IF (\begin{DoxyParamCaption}\item[{double}]{tau,  }\item[{double}]{alpha }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classconvForest_a64930c8a4d1e1f74fc45f3ce5c24a55e}\label{classconvForest_a64930c8a4d1e1f74fc45f3ce5c24a55e}} 
+\index{conv\+Forest@{conv\+Forest}!inser\+TopK@{inser\+TopK}}
+\index{inser\+TopK@{inser\+TopK}!conv\+Forest@{conv\+Forest}}
+\subsubsection{\texorpdfstring{inser\+Top\+K()}{inserTopK()}}
+{\footnotesize\ttfamily void conv\+Forest\+::inser\+TopK (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ \&}]{sl,  }\item[{int}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classconvForest_a650511b77be61f6c5766fcd6b577b33e}\label{classconvForest_a650511b77be61f6c5766fcd6b577b33e}} 
+\index{conv\+Forest@{conv\+Forest}!topcommonK@{topcommonK}}
+\index{topcommonK@{topcommonK}!conv\+Forest@{conv\+Forest}}
+\subsubsection{\texorpdfstring{topcommon\+K()}{topcommonK()}}
+{\footnotesize\ttfamily double conv\+Forest\+::topcommonK (\begin{DoxyParamCaption}\item[{std\+::vector$<$ int $>$ \&}]{v1,  }\item[{std\+::vector$<$ int $>$ \&}]{v2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{classconvForest_a69ed3ccc19fa0439f9fb64ce28c3c66f}\label{classconvForest_a69ed3ccc19fa0439f9fb64ce28c3c66f}} 
+\index{conv\+Forest@{conv\+Forest}!alpha@{alpha}}
+\index{alpha@{alpha}!conv\+Forest@{conv\+Forest}}
+\subsubsection{\texorpdfstring{alpha}{alpha}}
+{\footnotesize\ttfamily int conv\+Forest\+::alpha\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classconvForest_a390216111823cd05c48aad3a358a49a7}\label{classconvForest_a390216111823cd05c48aad3a358a49a7}} 
+\index{conv\+Forest@{conv\+Forest}!tau@{tau}}
+\index{tau@{tau}!conv\+Forest@{conv\+Forest}}
+\subsubsection{\texorpdfstring{tau}{tau}}
+{\footnotesize\ttfamily int conv\+Forest\+::tau\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\hyperlink{convForest_8hpp}{conv\+Forest.\+hpp}\item 
+src/\hyperlink{convForest_8cpp}{conv\+Forest.\+cpp}\end{DoxyCompactItemize}

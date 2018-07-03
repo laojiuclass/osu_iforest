@@ -1,0 +1,2 @@
+/usr/bin/ar qc libiforestlib.a  CMakeFiles/iforestlib.dir/Tree.cpp.o CMakeFiles/iforestlib.dir/Forest.cpp.o CMakeFiles/iforestlib.dir/IsolationForest.cpp.o CMakeFiles/iforestlib.dir/utility.cpp.o CMakeFiles/iforestlib.dir/RForest.cpp.o
+/usr/bin/ranlib libiforestlib.a

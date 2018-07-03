@@ -1,0 +1,66 @@
+\hypertarget{utility_8cpp}{}\section{src/utility.cpp File Reference}
+\label{utility_8cpp}\index{src/utility.\+cpp@{src/utility.\+cpp}}
+{\ttfamily \#include \char`\"{}utility.\+hpp\char`\"{}}\newline
+Include dependency graph for utility.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utility_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceutil}{util}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{namespaceutil_a60fc54ed78936dca89472845766b61f8}{util\+::initialize} ()
+\item 
+{\footnotesize template$<$typename T $>$ }\\T \hyperlink{namespaceutil_a254d46b3ebe9a685b6e0eca9db9d51ec}{util\+::randomT} (T min, T max)
+\item 
+double \hyperlink{namespaceutil_a1327645fe6fef26083bc9e1185b8d586}{util\+::randomD} (double min, double max)
+\item 
+int \hyperlink{namespaceutil_ab473893d6b386b2da951b72b4d40c085}{util\+::randomI} (int min, int max)
+\item 
+int \hyperlink{namespaceutil_a8751577b60f8e83b41c3cca32d65b677}{util\+::random\+Ex} (int min, int max, set$<$ int $>$ \&exlude)
+\item 
+void \hyperlink{namespaceutil_ab4e338c554526c6a942fc35d14b15beb}{util\+::sampleI} (int min, int max, int nsample, vector$<$ int $>$ \&samples)
+\item 
+double \hyperlink{namespaceutil_a71809e272f5a9c8e8297bab2c12666f7}{util\+::score} (double depth, int n)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceutil_a998845d03758baa45e52b967cf230b01}{util\+::swap\+Int} (int a, int b, T $\ast$x)
+\item 
+double \hyperlink{namespaceutil_afded8090794a80d2f1c9aa44e70c85ff}{util\+::mean} (vector$<$ double $>$ points)
+\item 
+double \hyperlink{namespaceutil_a43a50c7b5c6674cd27461d91cfec686c}{util\+::variance} (vector$<$ double $>$ \&x)
+\item 
+double \hyperlink{namespaceutil_a68758b62ab028fd0a2f0afb6d516be6f}{util\+::tconf} (vector$<$ double $>$ \&points, double sigma=0.\+95)
+\item 
+vector$<$ vector$<$ double $>$ $>$ \hyperlink{namespaceutil_a84b10f9fb76cc3f825e8c680ca7d786e}{util\+::readcsv} (const char $\ast$filename, char delim=\textquotesingle{},\textquotesingle{}, bool header=true)
+\item 
+map$<$ double, double $>$ \hyperlink{namespaceutil_ac7478c2543d3bf4901961c719ecc7d04}{util\+::ecdf} (vector$<$ double $>$ points)
+\item 
+{\footnotesize template$<$typename T $>$ }\\vector$<$ T $>$ \hyperlink{namespaceutil_a3da5afd362118ed04ca18ec46d5e6a96}{util\+::flatten} (const vector$<$ vector$<$ T $>$$>$ \&v)
+\item 
+double \hyperlink{namespaceutil_a1f106b9a1a65806393f73a3c8dbf01a6}{util\+::avg\+PL} (int n)
+\item 
+vector$<$ double $>$ \hyperlink{namespaceutil_a422abe670c555eeeded897e3d9861b77}{util\+::\+A\+Ddistance} (vector$<$ vector$<$ double $>$ $>$ depths, bool weight\+To\+Tail=false)
+\item 
+std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \hyperlink{utility_8cpp_a840cdec08621ecfd4e68e2bfcb92f496}{synthetic\+Data} (int D, int N)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+default\+\_\+random\+\_\+engine \hyperlink{namespaceutil_ab30b96cc3fcd37942fb7f9f8a2e1898d}{util\+::gen}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{utility_8cpp_a840cdec08621ecfd4e68e2bfcb92f496}\label{utility_8cpp_a840cdec08621ecfd4e68e2bfcb92f496}} 
+\index{utility.\+cpp@{utility.\+cpp}!synthetic\+Data@{synthetic\+Data}}
+\index{synthetic\+Data@{synthetic\+Data}!utility.\+cpp@{utility.\+cpp}}
+\subsubsection{\texorpdfstring{synthetic\+Data()}{syntheticData()}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::vector$<$double$>$ $>$ synthetic\+Data (\begin{DoxyParamCaption}\item[{int}]{D,  }\item[{int}]{N }\end{DoxyParamCaption})}
+

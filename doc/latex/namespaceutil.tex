@@ -1,0 +1,246 @@
+\hypertarget{namespaceutil}{}\section{util Namespace Reference}
+\label{namespaceutil}\index{util@{util}}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classutil_1_1Matrix}{Matrix}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{namespaceutil_a60fc54ed78936dca89472845766b61f8}{initialize} ()
+\item 
+{\footnotesize template$<$typename T $>$ }\\T \hyperlink{namespaceutil_a254d46b3ebe9a685b6e0eca9db9d51ec}{randomT} (T min, T max)
+\item 
+double \hyperlink{namespaceutil_a1327645fe6fef26083bc9e1185b8d586}{randomD} (double min, double max)
+\item 
+int \hyperlink{namespaceutil_ab473893d6b386b2da951b72b4d40c085}{randomI} (int min, int max)
+\item 
+int \hyperlink{namespaceutil_a8751577b60f8e83b41c3cca32d65b677}{random\+Ex} (int min, int max, set$<$ int $>$ \&exlude)
+\item 
+void \hyperlink{namespaceutil_ab4e338c554526c6a942fc35d14b15beb}{sampleI} (int min, int max, int nsample, vector$<$ int $>$ \&samples)
+\item 
+double \hyperlink{namespaceutil_a71809e272f5a9c8e8297bab2c12666f7}{score} (double depth, int n)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceutil_a998845d03758baa45e52b967cf230b01}{swap\+Int} (int a, int b, T $\ast$x)
+\item 
+double \hyperlink{namespaceutil_afded8090794a80d2f1c9aa44e70c85ff}{mean} (vector$<$ double $>$ points)
+\item 
+double \hyperlink{namespaceutil_a43a50c7b5c6674cd27461d91cfec686c}{variance} (vector$<$ double $>$ \&x)
+\item 
+double \hyperlink{namespaceutil_a68758b62ab028fd0a2f0afb6d516be6f}{tconf} (vector$<$ double $>$ \&points, double sigma=0.\+95)
+\item 
+vector$<$ vector$<$ double $>$ $>$ \hyperlink{namespaceutil_a84b10f9fb76cc3f825e8c680ca7d786e}{readcsv} (const char $\ast$filename, char delim=\textquotesingle{},\textquotesingle{}, bool header=true)
+\item 
+map$<$ double, double $>$ \hyperlink{namespaceutil_ac7478c2543d3bf4901961c719ecc7d04}{ecdf} (vector$<$ double $>$ points)
+\item 
+{\footnotesize template$<$typename T $>$ }\\vector$<$ T $>$ \hyperlink{namespaceutil_a3da5afd362118ed04ca18ec46d5e6a96}{flatten} (const vector$<$ vector$<$ T $>$$>$ \&v)
+\item 
+double \hyperlink{namespaceutil_a1f106b9a1a65806393f73a3c8dbf01a6}{avg\+PL} (int n)
+\item 
+vector$<$ double $>$ \hyperlink{namespaceutil_a422abe670c555eeeded897e3d9861b77}{A\+Ddistance} (vector$<$ vector$<$ double $>$ $>$ depths, bool weight\+To\+Tail=false)
+\item 
+int \hyperlink{namespaceutil_ae080f004741b0ea81032b3ec0c723f4c}{random\+Ex} (int min, int max, std\+::set$<$ int $>$ \&exlude)
+\item 
+void \hyperlink{namespaceutil_a077f5faad89062a4013dc98fc85b7a40}{sampleI} (int min, int max, int nsample, std\+::vector$<$ int $>$ \&sample\+Indx)
+\item 
+void \hyperlink{namespaceutil_a8a222a481a56e4070f023d369483f707}{swap\+Int} (int a, int b, int $\ast$x)
+\item 
+double \hyperlink{namespaceutil_a2f9d2ca343c1e5fcbc1da5140de61f94}{variance} (std\+::vector$<$ double $>$ \&x)
+\item 
+double \hyperlink{namespaceutil_a67baa21858f5d569c1553bb179da7115}{mean} (std\+::vector$<$ double $>$ points)
+\item 
+double \hyperlink{namespaceutil_a0b673442b1c87f0daf8bb0a4179a6834}{tconf} (std\+::vector$<$ double $>$ \&points, double sigma)
+\item 
+std\+::map$<$ double, double $>$ \hyperlink{namespaceutil_abfb0e38d71ca69f5f6a505b3f5f7dc52}{ecdf} (std\+::vector$<$ double $>$ points)
+\item 
+std\+::vector$<$ double $>$ \hyperlink{namespaceutil_a08fbdd196c73244d0e2130c3a70d2f2b}{A\+Ddistance} (const std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \&depths, bool weight\+To\+Tail)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+default\+\_\+random\+\_\+engine \hyperlink{namespaceutil_ab30b96cc3fcd37942fb7f9f8a2e1898d}{gen}
+\item 
+std\+::ofstream \hyperlink{namespaceutil_af123fd54ef9ea843e69a69dfd986f59e}{logfile}
+\item 
+std\+::string \hyperlink{namespaceutil_a4839a6e82a650d17fe48a7ab99640835}{tmp\+Var}
+\item 
+int \hyperlink{namespaceutil_aeda4e5339822ac6c9fb3f1991c126bfb}{debug}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespaceutil_a08fbdd196c73244d0e2130c3a70d2f2b}\label{namespaceutil_a08fbdd196c73244d0e2130c3a70d2f2b}} 
+\index{util@{util}!A\+Ddistance@{A\+Ddistance}}
+\index{A\+Ddistance@{A\+Ddistance}!util@{util}}
+\subsubsection{\texorpdfstring{A\+Ddistance()}{ADdistance()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::vector$<$double$>$ util\+::\+A\+Ddistance (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::vector$<$ double $>$ $>$ \&}]{depths,  }\item[{bool}]{weight\+To\+Tail }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceutil_a422abe670c555eeeded897e3d9861b77}\label{namespaceutil_a422abe670c555eeeded897e3d9861b77}} 
+\index{util@{util}!A\+Ddistance@{A\+Ddistance}}
+\index{A\+Ddistance@{A\+Ddistance}!util@{util}}
+\subsubsection{\texorpdfstring{A\+Ddistance()}{ADdistance()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily vector$<$double$>$ util\+::\+A\+Ddistance (\begin{DoxyParamCaption}\item[{vector$<$ vector$<$ double $>$ $>$}]{depths,  }\item[{bool}]{weight\+To\+Tail = {\ttfamily false} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceutil_a1f106b9a1a65806393f73a3c8dbf01a6}\label{namespaceutil_a1f106b9a1a65806393f73a3c8dbf01a6}} 
+\index{util@{util}!avg\+PL@{avg\+PL}}
+\index{avg\+PL@{avg\+PL}!util@{util}}
+\subsubsection{\texorpdfstring{avg\+P\+L()}{avgPL()}}
+{\footnotesize\ttfamily double util\+::avg\+PL (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceutil_abfb0e38d71ca69f5f6a505b3f5f7dc52}\label{namespaceutil_abfb0e38d71ca69f5f6a505b3f5f7dc52}} 
+\index{util@{util}!ecdf@{ecdf}}
+\index{ecdf@{ecdf}!util@{util}}
+\subsubsection{\texorpdfstring{ecdf()}{ecdf()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::map$<$double,double$>$ util\+::ecdf (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$}]{points }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceutil_ac7478c2543d3bf4901961c719ecc7d04}\label{namespaceutil_ac7478c2543d3bf4901961c719ecc7d04}} 
+\index{util@{util}!ecdf@{ecdf}}
+\index{ecdf@{ecdf}!util@{util}}
+\subsubsection{\texorpdfstring{ecdf()}{ecdf()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily map$<$double,double$>$ util\+::ecdf (\begin{DoxyParamCaption}\item[{vector$<$ double $>$}]{points }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceutil_a3da5afd362118ed04ca18ec46d5e6a96}\label{namespaceutil_a3da5afd362118ed04ca18ec46d5e6a96}} 
+\index{util@{util}!flatten@{flatten}}
+\index{flatten@{flatten}!util@{util}}
+\subsubsection{\texorpdfstring{flatten()}{flatten()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+vector$<$T$>$ util\+::flatten (\begin{DoxyParamCaption}\item[{const vector$<$ vector$<$ T $>$$>$ \&}]{v }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceutil_a60fc54ed78936dca89472845766b61f8}\label{namespaceutil_a60fc54ed78936dca89472845766b61f8}} 
+\index{util@{util}!initialize@{initialize}}
+\index{initialize@{initialize}!util@{util}}
+\subsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily void util\+::initialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceutil_a67baa21858f5d569c1553bb179da7115}\label{namespaceutil_a67baa21858f5d569c1553bb179da7115}} 
+\index{util@{util}!mean@{mean}}
+\index{mean@{mean}!util@{util}}
+\subsubsection{\texorpdfstring{mean()}{mean()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily double util\+::mean (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$}]{points }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceutil_afded8090794a80d2f1c9aa44e70c85ff}\label{namespaceutil_afded8090794a80d2f1c9aa44e70c85ff}} 
+\index{util@{util}!mean@{mean}}
+\index{mean@{mean}!util@{util}}
+\subsubsection{\texorpdfstring{mean()}{mean()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily double util\+::mean (\begin{DoxyParamCaption}\item[{vector$<$ double $>$}]{points }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceutil_a1327645fe6fef26083bc9e1185b8d586}\label{namespaceutil_a1327645fe6fef26083bc9e1185b8d586}} 
+\index{util@{util}!randomD@{randomD}}
+\index{randomD@{randomD}!util@{util}}
+\subsubsection{\texorpdfstring{random\+D()}{randomD()}}
+{\footnotesize\ttfamily double util\+::randomD (\begin{DoxyParamCaption}\item[{double}]{min,  }\item[{double}]{max }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceutil_ae080f004741b0ea81032b3ec0c723f4c}\label{namespaceutil_ae080f004741b0ea81032b3ec0c723f4c}} 
+\index{util@{util}!random\+Ex@{random\+Ex}}
+\index{random\+Ex@{random\+Ex}!util@{util}}
+\subsubsection{\texorpdfstring{random\+Ex()}{randomEx()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily int util\+::random\+Ex (\begin{DoxyParamCaption}\item[{int}]{min,  }\item[{int}]{max,  }\item[{std\+::set$<$ int $>$ \&}]{exlude }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceutil_a8751577b60f8e83b41c3cca32d65b677}\label{namespaceutil_a8751577b60f8e83b41c3cca32d65b677}} 
+\index{util@{util}!random\+Ex@{random\+Ex}}
+\index{random\+Ex@{random\+Ex}!util@{util}}
+\subsubsection{\texorpdfstring{random\+Ex()}{randomEx()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily int util\+::random\+Ex (\begin{DoxyParamCaption}\item[{int}]{min,  }\item[{int}]{max,  }\item[{set$<$ int $>$ \&}]{exlude }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceutil_ab473893d6b386b2da951b72b4d40c085}\label{namespaceutil_ab473893d6b386b2da951b72b4d40c085}} 
+\index{util@{util}!randomI@{randomI}}
+\index{randomI@{randomI}!util@{util}}
+\subsubsection{\texorpdfstring{random\+I()}{randomI()}}
+{\footnotesize\ttfamily int util\+::randomI (\begin{DoxyParamCaption}\item[{int}]{min,  }\item[{int}]{max }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceutil_a254d46b3ebe9a685b6e0eca9db9d51ec}\label{namespaceutil_a254d46b3ebe9a685b6e0eca9db9d51ec}} 
+\index{util@{util}!randomT@{randomT}}
+\index{randomT@{randomT}!util@{util}}
+\subsubsection{\texorpdfstring{random\+T()}{randomT()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T util\+::randomT (\begin{DoxyParamCaption}\item[{T}]{min,  }\item[{T}]{max }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceutil_a84b10f9fb76cc3f825e8c680ca7d786e}\label{namespaceutil_a84b10f9fb76cc3f825e8c680ca7d786e}} 
+\index{util@{util}!readcsv@{readcsv}}
+\index{readcsv@{readcsv}!util@{util}}
+\subsubsection{\texorpdfstring{readcsv()}{readcsv()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ double $>$ $>$ util\+::readcsv (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename,  }\item[{char}]{delim = {\ttfamily \textquotesingle{},\textquotesingle{}},  }\item[{bool}]{header = {\ttfamily true} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceutil_a077f5faad89062a4013dc98fc85b7a40}\label{namespaceutil_a077f5faad89062a4013dc98fc85b7a40}} 
+\index{util@{util}!sampleI@{sampleI}}
+\index{sampleI@{sampleI}!util@{util}}
+\subsubsection{\texorpdfstring{sample\+I()}{sampleI()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void util\+::sampleI (\begin{DoxyParamCaption}\item[{int}]{min,  }\item[{int}]{max,  }\item[{int}]{nsample,  }\item[{std\+::vector$<$ int $>$ \&}]{sample\+Indx }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceutil_ab4e338c554526c6a942fc35d14b15beb}\label{namespaceutil_ab4e338c554526c6a942fc35d14b15beb}} 
+\index{util@{util}!sampleI@{sampleI}}
+\index{sampleI@{sampleI}!util@{util}}
+\subsubsection{\texorpdfstring{sample\+I()}{sampleI()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void util\+::sampleI (\begin{DoxyParamCaption}\item[{int}]{min,  }\item[{int}]{max,  }\item[{int}]{nsample,  }\item[{vector$<$ int $>$ \&}]{samples }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceutil_a71809e272f5a9c8e8297bab2c12666f7}\label{namespaceutil_a71809e272f5a9c8e8297bab2c12666f7}} 
+\index{util@{util}!score@{score}}
+\index{score@{score}!util@{util}}
+\subsubsection{\texorpdfstring{score()}{score()}}
+{\footnotesize\ttfamily double util\+::score (\begin{DoxyParamCaption}\item[{double}]{depth,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceutil_a8a222a481a56e4070f023d369483f707}\label{namespaceutil_a8a222a481a56e4070f023d369483f707}} 
+\index{util@{util}!swap\+Int@{swap\+Int}}
+\index{swap\+Int@{swap\+Int}!util@{util}}
+\subsubsection{\texorpdfstring{swap\+Int()}{swapInt()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void util\+::swap\+Int (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{int $\ast$}]{x }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceutil_a998845d03758baa45e52b967cf230b01}\label{namespaceutil_a998845d03758baa45e52b967cf230b01}} 
+\index{util@{util}!swap\+Int@{swap\+Int}}
+\index{swap\+Int@{swap\+Int}!util@{util}}
+\subsubsection{\texorpdfstring{swap\+Int()}{swapInt()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void util\+::swap\+Int (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b,  }\item[{T $\ast$}]{x }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceutil_a0b673442b1c87f0daf8bb0a4179a6834}\label{namespaceutil_a0b673442b1c87f0daf8bb0a4179a6834}} 
+\index{util@{util}!tconf@{tconf}}
+\index{tconf@{tconf}!util@{util}}
+\subsubsection{\texorpdfstring{tconf()}{tconf()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily double util\+::tconf (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$ \&}]{points,  }\item[{double}]{sigma }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceutil_a68758b62ab028fd0a2f0afb6d516be6f}\label{namespaceutil_a68758b62ab028fd0a2f0afb6d516be6f}} 
+\index{util@{util}!tconf@{tconf}}
+\index{tconf@{tconf}!util@{util}}
+\subsubsection{\texorpdfstring{tconf()}{tconf()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily double util\+::tconf (\begin{DoxyParamCaption}\item[{vector$<$ double $>$ \&}]{points,  }\item[{double}]{sigma = {\ttfamily 0.95} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceutil_a2f9d2ca343c1e5fcbc1da5140de61f94}\label{namespaceutil_a2f9d2ca343c1e5fcbc1da5140de61f94}} 
+\index{util@{util}!variance@{variance}}
+\index{variance@{variance}!util@{util}}
+\subsubsection{\texorpdfstring{variance()}{variance()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily double util\+::variance (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$ \&}]{x }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespaceutil_a43a50c7b5c6674cd27461d91cfec686c}\label{namespaceutil_a43a50c7b5c6674cd27461d91cfec686c}} 
+\index{util@{util}!variance@{variance}}
+\index{variance@{variance}!util@{util}}
+\subsubsection{\texorpdfstring{variance()}{variance()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily double util\+::variance (\begin{DoxyParamCaption}\item[{vector$<$ double $>$ \&}]{x }\end{DoxyParamCaption})}
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceutil_aeda4e5339822ac6c9fb3f1991c126bfb}\label{namespaceutil_aeda4e5339822ac6c9fb3f1991c126bfb}} 
+\index{util@{util}!debug@{debug}}
+\index{debug@{debug}!util@{util}}
+\subsubsection{\texorpdfstring{debug}{debug}}
+{\footnotesize\ttfamily int util\+::debug}
+
+\mbox{\Hypertarget{namespaceutil_ab30b96cc3fcd37942fb7f9f8a2e1898d}\label{namespaceutil_ab30b96cc3fcd37942fb7f9f8a2e1898d}} 
+\index{util@{util}!gen@{gen}}
+\index{gen@{gen}!util@{util}}
+\subsubsection{\texorpdfstring{gen}{gen}}
+{\footnotesize\ttfamily default\+\_\+random\+\_\+engine util\+::gen}
+
+\mbox{\Hypertarget{namespaceutil_af123fd54ef9ea843e69a69dfd986f59e}\label{namespaceutil_af123fd54ef9ea843e69a69dfd986f59e}} 
+\index{util@{util}!logfile@{logfile}}
+\index{logfile@{logfile}!util@{util}}
+\subsubsection{\texorpdfstring{logfile}{logfile}}
+{\footnotesize\ttfamily std\+::ofstream util\+::logfile}
+
+\mbox{\Hypertarget{namespaceutil_a4839a6e82a650d17fe48a7ab99640835}\label{namespaceutil_a4839a6e82a650d17fe48a7ab99640835}} 
+\index{util@{util}!tmp\+Var@{tmp\+Var}}
+\index{tmp\+Var@{tmp\+Var}!util@{util}}
+\subsubsection{\texorpdfstring{tmp\+Var}{tmpVar}}
+{\footnotesize\ttfamily std\+::string util\+::tmp\+Var}
+

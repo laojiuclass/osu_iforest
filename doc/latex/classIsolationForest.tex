@@ -1,0 +1,104 @@
+\hypertarget{classIsolationForest}{}\section{Isolation\+Forest Class Reference}
+\label{classIsolationForest}\index{Isolation\+Forest@{Isolation\+Forest}}
+
+
+{\ttfamily \#include $<$Isolation\+Forest.\+hpp$>$}
+
+
+
+Inheritance diagram for Isolation\+Forest\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=180pt]{classIsolationForest__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Isolation\+Forest\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=180pt]{classIsolationForest__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classIsolationForest_a381db4db6b4c0b3e532f67398b50e32a}{Isolation\+Forest} ()=default
+\item 
+\hyperlink{classIsolationForest_aa81cd568d5db199124cf381615cece42}{Isolation\+Forest} (int \+\_\+ntree, doubleframe $\ast$\+\_\+df, int \+\_\+nsample, int \+\_\+maxheight, bool \+\_\+stopheight, bool \+\_\+rsample)
+\item 
+void \hyperlink{classIsolationForest_a82005a7421ba74d37f7b5d24949c9e91}{build\+Forest} ()
+\item 
+virtual \hyperlink{classIsolationForest_add206f655ddfa46c359ae72ce4b5c66c}{$\sim$\+Isolation\+Forest} ()=default
+\item 
+int \hyperlink{classIsolationForest_a33dae487524bd1fdaf085a36dab04ee9}{adaptive\+Forest} (double alpha, int stop\+Limit)
+\item 
+void \hyperlink{classIsolationForest_a252267bf58f8bb812c4dca47d5390709}{fixed\+Tree\+Forest} (int epoch)
+\item 
+int \hyperlink{classIsolationForest_a10ab0476940aab9d6aa877d002fa9d5d}{batch\+Forest} (int epoch)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classIsolationForest_a381db4db6b4c0b3e532f67398b50e32a}\label{classIsolationForest_a381db4db6b4c0b3e532f67398b50e32a}} 
+\index{Isolation\+Forest@{Isolation\+Forest}!Isolation\+Forest@{Isolation\+Forest}}
+\index{Isolation\+Forest@{Isolation\+Forest}!Isolation\+Forest@{Isolation\+Forest}}
+\subsubsection{\texorpdfstring{Isolation\+Forest()}{IsolationForest()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Isolation\+Forest\+::\+Isolation\+Forest (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classIsolationForest_aa81cd568d5db199124cf381615cece42}\label{classIsolationForest_aa81cd568d5db199124cf381615cece42}} 
+\index{Isolation\+Forest@{Isolation\+Forest}!Isolation\+Forest@{Isolation\+Forest}}
+\index{Isolation\+Forest@{Isolation\+Forest}!Isolation\+Forest@{Isolation\+Forest}}
+\subsubsection{\texorpdfstring{Isolation\+Forest()}{IsolationForest()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Isolation\+Forest\+::\+Isolation\+Forest (\begin{DoxyParamCaption}\item[{int}]{\+\_\+ntree,  }\item[{doubleframe $\ast$}]{\+\_\+df,  }\item[{int}]{\+\_\+nsample,  }\item[{int}]{\+\_\+maxheight,  }\item[{bool}]{\+\_\+stopheight,  }\item[{bool}]{\+\_\+rsample }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classIsolationForest_add206f655ddfa46c359ae72ce4b5c66c}\label{classIsolationForest_add206f655ddfa46c359ae72ce4b5c66c}} 
+\index{Isolation\+Forest@{Isolation\+Forest}!````~Isolation\+Forest@{$\sim$\+Isolation\+Forest}}
+\index{````~Isolation\+Forest@{$\sim$\+Isolation\+Forest}!Isolation\+Forest@{Isolation\+Forest}}
+\subsubsection{\texorpdfstring{$\sim$\+Isolation\+Forest()}{~IsolationForest()}}
+{\footnotesize\ttfamily virtual Isolation\+Forest\+::$\sim$\+Isolation\+Forest (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classIsolationForest_a33dae487524bd1fdaf085a36dab04ee9}\label{classIsolationForest_a33dae487524bd1fdaf085a36dab04ee9}} 
+\index{Isolation\+Forest@{Isolation\+Forest}!adaptive\+Forest@{adaptive\+Forest}}
+\index{adaptive\+Forest@{adaptive\+Forest}!Isolation\+Forest@{Isolation\+Forest}}
+\subsubsection{\texorpdfstring{adaptive\+Forest()}{adaptiveForest()}}
+{\footnotesize\ttfamily int Isolation\+Forest\+::adaptive\+Forest (\begin{DoxyParamCaption}\item[{double}]{alpha,  }\item[{int}]{stop\+Limit }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classForest_a825bb350730c50aa8924e9f761c4a2a4}{Forest}.
+
+\mbox{\Hypertarget{classIsolationForest_a10ab0476940aab9d6aa877d002fa9d5d}\label{classIsolationForest_a10ab0476940aab9d6aa877d002fa9d5d}} 
+\index{Isolation\+Forest@{Isolation\+Forest}!batch\+Forest@{batch\+Forest}}
+\index{batch\+Forest@{batch\+Forest}!Isolation\+Forest@{Isolation\+Forest}}
+\subsubsection{\texorpdfstring{batch\+Forest()}{batchForest()}}
+{\footnotesize\ttfamily int Isolation\+Forest\+::batch\+Forest (\begin{DoxyParamCaption}\item[{int}]{epoch }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classIsolationForest_a82005a7421ba74d37f7b5d24949c9e91}\label{classIsolationForest_a82005a7421ba74d37f7b5d24949c9e91}} 
+\index{Isolation\+Forest@{Isolation\+Forest}!build\+Forest@{build\+Forest}}
+\index{build\+Forest@{build\+Forest}!Isolation\+Forest@{Isolation\+Forest}}
+\subsubsection{\texorpdfstring{build\+Forest()}{buildForest()}}
+{\footnotesize\ttfamily void Isolation\+Forest\+::build\+Forest (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classIsolationForest_a252267bf58f8bb812c4dca47d5390709}\label{classIsolationForest_a252267bf58f8bb812c4dca47d5390709}} 
+\index{Isolation\+Forest@{Isolation\+Forest}!fixed\+Tree\+Forest@{fixed\+Tree\+Forest}}
+\index{fixed\+Tree\+Forest@{fixed\+Tree\+Forest}!Isolation\+Forest@{Isolation\+Forest}}
+\subsubsection{\texorpdfstring{fixed\+Tree\+Forest()}{fixedTreeForest()}}
+{\footnotesize\ttfamily void Isolation\+Forest\+::fixed\+Tree\+Forest (\begin{DoxyParamCaption}\item[{int}]{epoch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classForest_a0699073aa8d6b46fdbdc36b7299a1a34}{Forest}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\hyperlink{IsolationForest_8hpp}{Isolation\+Forest.\+hpp}\item 
+src/\hyperlink{IsolationForest_8cpp}{Isolation\+Forest.\+cpp}\end{DoxyCompactItemize}

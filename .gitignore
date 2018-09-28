@@ -1,6 +1,8 @@
+doc/*
 *.exe
 *.o
 *.csv
 *.R?*
 *.gch
 *.pdf
+*.*make

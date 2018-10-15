@@ -22,6 +22,7 @@ double Forest::instanceScore(double *inst) {
 	return scores;
 }
 
+
 /*
  * Score for  a set of dataframe in dataset
  */

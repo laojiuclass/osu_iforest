@@ -8,6 +8,7 @@ option(BUIL_EXe "Build documenation with Doxygen" OFF)
 option(BUIL_shared_LIBS "Build documenation with Doxygen" OFF)
 
 
+
 if (UNIX)
     message("Serialization of models can work good.")
 add_definitions(-DSERIALIZATION=true)
@@ -45,6 +46,9 @@ if (NOT Eigen_FOUND)
 endif()
 include_directories("${EIGEN3_INCLUDE_DIR}")
 include_directories(${SOURCE_FILES}/src/cereal)
+# Enable testing
+enable_testing()
+add_subdirectory(test)
 
 add_executable(iforest main.cpp ${SOURCE_FILES})
 target_link_libraries(iforest iforestlib Clib ${Eigen_INCLUDE_DIR}) # ${ARMADILLO_INCLUDE_DIRS})

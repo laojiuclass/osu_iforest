@@ -18,6 +18,7 @@
 #include "utility.hpp"
 #include "cincl.hpp"
 #include "contribution.hpp"
+#include "DoubleFrame.hpp"
 #include <memory>
 
 class Tree: public std::enable_shared_from_this<Tree> {
@@ -43,7 +44,10 @@ public:
 	virtual ~Tree() = default;
 
 	void iTree(std::vector<int> const &dIndex,const doubleframe* dt, int height, int maxHeight, bool stopheight);
+	void iTree(std::vector<int> const &dIndex,const DoubleFrame *dt, int height, int maxHeight, bool stopheight);
+
 	double pathLength(double *inst);
+    double pathLength(DoubleFrame *inst);
 	bool indexAvailable(int index);
 
 	//Contribution

@@ -15,6 +15,85 @@ bool Tree::indexAvailable(int index) {
 }
 
 //bool Tree::rangeCheck=true;
+void Tree::iTree(std::vector<int> const &dIndex,
+                 const DoubleFrame *dt, int height, int maxheight, bool stopheight) {
+    this->depth = height; //Tree height
+    // Set size of the node
+    nodeSize = dIndex.size();
+    //stop growing if condition
+    if (dIndex.size() <= 1 || (stopheight && this->depth > maxheight)) {
+        //this->isLeaf = true;
+        return;
+    }
+    //*** Need modification
+    //Initialize minmax array for holding max and min of an attributes
+    std::vector<std::vector<double> > minmax;
+    std::vector<double> tmp;
+
+    for (int j = 0; j < dt->ncols(); j++) {
+        tmp.push_back({np::)})
+        tmp.push_back(dt->data[dIndex[0]][j]);
+        tmp.push_back(dt->data[dIndex[0]][j]);
+        minmax.push_back(tmp); //initialize max and min to random value
+        tmp.clear();
+    }
+#pragma omp parallel for
+
+    //Compute max and min of each attribute
+    for (unsigned i = 0; i < dIndex.size(); i++) {
+        //vector<double> inst = data->data[i];
+        for (int j = 0; j < dt->ncol; j++) {
+            if (dt->data[dIndex.at(i)][j] < minmax[j].at(0))
+                minmax[j].at(0) = dt->data[dIndex.at(i)][j];
+            if (dt->data[dIndex.at(i)][j] > minmax.at(j).at(1))
+                minmax[j].at(1) = dt->data[dIndex.at(i)][j];
+        }
+
+    }
+
+    //use only valid attributes
+    std::vector<int> attributes;
+    for (int j = 0; j < dt->ncol; j++) {
+        if (minmax[j][0] < minmax[j][1]) {
+            attributes.push_back(j);
+        }
+    }
+    //return if no valid attribute found
+    if (attributes.size() == 0)
+        return;
+    //Randomly pick an attribute and a split point
+
+    //int randx = randomI(0, attributes.size());
+
+    this->splittingAtt = attributes[util::randomI(0, attributes.size() - 1)]; //randx];
+    this->splittingPoint = util::randomD(minmax[this->splittingAtt][0], minmax[this->splittingAtt][1]);
+    this->minAttVal = minmax[this->splittingAtt][0];
+    this->maxAttVal = minmax[this->splittingAtt][1];
+    std::vector<int> lnodeData;
+    std::vector<int> rnodeData;
+    //Split the node into two
+    for (unsigned i = 0; i < dIndex.size(); i++) {
+        if (dt->data[dIndex.at(i)][splittingAtt] >= splittingPoint &&
+            (dt->data[dIndex.at(i)][splittingAtt] != minmax[this->splittingAtt][0])) {
+            rnodeData.push_back(dIndex.at(i));
+        } else {
+            lnodeData.push_back(dIndex.at(i));
+        }
+    }
+    leftChild = std::make_shared<Tree>();// new Tree(); //&dataL,height+1,maxheight);
+    //leftChild->parent = this->shared_from_this();
+    leftChild->iTree(lnodeData, dt, this->depth + 1, maxheight, stopheight);
+
+    rightChild = std::make_shared<Tree>();//new Tree(); //&dataR,height+1,maxheight);
+    //rightChild->parent = this->shared_from_this();
+    rightChild->iTree(rnodeData, dt, this->depth + 1, maxheight, stopheight);
+
+}
+
+
+
+
+//bool Tree::rangeCheck=true;
 void Tree::iTree(std::vector<int> const &dIndex, const doubleframe *dt, int height, int maxheight, bool stopheight) {
     this->depth = height; //Tree height
     // Set size of the node

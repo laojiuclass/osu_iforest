@@ -34,3 +34,14 @@ iforest.exe -h will display the available switches.
 2. This can also be written as
 
   `iforest.exe -iostm inputfile.csv score.csv 512 100 1,8-10`
+
+
+**Reference**
+@misc{dietterich2018anomaly,
+    title={Anomaly Detection in the Presence of Missing Values},
+    author={Thomas G. Dietterich and Tadesse Zemicheal},
+    year={2018},
+    eprint={1809.01605},
+    archivePrefix={arXiv},
+    primaryClass={cs.LG}
+}

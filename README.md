@@ -37,6 +37,7 @@ iforest.exe -h will display the available switches.
 
 
 **Reference**
+```
 @misc{dietterich2018anomaly,
     title={Anomaly Detection in the Presence of Missing Values},
     author={Thomas G. Dietterich and Tadesse Zemicheal},
@@ -45,3 +46,4 @@ iforest.exe -h will display the available switches.
     archivePrefix={arXiv},
     primaryClass={cs.LG}
 }
+```

@@ -36,7 +36,7 @@ iforest.exe -h will display the available switches.
   `iforest.exe -iostm inputfile.csv score.csv 512 100 1,8-10`
 
 ### Status
-[![Build Status](https://travis-ci.com/tadeze/osu_iforest.svg?token=4ykfwWQySq2ndZvpPqdz&branch=master)](https://travis-ci.com/tadeze/osu_iforest)
+[![Build Status](https://travis-ci.org/tadeze/osu_iforest.svg?branch=master)](https://travis-ci.org/tadeze/osu_iforest)
 
 
 **Reference**
